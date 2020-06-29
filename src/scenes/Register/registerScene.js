@@ -14,6 +14,14 @@ class RegisterScene extends Component {
                         <label htmlFor="password">Password:</label>
                         <input type="password" name="password" id="password"/>
                     </div>
+                    {/* <div>
+                        <label htmlFor="password">Verify Password:</label>
+                        <input type="password" name="password" id="password"/>
+                    </div> */}
+                    <div>
+                        <label htmlFor="username">Username:</label>
+                        <input type="username" name="username" id="username"/>
+                    </div>
                     <input type="submit" value="go on"/>
                 </form>
             </div>
