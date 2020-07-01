@@ -22,7 +22,7 @@ class RegisterScene extends Component {
                         <label htmlFor="username">Username:</label>
                         <input type="username" name="username" id="username"/>
                     </div>
-                    <input type="submit" value="go on"/>
+                    <input type="submit" value="register"/>
                 </form>
             </div>
         );

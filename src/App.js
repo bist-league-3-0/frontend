@@ -10,6 +10,7 @@ import './App.css';
 // Import Scenes
 import LoginScene from './scenes/Login/loginScene';
 import RegisterScene from './scenes/Register/registerScene';
+import CheckAuth from './scenes/Login/checkAuth';
 // End of Import Scenes
 
 // App Class Declaration
@@ -17,20 +18,21 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-
-
         <Switch>
           <Route exact path="/">
-              <a href="/login">login</a><br/>
-              <a href="/register">register</a>
+            <a href="/login">login</a><br/>
+            <a href="/register">register</a>
           </Route>
           <Route path="/login">
-              <LoginScene/>
+            <LoginScene/>
           </Route>
           <Route path="/register">
-              <RegisterScene/>
+            <RegisterScene/>
           </Route>
-          </Switch>
+          <Route path="/auth">
+            <CheckAuth/>
+          </Route>
+        </Switch>
       </Router>
     );
   }

@@ -8,8 +8,8 @@ class LoginScene extends Component {
                 <h1>Login Form</h1>
                 <form action="http://localhost:9000/login" method="post">
                     <div>
-                        <label htmlFor="username">Username:</label>
-                        <input type="text" name="username" id="username"/>
+                        <label htmlFor="email">Email:</label>
+                        <input type="email" name="email" id="email"/>
                     </div>
                     <div>
                         <label htmlFor="password">Password:</label>
