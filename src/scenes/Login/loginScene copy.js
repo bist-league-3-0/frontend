@@ -8,13 +8,12 @@ const LoginScene = () => {
 
   const onLogin = async (event) => {
     event.preventDefault();
-    let endpoint = "http://localhost:9000/api/bistleague3/auth/login"
-
     await axios
-      .post(endpoint, {email, password}, {withCredentials: true})
-      .then(() => {
-        setVerdict("Successfully Logged In, Please Wait");
-        window.location.replace("/");
+      .post("http://localhost:9000/api/bistleague3/auth/login", {
+        email,
+        password,
+      })
+      .then((response) => {
         return;
       })
       .catch((err) => {
