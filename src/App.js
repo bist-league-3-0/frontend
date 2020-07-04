@@ -11,6 +11,7 @@ import './App.css';
 import LoginScene from './scenes/Login/loginScene';
 import RegisterScene from './scenes/Register/registerScene';
 import CheckAuth from './scenes/Login/checkAuth';
+import Dashboard from './scenes/General/dashboard';
 // End of Import Scenes
 
 // App Class Declaration
@@ -20,8 +21,7 @@ export default class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/">
-            <a href="/login">login</a><br/>
-            <a href="/register">register</a>
+            <Dashboard/>
           </Route>
           <Route path="/login">
             <LoginScene/>
