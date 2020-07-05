@@ -1,0 +1,86 @@
+@mixin button($string : "primary-filled") {
+    // ERROR HANDLING
+    @if type-of($string) != string {
+        @error "Sorry, the $string value must be string type on button mixin";
+    }
+
+    // LAYOUT
+    @include fluidpaddingx(1rem, 2.2rem);
+    @include fluidpaddingy(0.5rem, 0.8rem);
+
+    // FONT
+    @include fluid(font-size, 1.2rem, 1.4rem);
+    @include lato();
+    font-weight: 400;
+
+    // FLEX
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // ANIMATION
+    transition: 0.2s;
+    
+    // CURSOR
+    cursor: pointer;
+
+    // COLOR
+    $color-bg: map-get($color, "primary-1");
+    $border: map-get($color, "primary-1");
+    $color-text: map-get($color, "white");
+    $color-bg-hover: map-get($color, "primary-2");
+    $border-hover: map-get($color, "primary-2");
+
+    @if $string == "primary" {
+        $color-bg: map-get($color, "white");
+        $border: map-get($color, "primary-1");
+        $color-text: map-get($color, "primary-1");
+        $color-bg-hover: rgba(map-get($color, "primary-1"), 0.1);
+        $border-hover: map-get($color, "primary-1");
+    }
+    @else if $string == "secondary-filled" {
+        $color-bg: map-get($color, "secondary-1");
+        $border: map-get($color, "secondary-1");
+        $color-text: map-get($color, "white");
+        $color-bg-hover: map-get($color, "secondary-2");
+        $border-hover: map-get($color, "secondary-2");
+    }
+    @else if $string == "secondary" {
+        $color-bg: map-get($color, "white");
+        $border: map-get($color, "secondary-1");
+        $color-text: map-get($color, "secondary-1");
+        $color-bg-hover: rgba(map-get($color, "primary-1"), 0.1);
+        $border-hover: map-get($color, "primary-1");
+    }
+
+    background-color: $color-bg;
+    border: remToVw(map-get($breakpoints, "large"), 0.2rem) solid $border;
+    color: $color-text;
+
+    &:hover {
+        border: remToVw(map-get($breakpoints, "large"), 0.2rem) solid $border-hover;
+        background-color: $color-bg-hover;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
+
+}
+
+// Classes
+.button-primary {
+    @include button("primary");
+}
+
+.button-primary-filled {
+    @include button("primary-filled");
+}
+
+.button-secondary {
+    @include button("secondary");
+}
+
+.button-secondary-filled {
+    @include button("secondary-filled");
+}

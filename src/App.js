@@ -4,14 +4,11 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 // End of Essential Modules
 
 // Import Styles
-import './App.css';
+import './css/base.scss';
 // End of Styles
 
 // Import Scenes
-import LoginScene from './scenes/Login/loginScene';
-import RegisterScene from './scenes/Register/registerScene';
-import CheckAuth from './scenes/Login/checkAuth';
-import Dashboard from './scenes/General/dashboard';
+import {LoginScene, RegisterScene, Dashboard, CheckAuth} from "./scenes/common";
 // End of Import Scenes
 
 // App Class Declaration

@@ -1,0 +1,20 @@
+// Module Colors
+$color: (
+    "primary-1": #84002F,
+    "primary-2": #30022C,
+    "primary-3": #7F6ADD,
+    "secondary-1": #CC002F,
+    "secondary-2": #F31A1E,
+    "black": #000000,
+    "white": #ffffff,
+    "gray-1": #545454
+);
+
+$color-primary-1: map-get($color, "primary-1");
+$color-primary-2: map-get($color, "primary-2");
+$color-primary-3: map-get($color, "primary-3");
+$color-secondary-1: map-get($color, "secondary-1");
+$color-secondary-2: map-get($color, "secondary-1");
+$color-black: map-get($color, "black");
+$color-white: map-get($color, "white");
+$color-gray-1: map-get($color, "gray-1");
