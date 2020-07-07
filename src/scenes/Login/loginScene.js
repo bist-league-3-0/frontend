@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+const {login} = require("./../../routes/backendRoutes");
 
 const LoginScene = () => {
   const [email, setEmail] = useState("");
@@ -8,7 +9,7 @@ const LoginScene = () => {
 
   const onLogin = async (event) => {
     event.preventDefault();
-    let endpoint = "http://localhost:9000/api/bistleague3/auth/login"
+    let endpoint = login
 
     await axios
       .post(endpoint, {email, password}, {withCredentials: true})
