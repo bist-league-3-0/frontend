@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 const BackendRoutes = require("./../../routes/backendRoutes");
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const defaultUserState = {id: 0, email: "", role : 1}
   const [user, setUser] = useState(defaultUserState);
   const [ID, setID] = useState(0);

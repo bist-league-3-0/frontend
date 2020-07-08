@@ -1,5 +1,5 @@
 // Import Essential Modules
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 // End of Essential Modules
 
