@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Asset from '../../assets/assets-common';
 import FrontendRoutes from '../../routes/frontendRoutes';
+import SocialRoutes from '../../routes/socialRoutes';
 import Hamburger from './_hamburger';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Navigation = (props) => {
   const [state, setState] = useState("inactive");
@@ -26,18 +28,28 @@ const Navigation = (props) => {
   const [socialLink, setSocialLink] = useState({
     instagram: {
       state: "idle",
-      link: "/",
+      link: SocialRoutes.instagram,
       text: "instagram"
     },
-    email: {
+    linkedin: {
       state: "idle",
-      link: "/",
-      text: "email"
+      link: SocialRoutes.linkedin,
+      text: "linkedin"
     },
     line: {
       state: "idle",
-      link: "/",
+      link: SocialRoutes.line,
       text: "line"
+    },
+    facebook: {
+      state: "idle",
+      link: SocialRoutes.facebook,
+      text: "facebook"
+    },
+    twitter: {
+      state: "idle",
+      link: SocialRoutes.twitter,
+      text: "twitter"
     }
   });
 
@@ -78,8 +90,10 @@ const Navigation = (props) => {
 
     setSocialLink(prevState => ({
       instagram: {...prevState.instagram},
-      email: {...prevState.email},
-      line: { ...prevState.line }
+      linkedin: {...prevState.linkedin},
+      line: {...prevState.line},
+      facebook: {...prevState.facebook},
+      twitter: { ...prevState.twitter }
     }))
   }
 
@@ -92,14 +106,83 @@ const Navigation = (props) => {
 
     setSocialLink(prevState => ({
       instagram: {...prevState.instagram, state:"idle" },
-      email: {...prevState.email, state:"idle" },
-      line: { ...prevState.line, state:"idle" }
+      linkedin: {...prevState.linkedin, state:"idle" },
+      line: {...prevState.line, state:"idle" },
+      facebook: {...prevState.facebook, state:"idle" },
+      twitter: { ...prevState.twitter, state:"idle" }
     }))
   }
   // END OF NAVIGATION EVENT HANDLER
 
+  // SOCIAL LINKS RENDER
+  let socialLinks = Object.values(socialLink).map(value => {
+    if (props.width >= 960) {
+      return (
+        <a 
+          className="footer-link"
+          key={value.text}
+          id={value.text}
+          href={value.link} 
+          state={value.state}
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+        >
+          {value.text}
+        </a>
+      );
+    } else {
+      if (props.width >= 540) {
+        return (
+          <a 
+            className="footer-link"
+            key={value.text}
+            id={value.text}
+            href={value.link} 
+            state={value.state}
+          >
+            <FontAwesomeIcon icon={['fab', value.text]} size="2x"/>
+          </a>
+        )
+      } else {
+        return (
+          <a 
+            className="footer-link"
+            key={value.text}
+            id={value.text}
+            href={value.link} 
+            state={value.state}
+          >
+            <FontAwesomeIcon icon={['fab', value.text]} size="lg"/>
+          </a>
+        )
+      }
+    }  
+  });
+  // END OF SOCIAL LINKS RENDER
+
+  // BODY LINKS RENDER
+  let bodyLinks = Object.values(navigationLink).map( value => {
+    return (
+      <a 
+        className="body-link"
+        key={value.text}
+        id={value.text}
+        href={value.link} 
+        state={value.state}
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        onMouseDown={handleClick}
+      >
+        {value.text}
+      </a>
+    );
+  })
+
+  // END OF BODY LINKS RENDER
+
   return(
     <div className="navigation-wrapper">
+      
       <nav className="navigation-header">
         <div className="header-links">
           <div className="header-link">
@@ -109,46 +192,12 @@ const Navigation = (props) => {
             <p>{state === "active" ? "Back" : "Menu"}</p>
           </div>
         </div>
-        {/* <div className="navbar-links">
-          { 
-            Object.values(navigationLink).map((value) => {
-              return (
-                <a 
-                  key={value.text}
-                  id={value.text}
-                  href={value.link} 
-                  state={value.state}
-                  onMouseOver={handleMouseOver}
-                  onMouseOut={handleMouseOut}
-                >
-                  {value.text}
-                </a>
-              )
-            })
-          }          
-        </div> */}
         <img src={Asset.LogoBist} alt="BistLogo"/>
       </nav>
       <aside className="navigation-aside">
         <div className="aside-body">
           <div className="body-links">
-            {
-              Object.values(navigationLink).map( value => {
-                return (
-                  <a 
-                    className="body-link"
-                    key={value.text}
-                    id={value.text}
-                    href={value.link} 
-                    state={value.state}
-                    onMouseOver={handleMouseOver}
-                    onMouseOut={handleMouseOut}
-                  >
-                    {value.text}
-                  </a>
-                );
-              })
-            }
+            {bodyLinks}
           </div>
           <div className="body-asset medium-only">
             <img src={Asset.NavAsset} alt="BistLogo"/>
@@ -156,23 +205,7 @@ const Navigation = (props) => {
         </div>
         <div className="aside-footer">
           <div className="footer-links">
-            {
-              Object.values(socialLink).map(value => {
-                return (
-                  <a 
-                    className="footer-link"
-                    key={value.text}
-                    id={value.text}
-                    href={value.link} 
-                    state={value.state}
-                    onMouseOver={handleMouseOver}
-                    onMouseOut={handleMouseOut}
-                  >
-                    {value.text}
-                  </a>
-                );
-              })
-            }
+            {socialLinks}
           </div>
         </div>
       </aside>

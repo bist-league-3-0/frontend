@@ -33,6 +33,10 @@ $paddingTopCeil: $heightCeil;
         justify-content: center;
         align-items: flex-start;
 
+        @media screen and (max-width: #{remToPx($bp-medium)}) and (orientation: landscape) {
+          @include typography("h3");
+        }
+
         .body-link {
           color: $color-gray-1;
           transition: $defaultTransition;

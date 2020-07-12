@@ -6,6 +6,12 @@ $height : .2rem;
   @include fluid("padding", .5rem, 1rem);
   position: relative;
 
+  &:hover:not(.active) {
+    .line2 {
+      width: 80%;
+    }
+  }
+
   .line {
     @include fluid("height", $height);
     width: 100%;
