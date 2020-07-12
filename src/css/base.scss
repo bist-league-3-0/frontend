@@ -14,8 +14,10 @@
 
 // Import Constants
 @import 'constants/baseline';
+@import 'modules/fonts';
 
 html, body {
+    @include lato();
     margin:0;
     padding:0;
     height:100%;

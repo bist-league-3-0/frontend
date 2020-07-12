@@ -1,0 +1,23 @@
+/* 
+ * GLOBAL BOX SIZING:
+ * Value for Box Sizing
+ * Floor: 3rem
+ * Ceiling: 5rem
+ */
+
+$floor: 3rem;
+$ceiling: 5rem;
+
+// Mixin boxSizing
+// @param string(optional)
+@mixin boxsizing($option : "") {
+  @if $option == "scene" {
+    @include fluidpadding($floor, $ceiling);
+    @media screen and (min-width: #{remToPx($bp-large)}) {
+      padding-left: 12.5vw;
+      padding-right: 12.5vw;            
+    }
+  } @else {
+    @include fluidpaddingx($floor, $ceiling);
+  }
+}

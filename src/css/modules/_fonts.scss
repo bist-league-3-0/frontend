@@ -7,3 +7,16 @@
 @mixin roboto() {
     font-family: 'Roboto', sans-serif;
 }
+
+// Typography
+@mixin typography($option: "") {
+    @if $option == "h1" {
+        @include fluid("font-size", $fontsize-h1-floor, $fontsize-h1-ceil);
+    } @else if $option == "h2" {
+        @include fluid("font-size", $fontsize-h2-floor, $fontsize-h2-ceil);
+    } @else if $option == "h3" {
+        @include fluid("font-size", $fontsize-h3-floor, $fontsize-h3-ceil);
+    } @else {
+        @include fluid("font-size", $fontsize-p-floor, $fontsize-p-ceil);
+    }
+}

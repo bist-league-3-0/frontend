@@ -7,7 +7,7 @@
 // @return: vw and rem
 // Use Case: fluid("font-size", 1.2rem, 1.4rem)
 
-@mixin fluid($property, $floor, $ceiling){
+@mixin fluid($property, $floor, $ceiling : $floor){
     @if type-of($property) != "string" {
         @error "Sorry, you must insert string for $property on fluid mixin";
     }

@@ -1,5 +1,5 @@
 const FrontendRoutes = {};
-const FrontendURL = "http://localhost:3000/";
+const FrontendURL = "/";
 
 // Guest Routes
 FrontendRoutes.home = FrontendURL

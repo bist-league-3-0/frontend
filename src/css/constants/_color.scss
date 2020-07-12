@@ -10,15 +10,17 @@ $color: (
     "gray-1": #2A2A2A,
     "gray-2": #545454,
     "gray-3": #7E7E7E,
+    "gray-4": #F2F2F2,
 );
 
 $color-primary-1: map-get($color, "primary-1");
 $color-primary-2: map-get($color, "primary-2");
 $color-primary-3: map-get($color, "primary-3");
 $color-secondary-1: map-get($color, "secondary-1");
-$color-secondary-2: map-get($color, "secondary-1");
+$color-secondary-2: map-get($color, "secondary-2");
 $color-black: map-get($color, "black");
 $color-white: map-get($color, "white");
 $color-gray-1: map-get($color, "gray-1");
-$color-gray-2: map-get($color, "gray-1");
-$color-gray-3: map-get($color, "gray-1");
+$color-gray-2: map-get($color, "gray-2");
+$color-gray-3: map-get($color, "gray-3");
+$color-gray-4: map-get($color, "gray-4");

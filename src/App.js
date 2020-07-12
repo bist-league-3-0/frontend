@@ -3,15 +3,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import BackendRoutes from "./routes/backendRoutes";
+import FrontendRoutes from "./routes/frontendRoutes";
 // End of Essential Modules
 
 // Import Styles
-// import './css/base.scss';
+import './css/base.scss';
+import './css/main.scss';
 // End of Styles
 
-// Import Scenes
-import {LoginScene, RegisterScene, Dashboard} from "./scenes/common";
-// End of Import Scenes
+// Import Common Files
+import * as Scene from "./scenes/scene-common";
+// End of Common Files
 
 
 // App Class Declaration
@@ -47,22 +49,19 @@ const App = () => {
   )
 
   return (
-    <div>
-      ID:{user.id}, Email:{user.email}, Role:{user.role}
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Dashboard width={width}/>
-          </Route>
-          <Route path="/login">
-            <LoginScene/>
-          </Route>
-          <Route path="/register">
-            <RegisterScene/>
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path={FrontendRoutes.home}>
+          <Scene.LandingScene width={width} user={user}/>
+        </Route>
+        <Route path={FrontendRoutes.login}>
+          <Scene.LoginScene/>
+        </Route>
+        <Route path={FrontendRoutes.register}>
+          <Scene.RegisterScene/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

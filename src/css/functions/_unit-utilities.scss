@@ -1,5 +1,8 @@
-// @param: value {type: number; unit: any}
-// @return: number
+/*
+ * @param: value {type: number; unit: any}
+ * @return: number
+ */
+ 
 @function stripUnit($value) {
     @if type-of($value) != "number" {
         @error "Sorry, you must insert any number for $value on stripUnit function"
