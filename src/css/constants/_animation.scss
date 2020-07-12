@@ -1,2 +1,3 @@
 // Default Transition Speed
-$defaultTransition: all 0.4s cubic-bezier(.80, 0, .20, 1);
+$defaultCubicBezier: cubic-bezier(.80, 0, .20, 1);
+$defaultTransition: all 0.4s $defaultCubicBezier;

@@ -4,7 +4,7 @@
 
 @mixin displayControl($bp) {
   @media screen and (max-width: #{remToPx($bp)}) {
-    display: none;
+    display: none !important;
   }
 }
 

@@ -5,7 +5,7 @@ import Hamburger from './_hamburger';
 
 const Navigation = (props) => {
   const [state, setState] = useState("inactive");
-  const [navbarLink, setNavbarLink] = useState({
+  const [navigationLink, setNavigationLink] = useState({
     home: {
       state: "idle",
       link: FrontendRoutes.home,
@@ -23,6 +23,25 @@ const Navigation = (props) => {
     }
   });
 
+  const [socialLink, setSocialLink] = useState({
+    instagram: {
+      state: "idle",
+      link: "/",
+      text: "instagram"
+    },
+    email: {
+      state: "idle",
+      link: "/",
+      text: "email"
+    },
+    line: {
+      state: "idle",
+      link: "/",
+      text: "line"
+    }
+  });
+
+  // HAMBURGER TOGGLES
   const handleClick = (e) => {
     if (state === "inactive") {
       setState("active");
@@ -40,29 +59,44 @@ const Navigation = (props) => {
   const handleChildClick = (e) => {
     e.target.parentElement.click();
   }
+  // END OF HAMBURGER TOGGLES
 
+  // NAVIGATION EVENT HANDLER (SHARED BETWEEN SOCIAL LINKS AND NAV LINKS)
   const handleMouseOver = async (e) => {
-    let temp = navbarLink;
+    let temp = {...navigationLink, ...socialLink};
     for (let link in temp) {
       temp[link].state = "not-hover";
     }
 
     temp[e.target.id].state = "hover";
 
-    setNavbarLink(prevState => ({
+    setNavigationLink(prevState => ({
       home: { ...prevState.home },
       login: { ...prevState.login },
       register: { ...prevState.register }
     }))
+
+    setSocialLink(prevState => ({
+      instagram: {...prevState.instagram},
+      email: {...prevState.email},
+      line: { ...prevState.line }
+    }))
   }
 
   const handleMouseOut = (e) => {
-    setNavbarLink(prevState => ({
+    setNavigationLink(prevState => ({
       home: { ...prevState.home, state:"idle" },
       login: { ...prevState.login, state:"idle" },
       register: { ...prevState.register, state:"idle" }
     }))
+
+    setSocialLink(prevState => ({
+      instagram: {...prevState.instagram, state:"idle" },
+      email: {...prevState.email, state:"idle" },
+      line: { ...prevState.line, state:"idle" }
+    }))
   }
+  // END OF NAVIGATION EVENT HANDLER
 
   return(
     <div className="navigation-wrapper">
@@ -77,7 +111,7 @@ const Navigation = (props) => {
         </div>
         {/* <div className="navbar-links">
           { 
-            Object.values(navbarLink).map((value) => {
+            Object.values(navigationLink).map((value) => {
               return (
                 <a 
                   key={value.text}
@@ -96,7 +130,51 @@ const Navigation = (props) => {
         <img src={Asset.LogoBist} alt="BistLogo"/>
       </nav>
       <aside className="navigation-aside">
-
+        <div className="aside-body">
+          <div className="body-links">
+            {
+              Object.values(navigationLink).map( value => {
+                return (
+                  <a 
+                    className="body-link"
+                    key={value.text}
+                    id={value.text}
+                    href={value.link} 
+                    state={value.state}
+                    onMouseOver={handleMouseOver}
+                    onMouseOut={handleMouseOut}
+                  >
+                    {value.text}
+                  </a>
+                );
+              })
+            }
+          </div>
+          <div className="body-asset medium-only">
+            <img src={Asset.NavAsset} alt="BistLogo"/>
+          </div>
+        </div>
+        <div className="aside-footer">
+          <div className="footer-links">
+            {
+              Object.values(socialLink).map(value => {
+                return (
+                  <a 
+                    className="footer-link"
+                    key={value.text}
+                    id={value.text}
+                    href={value.link} 
+                    state={value.state}
+                    onMouseOver={handleMouseOver}
+                    onMouseOut={handleMouseOut}
+                  >
+                    {value.text}
+                  </a>
+                );
+              })
+            }
+          </div>
+        </div>
       </aside>
     </div>
   )
