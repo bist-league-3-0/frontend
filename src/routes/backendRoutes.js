@@ -12,5 +12,6 @@ BackendRoutes.login = BackendRoutes.auth + "login/";
 BackendRoutes.register = BackendRoutes.auth + "register/";
 BackendRoutes.logout = BackendRoutes.auth + "logout/";
 BackendRoutes.check = BackendRoutes.login + "check/";
+BackendRoutes.checkAuth = BackendRoutes.login + "check-authentication/";
 
 module.exports = BackendRoutes;

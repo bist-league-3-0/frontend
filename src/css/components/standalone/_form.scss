@@ -1,0 +1,72 @@
+.form {
+  &.form-wrapper {
+    @include boxsizing-x("component");
+    @include boxsizing-y("component");
+  }
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  
+  & *{
+    width: inherit;
+  }
+
+  a {
+    font-weight: 700;
+    color: $color-primary-1;
+    transition: $defaultTransition;
+
+    &:hover {
+      color: $color-primary-2;
+    }
+  }
+
+  .form-title {
+    @include typography("h1");
+    @include fluid("margin-bottom", 2.5rem, 4rem);
+    text-align: center;
+  }
+
+  .input-body {
+    @include fluid("margin-bottom", 2.5rem, 4rem);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-group, .input-footer {
+    display: flex;
+    flex-direction: column;
+
+    @include fluid("margin-bottom", 1.5rem, 2rem);
+    
+    & *{
+      @include typography("p");
+      &:not(:last-child){
+        @include fluid("margin-bottom", .75rem, 1rem);
+      }
+    }
+  }
+
+  .input-label {
+    text-transform: uppercase;
+  }
+
+  .input-text {
+    @include typography("sm");
+
+    & *{
+      @include typography("sm");
+    }
+  }
+
+  input[type='text'], input[type='email'], input[type='password'] {
+    @include lato();
+    @include fluid("padding", .5rem);
+    border: remToVw(96rem, .1rem) solid $color-black;
+    border-radius: remToVw(96rem, .3rem);
+  }
+}

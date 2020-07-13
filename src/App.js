@@ -55,7 +55,7 @@ const App = () => {
           <Scene.LandingScene width={width} user={user}/>
         </Route>
         <Route path={FrontendRoutes.login}>
-          <Scene.LoginScene/>
+          <Scene.LoginScene width={width} user={user}/>
         </Route>
         <Route path={FrontendRoutes.register}>
           <Scene.RegisterScene/>

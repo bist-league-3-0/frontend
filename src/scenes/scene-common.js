@@ -1,4 +1,4 @@
-import LandingScene from './General/landing';
+import LandingScene from './General/landingScene';
 import LoginScene from './Login/loginScene';
 import RegisterScene from './Register/registerScene';
 import CheckAuth from './Login/checkAuth';

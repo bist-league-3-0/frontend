@@ -1,11 +1,7 @@
-$paddingTopFloor: $heightFloor;
-$paddingTopCeil: $heightCeil;
-
 @mixin navigation-aside(){
   .navigation-aside {
-    @include boxsizing("scene-md");
-    @include fluid("padding-top", $paddingTopFloor, $paddingTopCeil);
-    @include fluid("padding-bottom", 2rem);
+    @include boxsizing-x("scene-md");
+    @include boxsizing-y("scene");
     position: fixed;
     width: 100%;
     height: 100%;

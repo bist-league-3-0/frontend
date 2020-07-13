@@ -1,26 +1,22 @@
 // Determine Height of Navigation Header Component
 // Calculates from Biggest Element (Img and Padding)
-$paddingFloor: 2rem;
-$paddingCeil: 2rem;
-$imgFloor: 4.8rem;
-$imgCeil: 9.6rem;
-$heightFloor: ($paddingFloor * 2) + $imgFloor;
-$heightCeil: ($paddingCeil * 2) + $imgCeil;
 
 @mixin navigation-header() {
   .navigation-header {
-    @include boxsizing();
-    @include fluidpaddingy($paddingFloor, $paddingCeil);
+    @include boxsizing-x();
+    @include fluidpaddingy($bs-nav-paddingFloor, $bs-nav-paddingCeil);
     @include typography();
     display: flex;
-    position: relative;
+    position: absolute;
+    width: 100%;
     z-index: 900;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    transition: $defaultTransition;
   
     img {
-      @include fluid("width", $imgFloor, $imgCeil);
+      @include fluid("width", $bs-nav-imgFloor, $bs-nav-imgCeil);
     }
   
     .header-links{

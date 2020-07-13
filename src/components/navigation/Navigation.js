@@ -4,6 +4,7 @@ import FrontendRoutes from '../../routes/frontendRoutes';
 import SocialRoutes from '../../routes/socialRoutes';
 import Hamburger from './_hamburger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import BackendRoutes from '../../routes/backendRoutes';
 
 const Navigation = (props) => {
   const [state, setState] = useState("inactive");
@@ -22,6 +23,11 @@ const Navigation = (props) => {
       state: "idle",
       link: FrontendRoutes.register,
       text: "register"
+    },
+    logout: {
+      state: "idle",
+      link: BackendRoutes.logout,
+      text: "logout"
     }
   });
 
@@ -85,7 +91,8 @@ const Navigation = (props) => {
     setNavigationLink(prevState => ({
       home: { ...prevState.home },
       login: { ...prevState.login },
-      register: { ...prevState.register }
+      register: { ...prevState.register },
+      logout: { ...prevState.logout }
     }))
 
     setSocialLink(prevState => ({
@@ -101,7 +108,8 @@ const Navigation = (props) => {
     setNavigationLink(prevState => ({
       home: { ...prevState.home, state:"idle" },
       login: { ...prevState.login, state:"idle" },
-      register: { ...prevState.register, state:"idle" }
+      register: { ...prevState.register, state:"idle" },
+      logout: { ...prevState.logout, state:"idle" }
     }))
 
     setSocialLink(prevState => ({
@@ -113,6 +121,23 @@ const Navigation = (props) => {
     }))
   }
   // END OF NAVIGATION EVENT HANDLER
+
+  // SCROLL EVENT HANDLER
+  var prevScrollpos = window.pageYOffset;
+  window.onscroll = function() {
+      var currentScrollPos = window.pageYOffset;
+      if (state === "inactive") {
+        if (prevScrollpos > currentScrollPos) {
+          document.getElementById("navbar").style.top = "0";
+        } else {
+            document.getElementById("navbar").style.top = "-15rem";
+        }
+        prevScrollpos = currentScrollPos;
+      } else {
+        window.scrollTo(0, prevScrollpos);
+      }
+  }
+  // END OF SCROLL EVENT
 
   // SOCIAL LINKS RENDER
   let socialLinks = Object.values(socialLink).map(value => {
@@ -182,8 +207,7 @@ const Navigation = (props) => {
 
   return(
     <div className="navigation-wrapper">
-      
-      <nav className="navigation-header">
+      <nav className="navigation-header" id="navbar">
         <div className="header-links">
           <div className="header-link">
             <Hamburger handler={{handleClick, handleChildClick}}/>
