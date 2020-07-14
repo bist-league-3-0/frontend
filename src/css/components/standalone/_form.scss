@@ -57,6 +57,7 @@
 
   .input-text {
     @include typography("sm");
+    color: $color-gray-2;
 
     & *{
       @include typography("sm");
@@ -68,5 +69,52 @@
     @include fluid("padding", .5rem);
     border: remToVw(96rem, .1rem) solid $color-black;
     border-radius: remToVw(96rem, .3rem);
+  }
+
+  .input-radio-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media screen and (max-width: #{remToPx($bp-medium)}){
+      flex-direction: column;
+    }
+
+    .input-radio {
+      width: auto;
+
+      label {
+        display: flex;
+        
+        & *:not(:first-child){
+          @include fluid("margin-left", .5rem, 2rem);
+        }
+
+        .radio-description {
+          @include typography("sm");
+        }
+      }
+    }
+  }
+
+  input[type="radio"] {
+    display: none;
+
+    &:checked + label {
+      .radio-button {
+        background-color: $color-primary-1;
+        border: remToVw($bp-large, .1rem) solid $color-primary-1;
+      }
+    }
+  }
+
+  .radio-button {
+    @include fluid("width", 1.6rem, 2rem);
+    @include fluid("height", 1.6rem, 2rem);
+    background-color: transparent;
+    display: flex;
+    border: remToVw($bp-large, .1rem) solid $color-black;
+    border-radius: 50%;
+    transition: $defaultTransition;
   }
 }

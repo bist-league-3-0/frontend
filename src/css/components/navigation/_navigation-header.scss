@@ -30,24 +30,6 @@
           @include fluid("margin-left", 2rem, 2rem);
         }
       }
-  
-      a {
-        color: $color-gray-1;
-        text-transform: uppercase;
-        transition: all 0.3s;
-  
-        &[state=hover] {
-          color: $color-black;
-        }
-  
-        &[state=not-hover] {
-          color: $color-gray-3;
-        }
-  
-        &[state=idle] {
-          color: $color-gray-1;
-        }
-      }
     }
   }
 }
