@@ -1,0 +1,25 @@
+.flash-message {
+  @include typography("p");
+  @include boxsizing-x("component");
+  @include boxsizing-y("component");
+  width: inherit;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  
+  &[status=success] {
+    @include fluid("margin-bottom", 2rem);
+    background-color: $color-success-bg;
+    color: $color-success;
+    border: remToVw($bp-large, .1rem) solid $color-success;
+    border-radius: remToVw($bp-large, .5rem);
+  }
+
+  &[status=error] {
+    @include fluid("margin-bottom", 2rem);
+    background-color: $color-error-bg;
+    color: $color-error;
+    border: remToVw($bp-large, .1rem) solid $color-error;
+    border-radius: remToVw($bp-large, .5rem);
+  }
+}

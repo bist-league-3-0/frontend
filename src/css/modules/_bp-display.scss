@@ -1,0 +1,17 @@
+// Mixin displayControl($bp)
+// bp is a breakpoint (possible choice: $bp-medium, $bp-large)
+// Only display element when exceeds breakpoint.
+
+@mixin displayControl($bp) {
+  @media screen and (max-width: #{remToPx($bp)}) {
+    display: none !important;
+  }
+}
+
+.large-only {
+  @include displayControl($bp-large);
+}
+
+.medium-only {
+  @include displayControl($bp-medium);
+}

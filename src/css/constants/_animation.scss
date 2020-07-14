@@ -1,0 +1,5 @@
+// Constants: Animation
+
+// Default Transition Speed
+$defaultCubicBezier: cubic-bezier(.80, 0, .20, 1);
+$defaultTransition: all 0.4s $defaultCubicBezier;

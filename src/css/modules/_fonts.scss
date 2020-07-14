@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+$lato: 'Lato', sans-serif;
+$roboto: 'Roboto', sans-serif;
+
+@mixin lato() {
+    font-family: $lato;
+}
+
+@mixin roboto() {
+    font-family: $roboto;
+}
+
+// Typography
+@mixin typography($option: "") {
+    @if $option == "h1" {
+        @include fluid("font-size", $fontsize-h1-floor, $fontsize-h1-ceil);
+    } 
+    @else if $option == "h2" {
+        @include fluid("font-size", $fontsize-h2-floor, $fontsize-h2-ceil);
+    } 
+    @else if $option == "h3" {
+        @include fluid("font-size", $fontsize-h3-floor, $fontsize-h3-ceil);
+    }
+    @else if $option == "sm" {
+        @include fluid("font-size", $fontsize-sm-floor, $fontsize-sm-ceil);
+    } 
+    @else {
+        @include fluid("font-size", $fontsize-p-floor, $fontsize-p-ceil);
+    }
+}

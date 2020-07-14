@@ -1,40 +1,68 @@
 // Import Essential Modules
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import BackendRoutes from "./routes/backendRoutes";
+import FrontendRoutes from "./routes/frontendRoutes";
 // End of Essential Modules
 
 // Import Styles
-import './App.css';
+import './css/base.scss';
+import './css/main.scss';
 // End of Styles
 
-// Import Scenes
-import LoginScene from './scenes/Login/loginScene';
-import RegisterScene from './scenes/Register/registerScene';
-import CheckAuth from './scenes/Login/checkAuth';
-import Dashboard from './scenes/General/dashboard';
-// End of Import Scenes
+// Import Common Files
+import * as Scene from "./scenes/scene-common";
+// End of Common Files
+
 
 // App Class Declaration
-export default class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Dashboard/>
-          </Route>
-          <Route path="/login">
-            <LoginScene/>
-          </Route>
-          <Route path="/register">
-            <RegisterScene/>
-          </Route>
-          <Route path="/auth">
-            <CheckAuth/>
-          </Route>
-        </Switch>
-      </Router>
-    );
+const App = () => {
+  const defaultUserState = {id: 0, email: "", role : 1}
+  const [width, setWidth] = useState(window.innerWidth);
+  const [user, setUser] = useState(defaultUserState);
+
+  window.addEventListener('resize', () => {
+    setWidth(window.innerWidth);
+  });
+
+  const fetchData = async () => {
+    let res = await axios
+      .get(BackendRoutes.check, {withCredentials: true});
+
+    if (typeof res.data.passport != "undefined") {
+      return res.data.passport;
+    } else {
+      return {}
+    }
   }
+
+  useEffect(
+    () => {
+      fetchData()
+        .then(res => {
+          let temp = Object.values(res);
+          temp = temp.pop();
+          setUser(typeof temp != "undefined" ? temp : defaultUserState)
+        });
+    }, []
+  )
+
+  return (
+    <Router>
+      <Switch>
+        <Route exact path={FrontendRoutes.home}>
+          <Scene.LandingScene width={width} user={user}/>
+        </Route>
+        <Route path={FrontendRoutes.login}>
+          <Scene.LoginScene width={width} user={user}/>
+        </Route>
+        <Route path={FrontendRoutes.register}>
+          <Scene.RegisterScene/>
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
-// End of Class
+
+export default App;

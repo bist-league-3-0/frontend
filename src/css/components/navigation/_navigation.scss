@@ -1,0 +1,12 @@
+@import "./navigation-header";
+@import "./navigation-aside";
+
+.navigation-wrapper {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  @include navigation-header();
+  @include navigation-aside();
+}
