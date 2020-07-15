@@ -31,17 +31,19 @@
     text-align: center;
   }
 
-  .input-body {
+  .input-body, .input-footer {
     @include fluid("margin-bottom", 2.5rem, 4rem);
     display: flex;
     flex-direction: column;
   }
 
-  .input-group, .input-footer {
+  .input-group {
     display: flex;
     flex-direction: column;
 
-    @include fluid("margin-bottom", 1.5rem, 2rem);
+    &:not(:last-child){
+      @include fluid("margin-bottom", 1.5rem, 2rem);
+    }
     
     & *{
       @include typography("p");
@@ -55,6 +57,11 @@
     text-transform: uppercase;
   }
 
+  .input-heading {
+    @include typography("h2");
+    @include fluid("margin-top", 1.5rem, 2rem);
+  }
+
   .input-text {
     @include typography("sm");
     color: $color-gray-2;
@@ -64,7 +71,7 @@
     }
   }
 
-  input[type='text'], input[type='email'], input[type='password'] {
+  input[type='text'], input[type='email'], input[type='password'], input[type='number'] {
     @include lato();
     @include fluid("padding", .5rem);
     border: remToVw(96rem, .1rem) solid $color-black;
@@ -116,5 +123,9 @@
     border: remToVw($bp-large, .1rem) solid $color-black;
     border-radius: 50%;
     transition: $defaultTransition;
+
+    @media screen and (min-width: #{remToPx($bp-medium)}){
+      margin-bottom: 0 !important;
+    }
   }
 }
