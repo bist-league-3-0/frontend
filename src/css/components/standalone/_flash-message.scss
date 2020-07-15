@@ -6,6 +6,10 @@
   display: flex;
   justify-content: center;
   text-align: center;
+
+  &[status=""] {
+    display: none;
+  }
   
   &[status=success] {
     @include fluid("margin-bottom", 2rem);

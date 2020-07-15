@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import Asset from '../../assets/assets-common';
 import FrontendRoutes from '../../routes/frontendRoutes';
 import SocialRoutes from '../../routes/socialRoutes';
@@ -26,7 +27,7 @@ const Navigation = (props) => {
     },
     logout: {
       state: "idle",
-      link: BackendRoutes.logout,
+      link: FrontendRoutes.logout,
       text: "logout"
     }
   });
@@ -151,6 +152,8 @@ const Navigation = (props) => {
           state={value.state}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {value.text}
         </a>
@@ -164,6 +167,8 @@ const Navigation = (props) => {
             id={value.text}
             href={value.link} 
             state={value.state}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <FontAwesomeIcon icon={['fab', value.text]} size="2x"/>
           </a>
@@ -176,6 +181,8 @@ const Navigation = (props) => {
             id={value.text}
             href={value.link} 
             state={value.state}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <FontAwesomeIcon icon={['fab', value.text]} size="lg"/>
           </a>
@@ -187,20 +194,37 @@ const Navigation = (props) => {
 
   // BODY LINKS RENDER
   let bodyLinks = Object.values(navigationLink).map( value => {
-    return (
-      <a 
-        className="body-link"
-        key={value.text}
-        id={value.text}
-        href={value.link} 
-        state={value.state}
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
-        onMouseDown={handleClick}
-      >
-        {value.text}
-      </a>
-    );
+    if ( value.text === "logout") { 
+      return (
+        <a 
+          className="body-link"
+          key={value.text}
+          id={value.text} 
+          state={value.state}
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+          onMouseDown={handleClick}
+          href={BackendRoutes.logout}
+        >
+          {value.text}
+        </a>
+      );
+    } else {
+      return (
+        <NavLink to={value.link} key={value.text}>
+          <span 
+            className="body-link"
+            id={value.text} 
+            state={value.state}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+            onMouseDown={handleClick}
+          >
+            {value.text}
+          </span>
+        </NavLink>
+      );
+    }
   })
 
   // END OF BODY LINKS RENDER

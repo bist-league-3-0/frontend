@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import BackendRoutes from "./../../routes/backendRoutes";
-import Component from "./../../components/components-common";
+import BackendRoutes from "../../routes/backendRoutes";
+import { NavLink } from "react-router-dom";
+import FrontendRoutes from "../../routes/frontendRoutes";
 
 const LoginScene = (props) => {
   const [email, setEmail] = useState("");
@@ -23,7 +24,6 @@ const LoginScene = (props) => {
         return;
       })
       .catch((err) => {
-        console.log(err);
         setVerdict({
           status: "error", 
           message: err.response.data.message
@@ -43,8 +43,8 @@ const LoginScene = (props) => {
 
   return (
     <div className="login-scene">
-      <Component.Navigation width={props.width}/>
       <div className="login-form-container">
+
         <form onSubmit={onLogin} className="form">
           <div className="flash-message" status={verdict.status}>
             {verdict.message}
@@ -53,72 +53,41 @@ const LoginScene = (props) => {
           <div className="input-body">
             <div className="input-group">
               <label htmlFor="email" className="input-label">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
+              <input type="email" name="email" id="email" required
                 onChange={(event) => {
                   setEmail(event.target.value);
                 }}
-                required
               />
             </div>
             <div className="input-group">
               <label htmlFor="password" className="input-label">Password</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
+              <input type="password" name="password" id="password"
                 onChange={(event) => {
                   setPassword(event.target.value);
-                }}
-                required
+                }} required
               />
               <div className="input-text">
                 <a href="/">Forgot your password?</a>
               </div>
             </div>
           </div>
+
           <div className="input-footer">
             <input type="submit" value="LOG IN" className="button-primary-filled"/>
             <div className="input-text">
-              Don't have an account? &ensp;
-              <a href={BackendRoutes.register}>Register</a>
+              Don't have a team account? &ensp;
+              <NavLink to={FrontendRoutes.register}>
+                Register
+              </NavLink>
             </div>
           </div>
+          
         </form>
+
       </div>
-      <div className="login-asset medium-only"></div>
+      <div className="login-asset medium-only"/>
     </div>
   )
 };
 
 export default LoginScene;
-
-/* <h1>Welcome Back</h1>
-  <form onSubmit={onLogin}>
-    <div>
-      <label htmlFor="email">Email</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        onChange={(event) => {
-          setEmail(event.target.value);
-        }}
-      />
-    </div>
-    <div>
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-      />
-    </div>
-    <input type="submit" value="go on" />
-  </form>
-  <div>{verdict}</div> */
