@@ -27,32 +27,55 @@ const ForgotPasswordValidateScene = (props) => {
   };
 
   return (
-    <div>
-      <form onSubmit={changePassword}>
-        <div>
-          <input
-            value={password}
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <input
-            value={retypePassword}
-            onChange={(event) => {
-              setRetypePassword(event.target.value);
-            }}
-          />
-        </div>
-        <button
-          type="submit"
-          disabled={password !== retypePassword || password.length < 8}
-        >
-          Change password
-        </button>
-      </form>
-      <div>{message}</div>
+    <div className="forgot-password-scene">
+      <div className="forgot-password-container">
+        <form onSubmit={changePassword} className="form">
+
+          <span className="form-title">
+            Forgot Password
+          </span>
+          
+          <div className="input-body">
+            <div className="input-group">
+              <label htmlFor="password" className="input-label">
+                PASSWORD
+              </label>
+              <input
+                type="password" name="password" id="password" required
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+              />
+            </div>
+
+            <div className="input-group">
+              <label htmlFor="retype-password" className="input-label">
+                RETYPE PASSWORD
+              </label>
+              <input
+                type="password" name="password" id="password" required
+                value={retypePassword}
+                onChange={(event) => {
+                  setRetypePassword(event.target.value);
+                }}
+              />
+            </div>
+          </div>
+          <div className="input-footer">
+              <button
+                type="submit"
+                className="button-primary-filled"
+                disabled={password !== retypePassword || password.length < 8}
+              >
+              Change password
+            </button>
+          </div>
+        </form>
+        <div>{message}</div>
+      </div>
+
+      <div className="forgot-password-asset medium-only"/>
     </div>
   );
 };

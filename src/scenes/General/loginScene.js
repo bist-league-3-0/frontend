@@ -66,11 +66,13 @@ const LoginScene = (props) => {
                   setPassword(event.target.value);
                 }} required
               />
+
               <div className="input-text">
-                <a href={FrontendRoutes.forgotPassword}>
+                <NavLink to={FrontendRoutes.forgotPassword}>
                   Forgot your password?
-                </a>
+                </NavLink>
               </div>
+              
             </div>
           </div>
 
