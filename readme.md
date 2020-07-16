@@ -1,5 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+<<<<<<< HEAD
 ## Available Scripts
 
 In the project directory, you can run:
@@ -66,3 +67,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+=======
+### v0.2.2
+Tuesday, 14 July 2020, 1:52:25 AM
+* Tweaked Login Scene to accommodate the new style
+* Added Flash Messages, Comes in Success (green), Error (red), and Info (blue)
+* Added Styling for Form Element
+* Revamped Constants
+>>>>>>> develop

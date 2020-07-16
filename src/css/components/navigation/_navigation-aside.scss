@@ -33,6 +33,10 @@
           @include typography("h3");
         }
 
+        & *:not(:first-child){
+          @include fluid("margin-top", 2rem, 2rem);
+        }
+
         .body-link {
           color: $color-gray-1;
           transition: $defaultTransition;
@@ -50,10 +54,13 @@
           &[state="idle"] {
             color: $color-gray-1;
           }
+<<<<<<< HEAD
 
           &:not(:first-child) {
             @include fluid("margin-top", 2rem, 2rem);
           }
+=======
+>>>>>>> develop
         }
       }
 

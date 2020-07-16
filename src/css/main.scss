@@ -4,6 +4,7 @@
 // Import Modules (Constant Independent)
 @import "./modules/fonts";
 @import "./modules/fluid";
+@import "./modules/scrollbar";
 
 // Import Constants
 @import "./constants/baseline";
@@ -26,3 +27,4 @@
 
 // Scene Specific Modules
 @import "./scene/login-scene";
+@import "./scene/register-scene";

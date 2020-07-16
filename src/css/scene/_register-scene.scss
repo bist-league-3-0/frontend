@@ -1,0 +1,25 @@
+.register-scene {
+  @include boxsizing-y("scene", "top-only");
+  width: 100%;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+  .register-form-container {
+    @include boxsizing-x("scene-md");
+    width: 100%;
+    
+    @media screen and (min-width: #{remToPx($bp-medium)}) {
+      overflow-y: scroll;
+      @include scrollbars(.2rem, $color-error-bg, $color-primary-1);
+    }
+  }
+
+  .register-asset {
+    width: 100%;
+    background: url('../../assets/AuthpageAsset.svg');
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: contain;
+  }
+}

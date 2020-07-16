@@ -31,20 +31,21 @@
     text-align: center;
   }
 
-  .input-body {
+  .input-body, .input-footer {
     @include fluid("margin-bottom", 2.5rem, 4rem);
     display: flex;
     flex-direction: column;
   }
 
-  .input-group,
-  .input-footer {
+  .input-group {
     display: flex;
     flex-direction: column;
 
-    @include fluid("margin-bottom", 1.5rem, 2rem);
-
-    & * {
+    &:not(:last-child){
+      @include fluid("margin-bottom", 1.5rem, 2rem);
+    }
+    
+    & *{
       @include typography("p");
       &:not(:last-child) {
         @include fluid("margin-bottom", 0.75rem, 1rem);
@@ -56,20 +57,75 @@
     text-transform: uppercase;
   }
 
+  .input-heading {
+    @include typography("h2");
+    @include fluid("margin-top", 1.5rem, 2rem);
+  }
+
   .input-text {
     @include typography("sm");
+    color: $color-gray-2;
 
     & * {
       @include typography("sm");
     }
   }
 
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
+  input[type='text'], input[type='email'], input[type='password'], input[type='number'] {
     @include lato();
     @include fluid("padding", 0.5rem);
     border: remToVw(96rem, 0.1rem) solid $color-black;
     border-radius: remToVw(96rem, 0.3rem);
+  }
+
+  .input-radio-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media screen and (max-width: #{remToPx($bp-medium)}){
+      flex-direction: column;
+    }
+
+    .input-radio {
+      width: auto;
+
+      label {
+        display: flex;
+        
+        & *:not(:first-child){
+          @include fluid("margin-left", .5rem, 2rem);
+        }
+
+        .radio-description {
+          @include typography("sm");
+        }
+      }
+    }
+  }
+
+  input[type="radio"] {
+    display: none;
+
+    &:checked + label {
+      .radio-button {
+        background-color: $color-primary-1;
+        border: remToVw($bp-large, .1rem) solid $color-primary-1;
+      }
+    }
+  }
+
+  .radio-button {
+    @include fluid("width", 1.6rem, 2rem);
+    @include fluid("height", 1.6rem, 2rem);
+    background-color: transparent;
+    display: flex;
+    border: remToVw($bp-large, .1rem) solid $color-black;
+    border-radius: 50%;
+    transition: $defaultTransition;
+
+    @media screen and (min-width: #{remToPx($bp-medium)}){
+      margin-bottom: 0 !important;
+    }
   }
 }
