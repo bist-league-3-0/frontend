@@ -47,8 +47,9 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path={FrontendRoutes.home}>
-          <Scene.LandingScene width={width} user={user} />
+        <Component.Navigation width={width} user={user} />
+        <Route exact path="/">
+          <div>HELLO WORLD</div>
         </Route>
         <Route path={FrontendRoutes.login}>
           <Scene.LoginScene width={width} user={user} />
