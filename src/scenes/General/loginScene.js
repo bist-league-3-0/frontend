@@ -46,9 +46,6 @@ const LoginScene = (props) => {
       <div className="login-form-container">
 
         <form onSubmit={onLogin} className="form">
-          <div className="flash-message" status={verdict.status}>
-            {verdict.message}
-          </div>
           <span className="form-title">Welcome Back!</span>
           <div className="input-body">
             <div className="input-group">
@@ -70,6 +67,10 @@ const LoginScene = (props) => {
                 <a href="/">Forgot your password?</a>
               </div>
             </div>
+          </div>
+
+          <div className="flash-message" status={verdict.status}>
+            {verdict.message}
           </div>
 
           <div className="input-footer">

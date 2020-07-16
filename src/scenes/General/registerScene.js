@@ -32,7 +32,6 @@ const RegisterScene = (props) => {
           status: "success",
           message: res.data.message
         })
-        window.scrollTo(0, 0);
         window.location.replace(FrontendRoutes.login);
         return;
       })
@@ -41,7 +40,6 @@ const RegisterScene = (props) => {
           status: "error",
           message: e.response.data.message
         });
-        window.scrollTo(0, 0);
         return;
       })
   }
@@ -60,9 +58,6 @@ const RegisterScene = (props) => {
       <div className="register-form-container">
 
         <form onSubmit={onRegister} className="form">
-          <div className="flash-message" status={verdict.status}>
-            {verdict.message}
-          </div>
           <span className="form-title">Create Team Account</span>
           <div className="input-body">
 
@@ -257,6 +252,9 @@ const RegisterScene = (props) => {
               />
             </div>
 
+            <div className="flash-message" status={verdict.status}>
+              {verdict.message}
+            </div>
           </div>
           <div className="input-footer">
             <input type="submit" value="REGISTER" className="button-primary-filled"/>
