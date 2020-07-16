@@ -7,15 +7,11 @@
   justify-content: center;
   text-align: center;
 
-<<<<<<< HEAD
-  &[status="success"] {
-=======
   &[status=""] {
     display: none;
   }
   
   &[status=success] {
->>>>>>> develop
     @include fluid("margin-bottom", 2rem);
     background-color: $color-success-bg;
     color: $color-success;

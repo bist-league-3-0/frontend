@@ -54,13 +54,6 @@
           &[state="idle"] {
             color: $color-gray-1;
           }
-<<<<<<< HEAD
-
-          &:not(:first-child) {
-            @include fluid("margin-top", 2rem, 2rem);
-          }
-=======
->>>>>>> develop
         }
       }
 

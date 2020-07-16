@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-<<<<<<< HEAD:src/scenes/Login/loginScene.js
-import BackendRoutes from "./../../routes/backendRoutes";
-import Component from "./../../components/components-common";
-=======
 import BackendRoutes from "../../routes/backendRoutes";
 import { NavLink } from "react-router-dom";
->>>>>>> develop:src/scenes/General/loginScene.js
 import FrontendRoutes from "../../routes/frontendRoutes";
 
 const LoginScene = (props) => {
@@ -51,46 +46,22 @@ const LoginScene = (props) => {
 
   return (
     <div className="login-scene">
-<<<<<<< HEAD:src/scenes/Login/loginScene.js
-      <Component.Navigation width={props.width} />
-=======
->>>>>>> develop:src/scenes/General/loginScene.js
       <div className="login-form-container">
 
         <form onSubmit={onLogin} className="form">
           <span className="form-title">Welcome Back!</span>
           <div className="input-body">
             <div className="input-group">
-<<<<<<< HEAD:src/scenes/Login/loginScene.js
-              <label htmlFor="email" className="input-label">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-=======
               <label htmlFor="email" className="input-label">Email</label>
               <input type="email" name="email" id="email" required
->>>>>>> develop:src/scenes/General/loginScene.js
                 onChange={(event) => {
                   setEmail(event.target.value);
                 }}
               />
             </div>
             <div className="input-group">
-<<<<<<< HEAD:src/scenes/Login/loginScene.js
-              <label htmlFor="password" className="input-label">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-=======
               <label htmlFor="password" className="input-label">Password</label>
               <input type="password" name="password" id="password"
->>>>>>> develop:src/scenes/General/loginScene.js
                 onChange={(event) => {
                   setPassword(event.target.value);
                 }} required
@@ -129,36 +100,4 @@ const LoginScene = (props) => {
   );
 };
 
-<<<<<<< HEAD:src/scenes/Login/loginScene.js
 export default LoginScene;
-
-/* <h1>Welcome Back</h1>
-  <form onSubmit={onLogin}>
-    <div>
-      <label htmlFor="email">Email</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        onChange={(event) => {
-          setEmail(event.target.value);
-        }}
-      />
-    </div>
-    <div>
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-      />
-    </div>
-    <input type="submit" value="go on" />
-  </form>
-  <div>{verdict}</div> */
-=======
-export default LoginScene;
->>>>>>> develop:src/scenes/General/loginScene.js
