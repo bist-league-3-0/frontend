@@ -9,18 +9,15 @@ $bs-nav-paddingCeil: 2rem;
 $bs-nav-imgCeil: 9.6rem;
 $bs-nav-heightCeil: ($bs-nav-paddingCeil * 2) + $bs-nav-imgCeil;
 
-
 // Scene Constants
 $bs-scene-floor: 3rem;
 $bs-scene-ceil: 5rem;
 
-
 // Minimal Component Constants
 $bs-component-default: 2rem; // Floor and Ceiling is 2rem.
-
 
 // Button Constants
 $bs-button-x-floor: 1rem;
 $bs-button-x-ceil: 2.2rem;
-$bs-button-y-floor: .75rem;
+$bs-button-y-floor: 0.75rem;
 $bs-button-y-ceil: 1.25rem;

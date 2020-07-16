@@ -6,20 +6,20 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  
-  &[status=success] {
+
+  &[status="success"] {
     @include fluid("margin-bottom", 2rem);
     background-color: $color-success-bg;
     color: $color-success;
-    border: remToVw($bp-large, .1rem) solid $color-success;
-    border-radius: remToVw($bp-large, .5rem);
+    border: remToVw($bp-large, 0.1rem) solid $color-success;
+    border-radius: remToVw($bp-large, 0.5rem);
   }
 
-  &[status=error] {
+  &[status="error"] {
     @include fluid("margin-bottom", 2rem);
     background-color: $color-error-bg;
     color: $color-error;
-    border: remToVw($bp-large, .1rem) solid $color-error;
-    border-radius: remToVw($bp-large, .5rem);
+    border: remToVw($bp-large, 0.1rem) solid $color-error;
+    border-radius: remToVw($bp-large, 0.5rem);
   }
 }

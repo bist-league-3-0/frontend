@@ -10,8 +10,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  
-  & *{
+
+  & * {
     width: inherit;
   }
 
@@ -37,16 +37,17 @@
     flex-direction: column;
   }
 
-  .input-group, .input-footer {
+  .input-group,
+  .input-footer {
     display: flex;
     flex-direction: column;
 
     @include fluid("margin-bottom", 1.5rem, 2rem);
-    
-    & *{
+
+    & * {
       @include typography("p");
-      &:not(:last-child){
-        @include fluid("margin-bottom", .75rem, 1rem);
+      &:not(:last-child) {
+        @include fluid("margin-bottom", 0.75rem, 1rem);
       }
     }
   }
@@ -58,15 +59,17 @@
   .input-text {
     @include typography("sm");
 
-    & *{
+    & * {
       @include typography("sm");
     }
   }
 
-  input[type='text'], input[type='email'], input[type='password'] {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
     @include lato();
-    @include fluid("padding", .5rem);
-    border: remToVw(96rem, .1rem) solid $color-black;
-    border-radius: remToVw(96rem, .3rem);
+    @include fluid("padding", 0.5rem);
+    border: remToVw(96rem, 0.1rem) solid $color-black;
+    border-radius: remToVw(96rem, 0.3rem);
   }
 }
