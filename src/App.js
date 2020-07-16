@@ -45,7 +45,6 @@ const App = () => {
   }, []);
 
   return (
-<<<<<<< HEAD
     <Router>
       <Switch>
         <Route exact path={FrontendRoutes.home}>
@@ -65,24 +64,6 @@ const App = () => {
         </Route>
       </Switch>
     </Router>
-=======
-    <div>
-      <Router>
-        <Component.Navigation width={width}/>
-        <Switch>
-          <Route exact path={FrontendRoutes.home}>
-            <Scene.LandingScene width={width} user={user}/>
-          </Route>
-          <Route path={FrontendRoutes.login}>
-            <Scene.LoginScene width={width} user={user}/>
-          </Route>
-          <Route path={FrontendRoutes.register}>
-            <Scene.RegisterScene width={width} user={user}/>
-          </Route>
-        </Switch>
-      </Router>
-    </div>
->>>>>>> develop
   );
 };
 
