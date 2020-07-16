@@ -11,74 +11,54 @@
 //   - left: only applies left padding
 //   - right: only applies right padding
 
-@mixin boxsizing-x($type : "", $apply-option: "") {
+@mixin boxsizing-x($type: "", $apply-option: "") {
   @if $type == "scene" {
     @if $apply-option == "left" {
       @include fluid("padding-left", $bs-scene-floor, $bs-scene-ceil);
       @media screen and (min-width: #{remToPx($bp-large)}) {
-        padding-left: 12.5vw;            
+        padding-left: 12.5vw;
       }
-    }
-
-    @else if $apply-option == "right" {
+    } @else if $apply-option == "right" {
       @include fluid("padding-right", $bs-scene-floor, $bs-scene-ceil);
       @media screen and (min-width: #{remToPx($bp-large)}) {
-        padding-right: 12.5vw;            
+        padding-right: 12.5vw;
       }
-    }
-
-    @else {
+    } @else {
       @include fluidpaddingx($bs-scene-floor, $bs-scene-ceil);
       @media screen and (min-width: #{remToPx($bp-large)}) {
         padding-left: 12.5vw;
-        padding-right: 12.5vw;            
+        padding-right: 12.5vw;
       }
     }
-  }
-
-  @else if $type == "scene-md" {
+  } @else if $type == "scene-md" {
     @if $apply-option == "left" {
       @include fluid("padding-left", $bs-scene-floor, $bs-scene-ceil);
       @media screen and (min-width: #{remToPx($bp-medium)}) {
-        padding-left: 12.5vw;            
+        padding-left: 12.5vw;
       }
-    }
-
-    @else if $apply-option == "right" {
+    } @else if $apply-option == "right" {
       @include fluid("padding-right", $bs-scene-floor, $bs-scene-ceil);
       @media screen and (min-width: #{remToPx($bp-medium)}) {
-        padding-right: 12.5vw;            
+        padding-right: 12.5vw;
       }
-    }
-
-    @else {
+    } @else {
       @include fluidpaddingx($bs-scene-floor, $bs-scene-ceil);
       @media screen and (min-width: #{remToPx($bp-medium)}) {
         padding-left: 12.5vw;
-        padding-right: 12.5vw;            
+        padding-right: 12.5vw;
       }
     }
-  }
-
-  @else if $type == "component" {
+  } @else if $type == "component" {
     @if $apply-option == "left" {
       @include fluid("padding-left", $bs-component-default);
-    }
-
-    @else if $apply-option == "right" {
+    } @else if $apply-option == "right" {
       @include fluid("padding-right", $bs-component-default);
-    }
-
-    @else {
+    } @else {
       @include fluidpaddingx($bs-component-default, $bs-component-default);
     }
-  }
-
-  @else if $type == "button" {
+  } @else if $type == "button" {
     @include fluidpaddingx($bs-button-x-floor, $bs-button-x-ceil);
-  }
-
-  @else {
+  } @else {
     @include fluidpaddingx($bs-scene-floor, $bs-scene-ceil);
   }
 }
@@ -91,23 +71,15 @@
   @if $type == "scene" {
     @if $apply-option == "top-only" {
       @include fluid("padding-top", $bs-nav-heightFloor, $bs-nav-heightCeil);
-    }
-
-    @else {
+    } @else {
       @include fluid("padding-top", $bs-nav-heightFloor, $bs-nav-heightCeil);
       @include fluid("padding-bottom", 2rem);
     }
-  }
-  
-  @else if $type == "component" {
+  } @else if $type == "component" {
     @include fluidpaddingy($bs-component-default, $bs-component-default);
-  }
-
-  @else if $type == "button" {
+  } @else if $type == "button" {
     @include fluidpaddingy($bs-button-y-floor, $bs-button-y-ceil);
-  }
-  
-  @else {
+  } @else {
     @include fluidpaddingy($bs-scene-floor, $bs-scene-ceil);
   }
 }

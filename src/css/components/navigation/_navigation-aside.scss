@@ -1,4 +1,4 @@
-@mixin navigation-aside(){
+@mixin navigation-aside() {
   .navigation-aside {
     @include boxsizing-x("scene-md");
     @include boxsizing-y("scene");
@@ -43,17 +43,24 @@
           text-transform: capitalize;
           transition: $defaultTransition;
 
-          &[state=hover] {
+          &[state="hover"] {
             color: $color-primary-1;
           }
-    
-          &[state=not-hover] {
+
+          &[state="not-hover"] {
             color: $color-gray-3;
           }
-    
-          &[state=idle] {
+
+          &[state="idle"] {
             color: $color-gray-1;
           }
+<<<<<<< HEAD
+
+          &:not(:first-child) {
+            @include fluid("margin-top", 2rem, 2rem);
+          }
+=======
+>>>>>>> develop
         }
       }
 
@@ -92,19 +99,19 @@
           text-transform: capitalize;
           transition: $defaultTransition;
 
-          &[state=hover] {
+          &[state="hover"] {
             color: $color-primary-1;
           }
-    
-          &[state=not-hover] {
+
+          &[state="not-hover"] {
             color: $color-gray-3;
           }
-    
-          &[state=idle] {
+
+          &[state="idle"] {
             color: $color-gray-1;
           }
 
-          &:not(:first-child){
+          &:not(:first-child) {
             @include fluid("margin-left", 2rem, 2rem);
           }
         }

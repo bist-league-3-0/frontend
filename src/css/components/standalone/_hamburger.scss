@@ -1,9 +1,9 @@
-$height : .2rem;
+$height: 0.2rem;
 
 .hamburger {
   @include fluid("width", 4rem, 6rem);
   @include fluid("height", 4rem, 6rem);
-  @include fluid("padding", .5rem, 1rem);
+  @include fluid("padding", 0.5rem, 1rem);
   position: relative;
 
   &:hover {
