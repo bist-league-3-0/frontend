@@ -4,13 +4,17 @@ import axios from "axios";
 const ForgotPasswordValidateScene = (props) => {
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [verdict, setVerdict] = useState({ status: "", message: "" });
 
   const changePassword = async (event) => {
     event.preventDefault();
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");
     const email = params.get("email");
+    setVerdict({
+      status: "info",
+      message: "Please wait, we are sending your request to the server.",
+    });
     // console.log(new URLSearchParams(window.location.search));
     await axios
       .post(
@@ -18,11 +22,18 @@ const ForgotPasswordValidateScene = (props) => {
         { email, password, token }
       )
       .then((response) => {
-        setMessage(response.data.message);
+        setVerdict({
+          status: "success",
+          message: response.data.message,
+        });
+        return;
       })
       .catch((err) => {
-        console.log(err);
-        setMessage(err.response.data.message);
+        setVerdict({
+          status: "error",
+          message: err.response.data.message,
+        });
+        return;
       });
   };
 
@@ -62,6 +73,11 @@ const ForgotPasswordValidateScene = (props) => {
               />
             </div>
           </div>
+
+          <div className="flash-message" status={verdict.status}>
+            {verdict.message}
+          </div>
+
           <div className="input-footer">
               <button
                 type="submit"
@@ -72,7 +88,7 @@ const ForgotPasswordValidateScene = (props) => {
             </button>
           </div>
         </form>
-        <div>{message}</div>
+        
       </div>
 
       <div className="forgot-password-asset medium-only"/>
