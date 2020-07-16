@@ -54,7 +54,7 @@
           &[state="idle"] {
             color: $color-gray-1;
           }
-
+          
           &:not(:first-child) {
             @include fluid("margin-top", 2rem, 2rem);
           }

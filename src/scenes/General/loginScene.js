@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import BackendRoutes from "./../../routes/backendRoutes";
-import Component from "./../../components/components-common";
+
+import BackendRoutes from "./../../routes/backendRoutes
 import { NavLink } from "react-router-dom";
 import FrontendRoutes from "../../routes/frontendRoutes";
 
