@@ -3,13 +3,19 @@ import axios from "axios";
 
 const ForgotPasswordScene = () => {
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [verdict, setVerdict] = useState({ status: "", message: "" });
 
   const sendMail = async (event) => {
     event.preventDefault();
     console.log(
       `${process.env.REACT_APP_API_URL}/api/bistleague3/auth/forgot-password/`
     );
+
+    setVerdict({
+      status: "info",
+      message: "Please wait, we are sending your request to the server.",
+    });
+
     await axios
       .post(
         `${process.env.REACT_APP_API_URL}/api/bistleague3/auth/forgot-password/`,
@@ -17,31 +23,66 @@ const ForgotPasswordScene = () => {
         { withCredentials: true }
       )
       .then((response) => {
-        setMessage(response.data.message);
+        setVerdict({
+          status: "success",
+          message: response.data.message,
+        });
+        return;
       })
       .catch((err) => {
-        console.log(err);
-        setMessage(err.response.data.message);
+        setVerdict({
+          status: "error",
+          message: err.response.data.message,
+        });
+        return;
       });
   };
 
   return (
-    <div>
-      <form onSubmit={sendMail}>
-        <input
-          type="text"
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        />
-        <button type="submit">Send mail</button>
-        <div>{message}</div>
-        <div>{process.env.REACT_APP_WEB_URL}</div>
-        <div>{process.env.REACT_APP_API_URL}</div>
-      </form>
+    <div className="forgot-password-scene">
+      <div className="forgot-password-container">
+        <form onSubmit={sendMail} className="form">
+          <span className="form-title">
+            Forgot Password
+          </span>
+
+          <div className="input-body">
+            <div className="input-group">
+              <label htmlFor="email" className="input-label">
+                Email
+              </label>
+              <span className="input-text">
+                Insert team account email here, then we will send you a mail for further instructions
+              </span>
+              <input
+                type="email" name="email" id="email" required
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="flash-message" status={verdict.status}>
+            {verdict.message}
+          </div>
+
+          <div className="input-footer">
+            <input 
+              type="submit"
+              value="Send Mail"
+              className="button-primary-filled"
+            />
+          </div>
+
+        </form>
+      </div>
+      <div className="forgot-password-asset medium-only"/>
     </div>
   );
 };
 
 export default ForgotPasswordScene;
+
+

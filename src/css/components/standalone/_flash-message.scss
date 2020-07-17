@@ -19,7 +19,15 @@
     border-radius: remToVw($bp-large, 0.5rem);
   }
 
-  &[status="error"] {
+  &[status=info] {
+    @include fluid("margin-bottom", 2rem);
+    background-color: $color-info-bg;
+    color: $color-info;
+    border: remToVw($bp-large, 0.1rem) solid $color-info;
+    border-radius: remToVw($bp-large, 0.5rem);
+  }
+
+  &[status=error] {
     @include fluid("margin-bottom", 2rem);
     background-color: $color-error-bg;
     color: $color-error;
