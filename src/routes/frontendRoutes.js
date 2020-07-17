@@ -8,7 +8,6 @@ FrontendRoutes.home = FrontendURL;
 FrontendRoutes.login = FrontendRoutes.home + "login/";
 FrontendRoutes.register = FrontendRoutes.home + "register/";
 FrontendRoutes.forgotPassword = FrontendRoutes.home + "forgot-password/";
-FrontendRoutes.forgotPasswordValidate =
-  FrontendRoutes.home + "forgot-password/validate";
+FrontendRoutes.forgotPasswordValidate = FrontendRoutes.home + "forgot-password/validate";
 
 module.exports = FrontendRoutes;

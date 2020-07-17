@@ -46,6 +46,7 @@ const App = () => {
 
   return (
     <Router>
+      <Component.Navigation width={width} user={user} />
       <Switch>
         <Component.Navigation width={width} user={user} />
         <Route exact path="/">
