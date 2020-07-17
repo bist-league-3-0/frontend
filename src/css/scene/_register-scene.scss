@@ -16,6 +16,7 @@
   }
 
   .register-asset {
+    @include fluid("margin-left", 2rem);
     width: 100%;
     background: url('../../assets/AuthpageAsset.svg');
     background-repeat: no-repeat;

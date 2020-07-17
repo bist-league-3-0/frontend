@@ -1,7 +1,7 @@
 // Import Essential Modules
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import BackendRoutes from "./routes/backendRoutes";
 import FrontendRoutes from "./routes/frontendRoutes";
 // End of Essential Modules
@@ -18,6 +18,13 @@ import Component from './components/components-common';
 
 // App Class Declaration
 const App = () => {
+
+  // APP Logics
+  const isAuth = () => {
+    return user.role >= 2 && user.role <= 4;
+  }
+  // End of App Logics
+
   const defaultUserState = { id: 0, email: "", role: 1 };
   const [width, setWidth] = useState(window.innerWidth);
   const [user, setUser] = useState(defaultUserState);
@@ -44,27 +51,41 @@ const App = () => {
     });
   }, []);
 
+  const authRoutes = () => {
+    return (
+      <Route path="/dashboard">
+        <div>Hello World</div>
+      </Route>
+    )
+  }
+
   return (
-    <Router>
-      <Component.Navigation width={width} user={user} />
-      <Switch>
-        <Route exact path={FrontendRoutes.home}>
-          <Scene.LandingScene width={width} user={user} />
-        </Route>
-        <Route path={FrontendRoutes.login}>
-          <Scene.LoginScene width={width} user={user} />
-        </Route>
-        <Route path={FrontendRoutes.register}>
-          <Scene.RegisterScene />
-        </Route>
-        <Route path={FrontendRoutes.forgotPasswordValidate}>
-          <Scene.ForgotPasswordValidateScene />
-        </Route>
-        <Route path={FrontendRoutes.forgotPassword}>
-          <Scene.ForgotPasswordScene />
-        </Route>
-      </Switch>
-    </Router>
+    <div>
+      <Router>
+        <Component.Navigation width={width} user={user} isAuth={isAuth()}/>
+        <Switch>
+          <Route exact path="/">
+            <div>HELLO WORLD</div>
+          </Route>
+          <Route path={FrontendRoutes.login}>
+            <Scene.LoginScene width={width} user={user}/>
+          </Route>
+          <Route path={FrontendRoutes.register}>
+            <Scene.RegisterScene />
+          </Route>
+          <Route path={FrontendRoutes.forgotPasswordValidate}>
+            <Scene.ForgotPasswordValidateScene />
+          </Route>
+          <Route path={FrontendRoutes.forgotPassword}>
+            <Scene.ForgotPasswordScene />
+          </Route>
+          {authRoutes}
+          <Route>
+            <Scene.ErrorScene code="404"/>
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 };
 

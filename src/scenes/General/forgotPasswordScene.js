@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
+import FrontendRoutes from "../../routes/frontendRoutes";
 
 const ForgotPasswordScene = () => {
   const [email, setEmail] = useState("");
@@ -52,7 +54,7 @@ const ForgotPasswordScene = () => {
                 Email
               </label>
               <span className="input-text">
-                Insert team account email here, then we will send you a mail for further instructions
+                Insert your team account email here, then we will send you a mail for further instructions
               </span>
               <input
                 type="email" name="email" id="email" required
@@ -74,6 +76,12 @@ const ForgotPasswordScene = () => {
               value="Send Mail"
               className="button-primary-filled"
             />
+            <div className="input-text">
+              Perhaps you have remembered your password?&ensp;
+              <NavLink to={FrontendRoutes.login}>
+                Login
+              </NavLink>
+            </div>
           </div>
 
         </form>

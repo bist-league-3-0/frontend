@@ -87,7 +87,7 @@ const LoginScene = (props) => {
               className="button-primary-filled"
             />
             <div className="input-text">
-              Don't have a team account? &ensp;
+              Don't have a team account?&ensp;
               <NavLink to={FrontendRoutes.register}>
                 Register
               </NavLink>
