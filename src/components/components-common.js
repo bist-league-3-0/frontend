@@ -1,7 +1,9 @@
 import Navigation from './navigation/Navigation';
+import Sidebar from './dashboard/sidebar';
 
 const Component = {
-  Navigation: Navigation
+  Navigation,
+  Sidebar
 }
 
 export default Component;

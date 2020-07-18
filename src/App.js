@@ -1,7 +1,7 @@
 // Import Essential Modules
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useLocation, Redirect } from "react-router-dom";
 import BackendRoutes from "./routes/backendRoutes";
 import FrontendRoutes from "./routes/frontendRoutes";
 // End of Essential Modules
@@ -44,31 +44,28 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchData().then((res) => {
-      let temp = Object.values(res);
-      temp = temp.pop();
-      setUser(typeof temp != "undefined" ? temp : defaultUserState);
-    });
+    fetchData()
+      .then(res => {
+        let temp = Object.values(res);
+        temp = temp.pop();
+        return typeof temp != "undefined" ? temp : defaultUserState;
+      })
+      .then(temp => {
+        setUser(temp);
+      })
   }, []);
-
-  const authRoutes = () => {
-    return (
-      <Route path="/dashboard">
-        <div>Hello World</div>
-      </Route>
-    )
-  }
 
   return (
     <div>
       <Router>
-        <Component.Navigation width={width} user={user} isAuth={isAuth()}/>
+        <Component.Navigation width={width} user={user}/>
         <Switch>
-          <Route exact path="/">
+          {/* General Routes */}
+          <Route exact path={FrontendRoutes.home}>
             <div>HELLO WORLD</div>
           </Route>
           <Route path={FrontendRoutes.login}>
-            <Scene.LoginScene width={width} user={user}/>
+            <Scene.LoginScene user={user}/>
           </Route>
           <Route path={FrontendRoutes.register}>
             <Scene.RegisterScene />
@@ -79,7 +76,16 @@ const App = () => {
           <Route path={FrontendRoutes.forgotPassword}>
             <Scene.ForgotPasswordScene />
           </Route>
-          {authRoutes}
+
+          {/* Auth Routes */}
+          <Route path={FrontendRoutes.dashboard}>
+            <Scene.Dashboard user={user} width={width}/>
+          </Route>            
+
+          {/* Error routes */}
+          <Route path={FrontendRoutes.forbidden}>
+            <Scene.ErrorScene code="403"/>
+          </Route>
           <Route>
             <Scene.ErrorScene code="404"/>
           </Route>

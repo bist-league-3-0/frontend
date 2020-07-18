@@ -203,7 +203,8 @@ const Navigation = (props) => {
 
   // TRY SET ROLE STATE 
   useEffect(() => {
-    if (props.isAuth){
+    let roles = [2, 3, 4];
+    if (roles.includes(props.user.role)){
       setNavigationLink({
         home: {
           state: "idle",

@@ -7,7 +7,7 @@ import ForgotPasswordValidateScene from "./General/forgotPasswordValidateScene";
 // Errors
 import ErrorScene from "./Error/errorScene";
 
-import Dashboard from './AuthOnly/dashboard';
+import Dashboard from './AuthOnly/dashboardScene';
 
 export {
   LandingScene,

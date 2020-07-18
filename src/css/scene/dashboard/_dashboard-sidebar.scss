@@ -1,0 +1,46 @@
+.dashboard-sidebar {
+  @include fluid("width", 30rem, 36rem);
+  @include typography("p");
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: inherit;
+  background-color: $color-gray-4;
+
+  hr {
+    border-top: remToVw(144rem, .1rem) solid darken($color-gray-4, 20%);
+  }
+
+  .sidebar-pill-group {
+    @include boxsizing-y("component");
+    @include boxsizing-x("component");
+    width: 100%;
+  }
+
+  .sidebar-component {
+    @include boxsizing-x("component");
+    transition: $defaultTransition;
+    width: 100%;
+  }
+
+  .sidebar-pill {
+    @include boxsizing-x("component");
+    @include boxsizing-y("component");
+    transition: $defaultTransition;
+    width: 100%;
+    color: $color-gray-1;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: $color-primary-washed;
+      color: $color-primary-1;
+    }
+  }
+
+  .selected-pill>.sidebar-pill{
+    font-weight: 700;
+    color: $color-primary-1;
+  }
+
+}

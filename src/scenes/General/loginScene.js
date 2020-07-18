@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BackendRoutes from "../../routes/backendRoutes";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import FrontendRoutes from "../../routes/frontendRoutes";
 
 const LoginScene = (props) => {
@@ -20,7 +20,7 @@ const LoginScene = (props) => {
           status: "success",
           message: "Successfully Logged In, Please Wait",
         });
-        window.location.replace("/");
+        window.location.replace(FrontendRoutes.dashboard);
         return;
       })
       .catch((err) => {
@@ -34,20 +34,19 @@ const LoginScene = (props) => {
 
   useEffect(() => {
     document.title = "Log in | BIST League 3.0";
-
-    axios
-      .get(BackendRoutes.checkAuth, { withCredentials: true })
-      .then((res) => {
-        if (res.data) {
-          window.location.replace("/");
-        }
-      });
   }, []);
+
+  const checkAuth = () => {
+    let roles = [2, 3, 4];
+    if (roles.includes(props.user.role)) {
+      return <Redirect to={FrontendRoutes.dashboard}/>
+    }
+  }
 
   return (
     <div className="login-scene">
+      {checkAuth()}
       <div className="login-form-container">
-
         <form onSubmit={onLogin} className="form">
           <span className="form-title">Welcome Back!</span>
           <div className="input-body">
@@ -87,7 +86,7 @@ const LoginScene = (props) => {
               className="button-primary-filled"
             />
             <div className="input-text">
-              Don't have a team account?&ensp;
+              Don't have a team account? &ensp;
               <NavLink to={FrontendRoutes.register}>
                 Register
               </NavLink>

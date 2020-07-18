@@ -1,0 +1,18 @@
+.dashboard-header {
+  @include boxsizing-y("component");
+  @include boxsizing-x();
+  width: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $color-primary-1;
+
+  .dashboard-icon {
+    @include fluid("width", $bs-nav-imgFloor / 2, $bs-nav-imgCeil / 2);
+  }
+
+  .dashboard-link {
+    @include typography("p");
+    color: $color-white;
+  }
+}
