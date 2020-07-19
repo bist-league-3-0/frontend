@@ -1,0 +1,46 @@
+.dashboard-content {
+  @include typography("p");
+  @include boxsizing-x();
+  @include boxsizing-y();
+  @include boxsizing-y("scene", "bottom");
+  @include scrollbars(.2rem, $color-error-bg, $color-primary-1);
+  width: inherit;
+  height: 100%;
+  color: $color-gray-1;
+  overflow-y: scroll;
+
+  .content-wrapper {
+    transition: $defaultTransition;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: inherit;
+  }
+
+  .content-title {
+    @include typography("h1")
+  }
+
+  .content-title-description{
+    color: $color-gray-2;
+  }
+
+  .content-header {
+    @include boxsizing-y("component", "bottom");
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+  }
+
+  .content-body {
+    @include boxsizing-y("component");
+    width: inherit;
+  }
+
+  hr {
+    border: none;
+    border-top: remToVw(144rem, .1rem) solid darken($color-gray-4, 20%);
+    width: inherit;
+  }
+}

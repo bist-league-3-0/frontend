@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import Asset from '../../assets/assets-common';
-import Hamburger from './_hamburger';
+import Hamburger from './hamburger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import FrontendRoutes from '../../routes/frontendRoutes';

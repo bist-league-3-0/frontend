@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { NavLink, Redirect, useRouteMatch, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import FrontendRoutes from "../../routes/frontendRoutes";
 import BackendRoutes from "../../routes/backendRoutes";
 import Asset from "../../assets/assets-common";
@@ -8,43 +8,57 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Component from "./../../components/components-common";
 
 const Dashboard = (props) => {
-  const [view, setView] = useState(<div>Hello World</div>);
-  
-  let { path, url } = useRouteMatch();
   let { dashRoutes } = FrontendRoutes;
+  const [state, setState] = useState("inactive");
+
+  const handleClick = () => {
+    let hamburger = document.querySelector(".hamburger");
+    if (state === "active") {
+      hamburger.classList.remove("active");
+      setState("inactive");
+    } else {
+      hamburger.classList.add("active");
+      setState("active");
+    }
+  }
+
+  const handleChildClick = (e) => {
+    e.target.parentElement.click();
+  }
   
   return (
     <div className="dashboard-scene">
-        <div className="dashboard-header">
-          <img className="dashboard-icon" src={Asset.LogoBistWhite} alt="LogoBistWhite"/>
-          <div className="dashboard-links">
-            <div className="dashboard-link">
-              <FontAwesomeIcon icon={['fas', "user-circle"]} size="2x"/>
+        <Component.Dashboard.Header/>
+
+        <div className="dashboard-body">
+          <div className="hamburger-wrapper">
+            <Component.Hamburger handler={{handleClick, handleChildClick}}/>
+            <div className="hamburger-text">
+              {state === "inactive" ? "Open Navigation" : "Exit Navigation"}
             </div>
           </div>
-        </div>
-        <div className="dashboard-body">
-          <Component.Sidebar/> 
+          <Component.Dashboard.Sidebar state={state} handleClick={handleClick}/> 
 
           <div className="dashboard-content">
             <Switch>
               <Route exact path={FrontendRoutes.dashboard}>
-                Hello World
+                <Component.Dashboard.Landing/>
               </Route>
               <Route path={dashRoutes.teamManagement}>
-                Team Management
+                <Component.Dashboard.TeamManagement/>
               </Route>
               <Route path={dashRoutes.memberManagement}>
-                Member Management
+                <Component.Dashboard.MemberManagement/>
               </Route>
               <Route path={dashRoutes.prelimFileSubmission}>
-                Preliminary File Submission
+                <Component.Dashboard.PreliminarySubmission/>
               </Route>
               <Route path={dashRoutes.finalFileSubmission}>
-                Final File Submission
+                <Component.Dashboard.FinalSubmission/>
               </Route>
             </Switch>
           </div>
+
         </div>
     </div>
   );

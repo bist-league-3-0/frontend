@@ -1,9 +1,29 @@
 import Navigation from './navigation/Navigation';
-import Sidebar from './dashboard/sidebar';
+import Hamburger from './navigation/hamburger';
+import DashboardSidebar from './dashboard/sidebar';
+import DashboardHeader from './dashboard/header';
+import DashboardLanding from './dashboard/contents/dashboard';
+import TeamManagementContent from './dashboard/contents/teamManagement';
+import MemberManagementContent from './dashboard/contents/memberManagement';
+import PreliminaryFileSubmission from './dashboard/contents/preliminaryFileSubmission';
+import FinalFileSubmission from './dashboard/contents/finalFileSubmission';
+import DropZone from './dropzone';
+
+const Dashboard = {
+  Header: DashboardHeader, 
+  Sidebar: DashboardSidebar,
+  Landing: DashboardLanding,
+  TeamManagement: TeamManagementContent,
+  MemberManagement: MemberManagementContent,
+  PreliminarySubmission: PreliminaryFileSubmission,
+  FinalSubmission: FinalFileSubmission
+}
 
 const Component = {
   Navigation,
-  Sidebar
+  Dashboard,
+  Hamburger,
+  DropZone
 }
 
 export default Component;

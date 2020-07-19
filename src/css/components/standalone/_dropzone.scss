@@ -1,0 +1,76 @@
+.dropzone-container {
+  width: inherit;
+  
+  .drop-container {
+    @include fluid("height", 10rem, 16rem);
+    @include boxsizing-x("component");
+    @include boxsizing-y("component");
+
+    display: flex;
+    width: inherit;
+    align-items: center;
+    justify-content: center;
+    border: remToVw($bp-medium, .2rem) dashed $color-primary-1;
+
+    .file-input {
+      display: none;
+    }
+    
+    .drop-message {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      
+      text-align: center;
+      color: $color-gray-2;
+    }
+  }
+
+  .file-display-container {
+    @include boxsizing-y("component");
+    width: inherit;
+
+    .file-status-bar {
+      width: inherit;
+      @include boxsizing-x("component");
+      @include boxsizing-y("component");
+      @include fluid("margin-bottom", 1.2rem);
+      background-color: $color-info-bg;
+      border-radius: remToVw(96rem, .5rem);
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      & *{
+        width: initial;
+      }
+
+      .file-status-text {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        @include typography("sm");
+
+        & > *:not(:first-child){
+          @include fluid("margin-left", 1.2rem);
+        }
+
+        .file-name {
+          color: $color-primary-1;
+        }
+
+        .file-error-message {
+          color: $color-error;
+        }
+      }
+
+      .file-remove {
+        color: $color-primary-1;
+      }
+    }
+  }
+}

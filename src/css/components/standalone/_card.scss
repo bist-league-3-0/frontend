@@ -1,0 +1,31 @@
+.card-container {
+  &.card-container-wrapper{
+    @include boxsizing-x("component");
+    @include boxsizing-y("component");
+  }
+
+  width: inherit;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+
+  .card-row{
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+
+    @media screen and (max-width:#{remToPx($bp-medium)}) {
+      flex-direction: column;
+    }
+
+    .card {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      @media screen and (min-width:#{remToPx($bp-medium)}) {
+        @include boxsizing-x("component");
+      }
+    }
+  }
+}

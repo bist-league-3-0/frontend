@@ -1,14 +1,19 @@
 .dashboard-sidebar {
-  @include fluid("width", 30rem, 36rem);
+  @include boxsizing-y("scene", "bottom");
+  @include fluid("width", 30rem, 42rem);
   @include typography("p");
+  @include scrollbars(.2rem, $color-error-bg, $color-primary-1);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   height: inherit;
   background-color: $color-gray-4;
+  overflow-y: scroll;
+  transition: $defaultTransition;
 
   hr {
+    border: none;
     border-top: remToVw(144rem, .1rem) solid darken($color-gray-4, 20%);
   }
 
@@ -43,4 +48,19 @@
     color: $color-primary-1;
   }
 
+  @media screen and (max-width:#{remToPx($bp-medium)}) {
+    position: fixed;
+    width: 100%;
+    height: initial;
+    top: 0;
+    bottom: 0;
+    
+    &[state=active]{
+      right: 0%;
+    }
+    
+    &[state=inactive]{
+      right: 100%;
+    }
+  }
 }
