@@ -9,11 +9,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
-const DropZone = ({validTypes, buttonText}) => {
+const DropZone = ({validTypes, buttonText, postURL, id}) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [validFiles, setValidFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [unsupportedFiles, setUnsupportedFiles] = useState([]);
+  const [verdict, setVerdict] = useState({message: "", status:""})
 
   const fileSize = (size) => {
     if (size === 0) return '0 Bytes';
@@ -47,6 +48,8 @@ const DropZone = ({validTypes, buttonText}) => {
         setUnsupportedFiles(prevArray => [...prevArray, file]);
       }
     }
+
+    setVerdict({message:"", status:""})
   }
 
   const dragOver = (e) => {
@@ -99,7 +102,7 @@ const DropZone = ({validTypes, buttonText}) => {
 
   const filesSelected = () => {
     if (fileInputRef.current.files.length) {
-        handleFiles(fileInputRef.current.files);
+      handleFiles(fileInputRef.current.files);
     }
   }
 
@@ -107,17 +110,25 @@ const DropZone = ({validTypes, buttonText}) => {
     e.preventDefault();
     for (let file of validFiles) {
       const formData = new FormData();
-      formData.append('image', file);
-      formData.append('key', '893cf4108851349dc3b434d07e0ac6ba');
-      axios.post("https://api.imgbb.com/1/upload", formData, {})
+      formData.append('paymentNote', file);
+      setVerdict({status: "info", message: "Please wait, we are uploading your file"});
+
+      axios.post(postURL, formData, {withCredentials: true})
         .then(
           (res) => {
-            console.log(res)
+            setVerdict({status: "success", message: res.data.message});
+            setErrorMessage("");
+            setSelectedFiles([])
+            setValidFiles([]);
+            setUnsupportedFiles([]);
+
+            document.getElementById(`${id}`).reset();
           }
         )
         .catch(
-          (res) => {
-            console.log(res)
+          (e) => {
+            setVerdict({status:"error", message: e.response.data.message})
+            document.getElementById(`${id}`).reset();
           }
         )
     }
@@ -151,13 +162,13 @@ const DropZone = ({validTypes, buttonText}) => {
           <FontAwesomeIcon icon={['fas', 'cloud-upload-alt']} size="2x"/>
           <span>Drag & Drop files here or click to upload</span>
         </div>
-        <input
-          ref={fileInputRef}
-          className="file-input"
-          type="file"
-          multiple
-          onChange={filesSelected}
-        />
+          <input
+            ref={fileInputRef}
+            className="file-input"
+            type="file"
+            multiple
+            onChange={filesSelected}
+          />
       </div>
 
       <div className="file-display-container">
@@ -178,6 +189,10 @@ const DropZone = ({validTypes, buttonText}) => {
             </div>
           ) 
         }
+
+        <div className="flash-message" status={verdict.status}>
+          {verdict.message}
+        </div>
 
         {
           unsupportedFiles.length === 0 && validFiles.length 

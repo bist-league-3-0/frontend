@@ -79,8 +79,11 @@ const App = () => {
 
           {/* Auth Routes */}
           <Route path={FrontendRoutes.dashboard}>
-            <Scene.Dashboard user={user} width={width}/>
-          </Route>            
+          {isAuth() 
+            ? <Scene.Dashboard user={user} width={width}/> 
+            : <Redirect to={FrontendRoutes.login}/>
+          }
+          </Route> 
 
           {/* Error routes */}
           <Route path={FrontendRoutes.forbidden}>

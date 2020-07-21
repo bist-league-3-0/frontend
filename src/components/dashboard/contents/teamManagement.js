@@ -1,6 +1,7 @@
 import React from 'react';
 import DashboardComponent from './components/components-common';
 import Component from '../../components-common';
+import BackendRoutes from '../../../routes/backendRoutes';
 
 const TeamManagementContent = () => {
   return (
@@ -43,7 +44,7 @@ const TeamManagementContent = () => {
             </div>
 
             <div className="card">
-              <form className="form">
+              <form className="form" id="component-upload-payment">
                 <div className="input-body">
                   <div className="input-group">
                     <span className="input-heading boxsizing-default">
@@ -57,6 +58,8 @@ const TeamManagementContent = () => {
                     <Component.DropZone 
                       validTypes="all"
                       buttonText="UPLOAD PROOF OF PAYMENT"
+                      postURL={BackendRoutes.uploadFile.payment}
+                      id="component-upload-payment"
                     />
                   </div>
                 </div>

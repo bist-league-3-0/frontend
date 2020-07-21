@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Switch, Route } from "react-router-dom";
 import FrontendRoutes from "../../routes/frontendRoutes";
-import BackendRoutes from "../../routes/backendRoutes";
-import Asset from "../../assets/assets-common";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Component from "./../../components/components-common";
+import axios from "axios";
+import BackendRoutes from "../../routes/backendRoutes";
 
 const Dashboard = (props) => {
   let { dashRoutes } = FrontendRoutes;
   const [state, setState] = useState("inactive");
+  const [userObject, setUserObject] = useState({})
 
   const handleClick = () => {
     let hamburger = document.querySelector(".hamburger");
@@ -25,6 +24,19 @@ const Dashboard = (props) => {
   const handleChildClick = (e) => {
     e.target.parentElement.click();
   }
+
+  useEffect(() => {
+    let { id, role } = props.user;
+    if (role === 2) {
+      axios
+      .post(BackendRoutes.getUser, { id }, { 
+        withCredentials: true,
+      })
+      .then(({data}) => 
+        setUserObject(data)
+      );
+    }
+  }, [props.user])
   
   return (
     <div className="dashboard-scene">

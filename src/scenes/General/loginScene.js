@@ -9,6 +9,17 @@ const LoginScene = (props) => {
   const [password, setPassword] = useState("");
   const [verdict, setVerdict] = useState({ status: "", message: "" });
 
+  useEffect(() => {
+    document.title = "Log in | BIST League 3.0";
+  }, []);
+
+  const checkAuth = () => {
+    let roles = [2, 3, 4];
+    if (roles.includes(props.user.role)) {
+      return <Redirect to={FrontendRoutes.dashboard}/>
+    }
+  }
+
   const onLogin = async (event) => {
     event.preventDefault();
     let endpoint = BackendRoutes.login;
@@ -31,17 +42,6 @@ const LoginScene = (props) => {
         return;
       });
   };
-
-  useEffect(() => {
-    document.title = "Log in | BIST League 3.0";
-  }, []);
-
-  const checkAuth = () => {
-    let roles = [2, 3, 4];
-    if (roles.includes(props.user.role)) {
-      return <Redirect to={FrontendRoutes.dashboard}/>
-    }
-  }
 
   return (
     <div className="login-scene">
