@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-import BackendRoutes from "./../../routes/backendRoutes";
-import { NavLink } from "react-router-dom";
+import BackendRoutes from "../../routes/backendRoutes";
+import { NavLink, Redirect } from "react-router-dom";
 import FrontendRoutes from "../../routes/frontendRoutes";
 
 const LoginScene = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verdict, setVerdict] = useState({ status: "", message: "" });
+
+  useEffect(() => {
+    document.title = "Log in | BIST League 3.0";
+  }, []);
+
+  const checkAuth = () => {
+    let roles = [2, 3, 4];
+    if (roles.includes(props.user.role)) {
+      return <Redirect to={FrontendRoutes.dashboard}/>
+    }
+  }
 
   const onLogin = async (event) => {
     event.preventDefault();
@@ -21,7 +31,7 @@ const LoginScene = (props) => {
           status: "success",
           message: "Successfully Logged In, Please Wait",
         });
-        window.location.replace("/");
+        window.location.replace(FrontendRoutes.dashboard);
         return;
       })
       .catch((err) => {
@@ -33,22 +43,10 @@ const LoginScene = (props) => {
       });
   };
 
-  useEffect(() => {
-    document.title = "Log in | BIST League 3.0";
-
-    axios
-      .get(BackendRoutes.checkAuth, { withCredentials: true })
-      .then((res) => {
-        if (res.data) {
-          window.location.replace("/");
-        }
-      });
-  }, []);
-
   return (
     <div className="login-scene">
+      {checkAuth()}
       <div className="login-form-container">
-
         <form onSubmit={onLogin} className="form">
           <span className="form-title">Welcome Back!</span>
           <div className="input-body">

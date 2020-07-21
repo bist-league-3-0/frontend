@@ -1,36 +1,16 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import Asset from '../../assets/assets-common';
-import FrontendRoutes from '../../routes/frontendRoutes';
-import SocialRoutes from '../../routes/socialRoutes';
-import Hamburger from './_hamburger';
+import Hamburger from './hamburger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import FrontendRoutes from '../../routes/frontendRoutes';
 import BackendRoutes from '../../routes/backendRoutes';
+import SocialRoutes from '../../routes/socialRoutes';
 
 const Navigation = (props) => {
   const [state, setState] = useState("inactive");
-  const [navigationLink, setNavigationLink] = useState({
-    home: {
-      state: "idle",
-      link: FrontendRoutes.home,
-      text: "home"
-    },
-    login: {
-      state: "idle",
-      link: FrontendRoutes.login,
-      text: "login"
-    },
-    register: {
-      state: "idle",
-      link: FrontendRoutes.register,
-      text: "register"
-    },
-    logout: {
-      state: "idle",
-      link: FrontendRoutes.logout,
-      text: "logout"
-    }
-  });
+  const [navigationLink, setNavigationLink] = useState({});
 
   const [socialLink, setSocialLink] = useState({
     instagram: {
@@ -61,17 +41,20 @@ const Navigation = (props) => {
   });
 
   // HAMBURGER TOGGLES
-  const handleClick = (e) => {
+  const handleClick = () => {
+    let hamburger = document.querySelector(".hamburger");
+    let navside = document.querySelector(".navigation-aside");
+
     if (state === "inactive") {
       setState("active");
-      e.target.classList.add("active");
-      document.querySelector(".navigation-aside").style.right = "0%";
+      hamburger.classList.add("active");
+      navside.style.right = "0%";
     }
 
     if (state === "active") {
       setState("inactive");
-      e.target.classList.remove("active");
-      document.querySelector(".navigation-aside").style.right = "100%";
+      hamburger.classList.remove("active");
+      navside.style.right = "100%";
     }
   }
 
@@ -82,63 +65,52 @@ const Navigation = (props) => {
 
   // NAVIGATION EVENT HANDLER (SHARED BETWEEN SOCIAL LINKS AND NAV LINKS)
   const handleMouseOver = async (e) => {
-    let temp = {...navigationLink, ...socialLink};
-    for (let link in temp) {
-      temp[link].state = "not-hover";
+
+    let navLinkTemp = navigationLink;
+    let socialLinkTemp = socialLink;
+
+    let navLinkKeys = Object.keys(navLinkTemp);
+    let socialLinkKeys = Object.keys(socialLinkTemp);
+
+    for (let key of navLinkKeys) {
+      navLinkTemp[key].state = "not-hover";
+
+      if (key === e.target.id) {
+        navLinkTemp[key].state = "hover";
+      }
     }
 
-    temp[e.target.id].state = "hover";
+    for (let key of socialLinkKeys) {
+      socialLinkTemp[key].state = "not-hover";
 
-    setNavigationLink(prevState => ({
-      home: { ...prevState.home },
-      login: { ...prevState.login },
-      register: { ...prevState.register },
-      logout: { ...prevState.logout }
-    }))
+      if (key === e.target.id) {
+        socialLinkTemp[key].state = "hover";
+      }
+    }
 
-    setSocialLink(prevState => ({
-      instagram: {...prevState.instagram},
-      linkedin: {...prevState.linkedin},
-      line: {...prevState.line},
-      facebook: {...prevState.facebook},
-      twitter: { ...prevState.twitter }
-    }))
+    setNavigationLink(prevState => ({...prevState}));
+    setSocialLink(prevState => ({...prevState}));
   }
 
-  const handleMouseOut = (e) => {
-    setNavigationLink(prevState => ({
-      home: { ...prevState.home, state:"idle" },
-      login: { ...prevState.login, state:"idle" },
-      register: { ...prevState.register, state:"idle" },
-      logout: { ...prevState.logout, state:"idle" }
-    }))
+  const handleMouseOut = () => {
 
-    setSocialLink(prevState => ({
-      instagram: {...prevState.instagram, state:"idle" },
-      linkedin: {...prevState.linkedin, state:"idle" },
-      line: {...prevState.line, state:"idle" },
-      facebook: {...prevState.facebook, state:"idle" },
-      twitter: { ...prevState.twitter, state:"idle" }
-    }))
+    let navLinkTemp = navigationLink;
+    let socialLinkTemp = socialLink;
+    let navLinkKeys = Object.keys(navLinkTemp);
+    let socialLinkKeys = Object.keys(socialLinkTemp);
+    
+    for (let key of navLinkKeys) {
+      navLinkTemp[key].state = "idle";
+    }
+
+    for (let key of socialLinkKeys) {
+      socialLinkTemp[key].state = "idle";
+    }
+
+    setNavigationLink(prevState => ({...prevState}));
+    setSocialLink(prevState => ({...prevState}));
   }
   // END OF NAVIGATION EVENT HANDLER
-
-  // SCROLL EVENT HANDLER
-  var prevScrollpos = window.pageYOffset;
-  window.onscroll = function() {
-      var currentScrollPos = window.pageYOffset;
-      if (state === "inactive") {
-        if (prevScrollpos > currentScrollPos) {
-          document.getElementById("navbar").style.top = "0";
-        } else {
-            document.getElementById("navbar").style.top = "-15rem";
-        }
-        prevScrollpos = currentScrollPos;
-      } else {
-        window.scrollTo(0, prevScrollpos);
-      }
-  }
-  // END OF SCROLL EVENT
 
   // SOCIAL LINKS RENDER
   let socialLinks = Object.values(socialLink).map(value => {
@@ -203,7 +175,7 @@ const Navigation = (props) => {
           state={value.state}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
-          onMouseDown={handleClick}
+          onClick={handleClick}
           href={BackendRoutes.logout}
         >
           {value.text}
@@ -218,17 +190,74 @@ const Navigation = (props) => {
             state={value.state}
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
-            onMouseDown={handleClick}
+            onClick={handleClick}
+            key={value.text}
           >
-            {value.text}
+          {value.text}
           </span>
         </NavLink>
       );
     }
   })
-
   // END OF BODY LINKS RENDER
 
+  // TRY SET ROLE STATE 
+  useEffect(() => {
+    let roles = [2, 3, 4];
+    if (roles.includes(props.user.role)){
+      setNavigationLink({
+        home: {
+          state: "idle",
+          link: FrontendRoutes.home,
+          text: "home"
+        },
+        logout: {
+          state: "idle",
+          link: FrontendRoutes.logout,
+          text: "logout"
+        }
+      });
+    } else {
+      setNavigationLink({
+        home: {
+          state: "active",
+          link: FrontendRoutes.home,
+          text: "home"
+        },
+        login: {
+          state: "active",
+          link: FrontendRoutes.login,
+          text: "login"
+        },
+        register: {
+          state: "active",
+          link: FrontendRoutes.register,
+          text: "register"
+        }
+      });
+    }
+  }, [props.user.role])
+  // END OF SET ROLE STATE
+
+  if (FrontendRoutes.showNav.indexOf(useLocation().pathname) < 0) {
+    return null
+  } else {
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+      var currentScrollPos = window.pageYOffset;
+      if (state === "inactive") {
+        if (prevScrollpos > currentScrollPos) {
+          document.getElementById("navbar").style.top = "0";
+        } else {
+            document.getElementById("navbar").style.top = "-15rem";
+        }
+        prevScrollpos = currentScrollPos;
+      } else {
+        window.scrollTo(0, prevScrollpos);
+      }
+    }
+  }
+  
   return(
     <div className="navigation-wrapper">
       <nav className="navigation-header" id="navbar">

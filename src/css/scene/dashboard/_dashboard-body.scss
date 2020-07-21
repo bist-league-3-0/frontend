@@ -1,0 +1,9 @@
+.dashboard-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: inherit;
+  height: 100%;
+  overflow-y: hidden;
+}

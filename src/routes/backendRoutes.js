@@ -13,5 +13,10 @@ BackendRoutes.register = BackendRoutes.auth + "register/";
 BackendRoutes.logout = BackendRoutes.auth + "logout/";
 BackendRoutes.check = BackendRoutes.login + "check/";
 BackendRoutes.checkAuth = BackendRoutes.login + "check-authentication/";
+BackendRoutes.getUser = BackendRoutes.auth + "users/";
+
+BackendRoutes.uploadFile = {
+  payment: BackendRoutes.home + "payment/upload/"
+}
 
 module.exports = BackendRoutes;

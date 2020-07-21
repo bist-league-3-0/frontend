@@ -4,8 +4,8 @@
     @include boxsizing-y("component");
   }
 
-  width: 100%;
-  height: 100%;
+  width: inherit;
+  height: inherit;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -13,6 +13,10 @@
 
   & * {
     width: inherit;
+
+    &.default-width {
+      width: initial;
+    }
   }
 
   a {
@@ -45,7 +49,7 @@
       @include fluid("margin-bottom", 1.5rem, 2rem);
     }
     
-    & *{
+    & > *{
       @include typography("p");
       &:not(:last-child) {
         @include fluid("margin-bottom", 0.75rem, 1rem);
@@ -60,13 +64,17 @@
   .input-heading {
     @include typography("h2");
     @include fluid("margin-top", 1.5rem, 2rem);
+
+    &.boxsizing-default {
+      margin-top: 0;
+    }
   }
 
   .input-text {
     @include typography("sm");
     color: $color-gray-2;
 
-    & * {
+    & > * {
       @include typography("sm");
     }
   }

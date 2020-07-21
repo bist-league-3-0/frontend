@@ -1,0 +1,32 @@
+.error-scene {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .error-code {
+    @include fluid("font-size", 3.6rem, 5.4rem);
+    color: $color-secondary-1;
+  }
+
+  .error-explaination {
+    @include typography("h3");
+    color: $color-gray-1;
+  }
+
+  .error-description {
+    @include typography("p");
+    color: $color-gray-3;
+    text-align: center;
+  }
+
+  .error-header {
+    @include boxsizing-y("component");
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
