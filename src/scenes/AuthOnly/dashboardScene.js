@@ -6,9 +6,9 @@ import axios from "axios";
 import BackendRoutes from "../../routes/backendRoutes";
 
 const Dashboard = (props) => {
-  let { dashRoutes } = FrontendRoutes;
+  const { dashRoutes } = FrontendRoutes;
   const [state, setState] = useState("inactive");
-  const [userObject, setUserObject] = useState({})
+  const [userObject, setUserObject] = useState({});
 
   const handleClick = () => {
     let hamburger = document.querySelector(".hamburger");
@@ -54,13 +54,13 @@ const Dashboard = (props) => {
           <div className="dashboard-content">
             <Switch>
               <Route exact path={FrontendRoutes.dashboard}>
-                <Component.Dashboard.Landing/>
+                <Component.Dashboard.Landing user={userObject}/>
               </Route>
               <Route path={dashRoutes.teamManagement}>
-                <Component.Dashboard.TeamManagement/>
+                <Component.Dashboard.TeamManagement user={userObject}/>
               </Route>
               <Route path={dashRoutes.memberManagement}>
-                <Component.Dashboard.MemberManagement/>
+                <Component.Dashboard.MemberManagement user={userObject}/>
               </Route>
               <Route path={dashRoutes.prelimFileSubmission}>
                 <Component.Dashboard.PreliminarySubmission/>

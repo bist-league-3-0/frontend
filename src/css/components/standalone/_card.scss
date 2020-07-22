@@ -26,6 +26,53 @@
       @media screen and (min-width:#{remToPx($bp-medium)}) {
         @include boxsizing-x("component");
       }
+
+      @media screen and (max-width:#{remToPx($bp-medium)}) {
+        @include boxsizing-y("component")
+      }
+
+      .card-header {
+        @include typography("h3");
+        @include fluid("margin-bottom", 2rem);
+        font-weight: bold;
+      }
+      
+      .card-body {
+        @include fluid("margin-bottom", 2rem);
+      }
+
+      .card-text {
+        @include fluid("margin-bottom", 1.2rem);
+        display: flex;
+      }
+
+      .card-text-key {
+        @include typography("p");
+        color: $color-gray-1;
+      }
+
+      .card-text-value {
+        color: $color-gray-3;
+        flex-grow: 1;
+        text-align: right;
+      }
+
+      .card-text-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        &:not(:last-child) {
+          @include fluid("margin-bottom", 2rem);
+          border-bottom: remToVw(96rem, .1rem) solid $color-gray-3;
+        }
+      }
+    }
+
+    .card-flex-center {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

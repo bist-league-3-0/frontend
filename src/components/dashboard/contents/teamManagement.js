@@ -3,12 +3,12 @@ import DashboardComponent from './components/components-common';
 import Component from '../../components-common';
 import BackendRoutes from '../../../routes/backendRoutes';
 
-const TeamManagementContent = () => {
+const TeamManagementContent = ({user}) => {
   return (
     <div className="content-wrapper">
       <DashboardComponent.ContentHeader 
         title="Team Management" 
-        description="Nama tim Anda" 
+        description={user?.account?.username} 
       />
       <hr/>
       <div className="content-body">
@@ -28,17 +28,21 @@ const TeamManagementContent = () => {
                     <span className="input-text">
                       Team names that contain any offense towards a certain ethnicity, religion, or race are strictly prohibited.
                     </span>
-                    <input type="text" name="teamname" id="teamname" required/>
+                    <input 
+                      type="text" 
+                      name="teamname" 
+                      id="teamname" 
+                      defaultValue={user?.account?.username}
+                    required/>
                   </div>
+                </div>
 
-                  <div className="input-footer">
-                    <input
-                      type="submit"
-                      value="CHANGE TEAM NAME"
-                      className="button-primary-filled"
-                    />
-                  </div>
-
+                <div className="input-footer">
+                  <input
+                    type="submit"
+                    value="CHANGE TEAM NAME"
+                    className="button-primary-filled"
+                  />
                 </div>
               </form>
             </div>

@@ -1,13 +1,33 @@
 import React from 'react';
+import DashboardComponent from './components/components-common';
 
-const MemberManagementContent = () => {
+const MemberManagementContent = ({user}) => {
+  const renderAddMember = () => {
+    if (user?.teamAccount?.teamCount < 3) {
+      return (
+        <div className="card button-primary">
+          Add New Member
+        </div>
+      )
+    }
+    
+    return null;
+  } 
+
   return (
     <div className="content-wrapper">
-      <div className="content-header">
-        <span className="content-title">Member Management</span>
-        <span className="content-title-description">Nama Tim Anda</span>
-      </div>
+      <DashboardComponent.ContentHeader 
+        title="Member Management" 
+        description={user?.account?.username} 
+      />
       <hr/>
+      <div className="content-body">
+        <div className="card-container">
+          <div className="card-row">
+            {renderAddMember()}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
