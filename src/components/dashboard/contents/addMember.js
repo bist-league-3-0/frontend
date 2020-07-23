@@ -1,76 +1,27 @@
-import React, { useState } from 'react';
-import Axios from 'axios';
-import Component from '../../components-common';
-import BackendRoutes from '../../../routes/backendRoutes';
+import React, { useState } from "react";
+import BackendRoutes from "../../../routes/backendRoutes";
 
-const MemberConfig = ({team, teamMember}) => {
-  const [memberName, setMemberName] = useState(teamMember?.teamMemberName);
-  const [gender, setGender] = useState(teamMember?.gender);
-  const [major, setMajor] = useState(teamMember?.major);
-  const [interest, setInterest] = useState(teamMember?.interest);
-  const [enrollmentyear, setEnrollmentyear] = useState(new Date(teamMember?.yearOfEnrollment || "").getFullYear().toString());
-  const [age, setAge] = useState(teamMember?.age);
-  const [phone, setPhone] = useState(teamMember?.phoneNumber);
-  const [line, setLine] = useState(teamMember?.lineID);
-  const [linkedin, setLinkedin] = useState(teamMember?.linkedin);
-  const [password, setPassword] = useState("");
-
-  let name = teamMember?.teamMemberName || "";
-  let firstName = name.split(" ")[0].toString();
-
-  const renderDeleteMember = () => {
-    if (team?.leaderID !== teamMember?.teamMemberID) {
-      return (
-        <div className="card-row">
-          <div className="card">
-            <form className="form">
-
-              <div className="input-body">
-                <div className="input-group">
-                  <span className="input-heading boxsizing-default">
-                    DELETE THIS MEMBER
-                  </span>
-                  <span className="input-text">
-                    Be careful when using this function, we will ask your team account password to delete this member permanently. You cannot delete your team leader.
-                  </span>
-                  <hr/>
-                </div>
-
-                <div className="input-group">
-                  <label htmlFor="password" className="input-label">Password</label>
-                  <input type="password" name="password" id="password" required
-                    onChange={e => setPassword(e.target.value)} 
-                  />
-                </div>
-              </div>
-
-              <div className="input-footer">
-                <input
-                  type="submit"
-                  value="DELETE MEMBER"
-                  className="button-primary-filled"
-                />
-              </div>
-            </form>
-          </div>
-          <div className="card medium-only boxsizing-default"/>
-        </div>
-      )
-    }
-
-    return null;
-  } 
+const AddTeamMember = () => {
+  const [memberName, setMemberName] = useState();
+  const [gender, setGender] = useState("Male");
+  const [major, setMajor] = useState();
+  const [interest, setInterest] = useState();
+  const [enrollmentyear, setEnrollmentyear] = useState();
+  const [age, setAge] = useState();
+  const [phone, setPhone] = useState();
+  const [line, setLine] = useState();
+  const [linkedin, setLinkedin] = useState();
+  
 
   return (
     <div className="card-container">
-
       <div className="card-row">
         <div className="card">
           <form className="form">
             <div className="input-body">
               <div className="input-group">
                 <span className="input-heading boxsizing-default">
-                  Change {firstName}'s Data
+                  Add New Member
                 </span>
               </div>
 
@@ -211,87 +162,10 @@ const MemberConfig = ({team, teamMember}) => {
             </div>
           </form>
         </div>
-        
-        <div className="card boxsizing-default">
-          <div className="card">
-            <form className="form" id="component-upload-enrollment">
-              <div className="input-body">
-                <div className="input-group">
-                  <span className="input-heading boxsizing-default">
-                    Proof of Enrollment
-                  </span>
-                </div>
-                <div className="input-group">
-                  <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
-                  </span>
-                  <Component.DropZone 
-                    validTypes={["image/jpeg", "image/png"]}
-                    buttonText="UPLOAD PROOF OF ENROLLMENT"
-                    postURL={BackendRoutes.uploadFile.payment}
-                    idName="component-upload-enrollment"
-                    filesLimit="1"
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <div className="card">
-            <form className="form" id="component-upload-studentid">
-              <div className="input-body">
-                <div className="input-group">
-                  <span className="input-heading boxsizing-default">
-                    Student ID Card
-                  </span>
-                </div>
-                <div className="input-group">
-                  <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
-                  </span>
-                  <Component.DropZone 
-                    validTypes={["image/jpeg", "image/png"]}
-                    buttonText="UPLOAD STUDENT ID CARD"
-                    postURL={BackendRoutes.uploadFile.payment}
-                    idName="component-upload-studentid"
-                    filesLimit="1"
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <div className="card">
-            <form className="form" id="component-upload-portrait">
-              <div className="input-body">
-                <div className="input-group">
-                  <span className="input-heading boxsizing-default">
-                    Member 3x4 Portrait Photo
-                  </span>
-                </div>
-                <div className="input-group">
-                  <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
-                  </span>
-                  <Component.DropZone 
-                    validTypes={["image/jpeg", "image/png"]}
-                    buttonText="UPLOAD PORTRAIT PHOTO"
-                    postURL={BackendRoutes.uploadFile.payment}
-                    idName="component-upload-portrait"
-                    filesLimit="1"
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
-          
-        </div>
+        <div className="card medium-only boxsizing-default"/>
       </div>
-
-      {renderDeleteMember()}
-
     </div>
   )
 }
 
-export default MemberConfig;
+export default AddTeamMember;

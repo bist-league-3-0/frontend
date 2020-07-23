@@ -35,7 +35,7 @@ const TeamManagementContent = ({user}) => {
                     <input type="text" name="teamname" id="teamname" required 
                       defaultValue={teamName}
                       onChange={e => setTeamName(e.target.value)}
-                    required/>
+                    />
                   </div>
                 </div>
 

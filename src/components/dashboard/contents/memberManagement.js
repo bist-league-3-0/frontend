@@ -36,15 +36,25 @@ const MemberManagementContent = ({user}) => {
   const renderAddMember = () => {
     if (user?.teamAccount?.teamCount < 3) {
       return (
-        <NavLink to="/">
-          <div className="card button-primary">
-            <FontAwesomeIcon icon={'far', 'plus-circle'} size="3x"/>
-            <span>Add Team Member</span>
-          </div>
+        <NavLink to={FrontendRoutes.dashRoutes.addMember} className="card button-primary">
+          <FontAwesomeIcon icon={'far', 'plus-circle'} size="3x"/>
+          <span>Add Team Member</span>
         </NavLink>
       )
     }
     
+    return null;
+  }
+
+  const renderAddMemberRoute = () => {
+    if (user?.teamAccount?.teamCount < 3) {
+      return (
+        <Route path={FrontendRoutes.dashRoutes.addMember}>
+          <Component.Dashboard.AddTeamMember/>
+        </Route>
+      )
+    }
+
     return null;
   }
   
@@ -52,10 +62,12 @@ const MemberManagementContent = ({user}) => {
     return (
       <Switch>
         <Route exact path={FrontendRoutes.dashRoutes.memberManagement}>
+        <div className="card-container">
           <div className="card-row">
             {renderTeamMembers}
             {renderAddMember()}
           </div>
+        </div>
         </Route>
         {Object.values(user?.teamMember).map((teamMember, index) => {
           return (
@@ -63,10 +75,11 @@ const MemberManagementContent = ({user}) => {
               path={FrontendRoutes.dashRoutes.memberManagement + teamMember?.teamMemberID + "/"}
               key={index}
             >
-              <Component.Dashboard.MemberConfig teamMember={teamMember}/>
+              <Component.Dashboard.MemberConfig team={user?.teamAccount} teamMember={teamMember}/>
             </Route>
           )
         })}
+        {renderAddMemberRoute()}
       </Switch>
     )
   }
@@ -79,9 +92,7 @@ const MemberManagementContent = ({user}) => {
       />
       <hr/>
       <div className="content-body">
-        <div className="card-container">
-          {renderMemberRoutes()}
-        </div>
+        {renderMemberRoutes()}
       </div>
     </div>
   )

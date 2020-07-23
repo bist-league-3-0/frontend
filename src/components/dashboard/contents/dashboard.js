@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import DashboardComponent from './components/components-common';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DashboardContent = ({user}) => {
   let teamInfo = {

@@ -40,7 +40,7 @@ const Dashboard = (props) => {
   
   return (
     <div className="dashboard-scene">
-        <Component.Dashboard.Header/>
+        <Component.Dashboard.Header width={props.width}/>
 
         <div className="dashboard-body">
           <div className="hamburger-wrapper">
