@@ -1,3 +1,6 @@
+$gravatar-height-floor: 4rem;
+$gravatar-height-ceil: 6rem;
+
 .card-container {
   &.card-container-wrapper{
     @include boxsizing-x("component");
@@ -30,7 +33,7 @@
       @media screen and (max-width:#{remToPx($bp-medium)}) {
         @include boxsizing-y("component")
       }
-
+  
       .card-header {
         @include typography("h3");
         @include fluid("margin-bottom", 2rem);
@@ -40,39 +43,97 @@
       .card-body {
         @include fluid("margin-bottom", 2rem);
       }
-
+  
       .card-text {
         @include fluid("margin-bottom", 1.2rem);
         display: flex;
       }
-
+  
       .card-text-key {
         @include typography("p");
         color: $color-gray-1;
       }
-
+  
       .card-text-value {
         color: $color-gray-3;
         flex-grow: 1;
         text-align: right;
       }
-
+  
       .card-text-wrapper {
         display: flex;
         flex-direction: column;
-
+  
         &:not(:last-child) {
           @include fluid("margin-bottom", 2rem);
           border-bottom: remToVw(96rem, .1rem) solid $color-gray-3;
         }
       }
     }
-
-    .card-flex-center {
+    
+    .card-style-business {
+      width: 100%;
       display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
+
+      @media screen and (min-width:#{remToPx($bp-medium)}) {
+        @include fluidmarginx(2rem, 2rem);
+      }
+
+      @media screen and (max-width:#{remToPx($bp-medium)}) {
+        @include fluidmarginy(2rem, 2rem)
+      }
+
+      .card-header {
+        @include fluid("height", $gravatar-height-floor, $gravatar-height-ceil);
+        color: $color-white;
+        background-color: $color-primary-1;
+        border: remToVw(96rem, .1rem) solid $color-primary-1;
+        border-radius: remToVw(96rem, .5rem) remToVw(96rem, .5rem) 0 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        .header-gravatar {
+          @include fluid("height", $gravatar-height-floor, $gravatar-height-ceil);
+          @include fluid("top", $gravatar-height-floor / 2, $gravatar-height-ceil / 2);
+          position: relative;
+          border-radius: 50%;
+          z-index: 100;
+        }
+      }
+
+      .card-body {
+        @include fluid("padding-top", $gravatar-height-floor/2 + 2rem, $gravatar-height-ceil/2 + 2rem);
+        @include boxsizing-x("component");
+        @include fluid("padding-bottom", 2rem);
+        border-radius: 0 0 remToVw(96rem, .5rem) remToVw(96rem, .5rem);
+        border: remToVw(96rem, .1rem) solid $color-primary-1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .card-body-text {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+        }
+
+        .name-text {
+          @include typography("p");
+          color: $color-black;
+        }
+
+        .email-text {
+          @include typography("sm");
+          color: $color-gray-3;
+        }
+
+        .card-body-button {
+          @include fluid("margin-top", 2rem);
+        }
+      }
     }
   }
 }

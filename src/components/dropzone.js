@@ -9,12 +9,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
-const DropZone = ({validTypes, buttonText, postURL, id}) => {
+const DropZone = ({validTypes, buttonText, postURL, id, filesLimit}) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [validFiles, setValidFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [unsupportedFiles, setUnsupportedFiles] = useState([]);
-  const [verdict, setVerdict] = useState({message: "", status:""})
+  const [verdict, setVerdict] = useState({message: "", status:""});
 
   const fileSize = (size) => {
     if (size === 0) return '0 Bytes';
@@ -38,18 +38,23 @@ const DropZone = ({validTypes, buttonText, postURL, id}) => {
   }
 
   const handleFiles = (files) => {
-    for (let file of files) {
-      if (validateFiles(file)) {
-        setSelectedFiles(prevArray => [...prevArray, file]);
-      } else {
-        file.invalid = true;
-        setSelectedFiles(prevArray => [...prevArray, file]);
-        setErrorMessage("File type not Permitted!");
-        setUnsupportedFiles(prevArray => [...prevArray, file]);
+    if (files.length + validFiles.length <= (filesLimit || 1)) {
+      for (let file of files) {
+        if (validateFiles(file)) {
+          setSelectedFiles(prevArray => [...prevArray, file]);
+        } else {
+          file.invalid = true;
+          setSelectedFiles(prevArray => [...prevArray, file]);
+          setErrorMessage("Sorry, file type not Permitted!");
+          setUnsupportedFiles(prevArray => [...prevArray, file]);
+        }
       }
+      setVerdict({message:"", status:""})
+    }
+    else {
+      setVerdict({message: `Sorry, the files limit is ${filesLimit || 1} file(s)`, status:"error"})
     }
 
-    setVerdict({message:"", status:""})
   }
 
   const dragOver = (e) => {
@@ -166,8 +171,8 @@ const DropZone = ({validTypes, buttonText, postURL, id}) => {
             ref={fileInputRef}
             className="file-input"
             type="file"
-            multiple
             onChange={filesSelected}
+            multiple={(filesLimit || 1) > 1}
           />
       </div>
 

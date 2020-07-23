@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardComponent from './components/components-common';
 import Component from '../../components-common';
 import BackendRoutes from '../../../routes/backendRoutes';
 
 const TeamManagementContent = ({user}) => {
+  const [teamName, setTeamName] = useState(user?.account?.username);
+  const [institution, setInstitution] = useState(user?.teamAccount?.institutionName);
+
   return (
     <div className="content-wrapper">
       <DashboardComponent.ContentHeader 
@@ -23,18 +26,28 @@ const TeamManagementContent = ({user}) => {
                       Team Account
                     </span>
                   </div>
+
                   <div className="input-group">
                     <label htmlFor="teamname" className="input-label">Team Name</label>
                     <span className="input-text">
                       Team names that contain any offense towards a certain ethnicity, religion, or race are strictly prohibited.
                     </span>
-                    <input 
-                      type="text" 
-                      name="teamname" 
-                      id="teamname" 
-                      defaultValue={user?.account?.username}
+                    <input type="text" name="teamname" id="teamname" required 
+                      defaultValue={teamName}
+                      onChange={e => setTeamName(e.target.value)}
                     required/>
                   </div>
+                </div>
+
+                <div className="input-group">
+                  <label htmlFor="institution" className="input-label">Institution</label>
+                  <span className="input-text">
+                    Please write your institution / school name without abbreviating its name and please write it in official name, ex: Institut Teknologi Bandung, not Bandung Institute of Technology
+                  </span>
+                  <input type="text" name="institution" id="institution" required
+                    onChange={e => setInstitution(e.target.value)}
+                    defaultValue={institution}
+                  />
                 </div>
 
                 <div className="input-footer">
@@ -57,13 +70,14 @@ const TeamManagementContent = ({user}) => {
                   </div>
                   <div className="input-group">
                     <span className="input-text">
-                      Please drop your file here
+                      Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
                     </span>
                     <Component.DropZone 
-                      validTypes="all"
+                      validTypes={["image/jpeg", "image/png"]}
                       buttonText="UPLOAD PROOF OF PAYMENT"
                       postURL={BackendRoutes.uploadFile.payment}
                       id="component-upload-payment"
+                      filesLimit="1"
                     />
                   </div>
                 </div>
