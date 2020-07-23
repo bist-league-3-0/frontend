@@ -26,12 +26,14 @@ $gravatar-height-ceil: 6rem;
       display: flex;
       flex-direction: column;
 
-      @media screen and (min-width:#{remToPx($bp-medium)}) {
-        @include boxsizing-x("component");
-      }
-
-      @media screen and (max-width:#{remToPx($bp-medium)}) {
-        @include boxsizing-y("component")
+      &:not(.boxsizing-default){
+        @media screen and (min-width:#{remToPx($bp-medium)}) {
+          @include boxsizing-x("component");
+        }
+  
+        @media screen and (max-width:#{remToPx($bp-medium)}) {
+          @include boxsizing-y("component")
+        }
       }
   
       .card-header {

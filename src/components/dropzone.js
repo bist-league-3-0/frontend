@@ -9,7 +9,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
-const DropZone = ({validTypes, buttonText, postURL, id, filesLimit}) => {
+const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit}) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [validFiles, setValidFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
@@ -127,13 +127,13 @@ const DropZone = ({validTypes, buttonText, postURL, id, filesLimit}) => {
             setValidFiles([]);
             setUnsupportedFiles([]);
 
-            document.getElementById(`${id}`).reset();
+            document.getElementById(`${idName}`).reset();
           }
         )
         .catch(
           (e) => {
             setVerdict({status:"error", message: e.response.data.message})
-            document.getElementById(`${id}`).reset();
+            document.getElementById(`${idName}`).reset();
           }
         )
     }

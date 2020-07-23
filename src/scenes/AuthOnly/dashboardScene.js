@@ -63,10 +63,10 @@ const Dashboard = (props) => {
                 <Component.Dashboard.MemberManagement user={userObject}/>
               </Route>
               <Route path={dashRoutes.prelimFileSubmission}>
-                <Component.Dashboard.PreliminarySubmission/>
+                <Component.Dashboard.PreliminarySubmission user={userObject}/>
               </Route>
               <Route path={dashRoutes.finalFileSubmission}>
-                <Component.Dashboard.FinalSubmission/>
+                <Component.Dashboard.FinalSubmission user={userObject}/>
               </Route>
             </Switch>
           </div>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
+import Component from '../../components-common';
+import BackendRoutes from '../../../routes/backendRoutes';
 
 const MemberConfig = ({teamMember}) => {
   const [memberName, setMemberName] = useState(teamMember?.teamMemberName);
@@ -163,8 +165,79 @@ const MemberConfig = ({teamMember}) => {
           </div>
         </form>
       </div>
-      <div className="card">
-        
+      
+      <div className="card boxsizing-default">
+        <div className="card">
+          <form className="form" id="component-upload-enrollment">
+            <div className="input-body">
+              <div className="input-group">
+                <span className="input-heading boxsizing-default">
+                  Proof of Enrollment
+                </span>
+              </div>
+              <div className="input-group">
+                <span className="input-text">
+                  Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
+                </span>
+                <Component.DropZone 
+                  validTypes={["image/jpeg", "image/png"]}
+                  buttonText="UPLOAD PROOF OF ENROLLMENT"
+                  postURL={BackendRoutes.uploadFile.payment}
+                  idName="component-upload-enrollment"
+                  filesLimit="1"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div className="card">
+          <form className="form" id="component-upload-studentid">
+            <div className="input-body">
+              <div className="input-group">
+                <span className="input-heading boxsizing-default">
+                  Student ID Card
+                </span>
+              </div>
+              <div className="input-group">
+                <span className="input-text">
+                  Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
+                </span>
+                <Component.DropZone 
+                  validTypes={["image/jpeg", "image/png"]}
+                  buttonText="UPLOAD STUDENT ID CARD"
+                  postURL={BackendRoutes.uploadFile.payment}
+                  idName="component-upload-studentid"
+                  filesLimit="1"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div className="card">
+          <form className="form" id="component-upload-portrait">
+            <div className="input-body">
+              <div className="input-group">
+                <span className="input-heading boxsizing-default">
+                  Member 3x4 Portrait Photo
+                </span>
+              </div>
+              <div className="input-group">
+                <span className="input-text">
+                  Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
+                </span>
+                <Component.DropZone 
+                  validTypes={["image/jpeg", "image/png"]}
+                  buttonText="UPLOAD PORTRAIT PHOTO"
+                  postURL={BackendRoutes.uploadFile.payment}
+                  idName="component-upload-portrait"
+                  filesLimit="1"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   )

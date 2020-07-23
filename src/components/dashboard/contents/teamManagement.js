@@ -76,13 +76,14 @@ const TeamManagementContent = ({user}) => {
                       validTypes={["image/jpeg", "image/png"]}
                       buttonText="UPLOAD PROOF OF PAYMENT"
                       postURL={BackendRoutes.uploadFile.payment}
-                      id="component-upload-payment"
+                      idName="component-upload-payment"
                       filesLimit="1"
                     />
                   </div>
                 </div>
               </form>
             </div>
+            
           </div>
         </div>
       </div>
