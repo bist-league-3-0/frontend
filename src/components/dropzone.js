@@ -8,8 +8,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import BackendRoutes from '../routes/backendRoutes';
 
-const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit}) => {
+const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, refresh, context}) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [validFiles, setValidFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
@@ -115,27 +116,45 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit}) => {
     e.preventDefault();
     for (let file of validFiles) {
       const formData = new FormData();
-      formData.append('paymentNote', file);
+      formData.append('file', file);
+      formData.append('email', user?.account?.email);
+      formData.append('context', context);
       setVerdict({status: "info", message: "Please wait, we are uploading your file"});
 
-      axios.post(postURL, formData, {withCredentials: true})
-        .then(
-          (res) => {
-            setVerdict({status: "success", message: res.data.message});
-            setErrorMessage("");
-            setSelectedFiles([])
-            setValidFiles([]);
-            setUnsupportedFiles([]);
+      axios.post(
+        BackendRoutes.auth,
+        {email: user?.account?.email},
+        {withCredentials: true}
+      ).then(res => {
+        return axios.post(
+          postURL, 
+          formData, 
+          {
+            withCredentials: true,
+            headers: {
+              "Authorization" : `Bearer ${res.data.accessToken}`
+            }
+          }
+        )
+      })
+      .then(
+        (res) => {
+          setVerdict({status: "success", message: res.data.message});
+          setErrorMessage("");
+          setSelectedFiles([])
+          setValidFiles([]);
+          setUnsupportedFiles([]);
 
-            document.getElementById(`${idName}`).reset();
-          }
-        )
-        .catch(
-          (e) => {
-            setVerdict({status:"error", message: e.response.data.message})
-            document.getElementById(`${idName}`).reset();
-          }
-        )
+          document.getElementById(`${idName}`).reset();
+          refresh();
+        }
+      )
+      .catch(
+        (e) => {
+          setVerdict({status:"error", message: e.response.data.message})
+          document.getElementById(`${idName}`).reset();
+        }
+      )
     }
   }
 

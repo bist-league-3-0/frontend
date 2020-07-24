@@ -119,8 +119,11 @@ const TeamManagementContent = ({user, refresh}) => {
                     <Component.DropZone 
                       validTypes={["image/jpeg", "image/png"]}
                       buttonText="UPLOAD PROOF OF PAYMENT"
-                      postURL={BackendRoutes.uploadFile.payment}
+                      postURL={BackendRoutes.bistAccount.uploadPayment}
                       idName="component-upload-payment"
+                      user={user}
+                      refresh={refresh}
+                      context="PAYMENT"
                       filesLimit="1"
                     />
                   </div>
