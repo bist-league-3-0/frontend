@@ -16,12 +16,12 @@ const Header = ({width}) => {
         />
       </NavLink>
       <div className="dashboard-links">
-        <div className="dashboard-link">
+        <NavLink to={FrontendRoutes.dashRoutes.settings} className="dashboard-link">
           <FontAwesomeIcon 
             icon={['fas', "user-circle"]} 
             size={width <= 960 ? "lg" : "2x"}
           />
-        </div>
+        </NavLink>
         <a href={BackendRoutes.logout} className="dashboard-link">
           <FontAwesomeIcon 
             icon={['fas', "sign-out-alt"]} 

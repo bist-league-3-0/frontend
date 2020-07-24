@@ -37,18 +37,18 @@ const TeamManagementContent = ({user}) => {
                       onChange={e => setTeamName(e.target.value)}
                     />
                   </div>
+                  <div className="input-group">
+                    <label htmlFor="institution" className="input-label">Institution</label>
+                    <span className="input-text">
+                      Please write your institution / school name without abbreviating its name and please write it in official name, ex: Institut Teknologi Bandung, not Bandung Institute of Technology
+                    </span>
+                    <input type="text" name="institution" id="institution" required
+                      onChange={e => setInstitution(e.target.value)}
+                      defaultValue={institution}
+                    />
+                  </div>
                 </div>
 
-                <div className="input-group">
-                  <label htmlFor="institution" className="input-label">Institution</label>
-                  <span className="input-text">
-                    Please write your institution / school name without abbreviating its name and please write it in official name, ex: Institut Teknologi Bandung, not Bandung Institute of Technology
-                  </span>
-                  <input type="text" name="institution" id="institution" required
-                    onChange={e => setInstitution(e.target.value)}
-                    defaultValue={institution}
-                  />
-                </div>
 
                 <div className="input-footer">
                   <input

@@ -68,6 +68,9 @@ const Dashboard = (props) => {
               <Route path={dashRoutes.finalFileSubmission}>
                 <Component.Dashboard.FinalSubmission user={userObject}/>
               </Route>
+              <Route path={dashRoutes.settings}>
+                <Component.Dashboard.Setting user={userObject}/>
+              </Route>
             </Switch>
           </div>
 

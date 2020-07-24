@@ -17,7 +17,8 @@ FrontendRoutes.dashRoutes = {
   teamManagement: FrontendRoutes.dashboard + "team-management/",
   memberManagement: FrontendRoutes.dashboard + "member-management/",
   prelimFileSubmission: FrontendRoutes.dashboard + "preliminary-submission/",
-  finalFileSubmission: FrontendRoutes.dashboard + "final-submission",
+  finalFileSubmission: FrontendRoutes.dashboard + "final-submission/",
+  settings: FrontendRoutes.dashboard + "settings/"
 }
 
 FrontendRoutes.dashRoutes.addMember = FrontendRoutes.dashRoutes.memberManagement + "add-member/"

@@ -10,6 +10,7 @@ import FinalFileSubmission from './dashboard/contents/finalFileSubmission';
 import DropZone from './dropzone';
 import MemberConfig from './dashboard/contents/memberConfig';
 import AddTeamMember from './dashboard/contents/addMember';
+import SettingContent from "./dashboard/contents/setting";
 
 const Dashboard = {
   Header: DashboardHeader, 
@@ -20,7 +21,8 @@ const Dashboard = {
   PreliminarySubmission: PreliminaryFileSubmission,
   FinalSubmission: FinalFileSubmission,
   MemberConfig: MemberConfig,
-  AddTeamMember: AddTeamMember
+  AddTeamMember: AddTeamMember,
+  Setting: SettingContent,
 }
 
 const Component = {
