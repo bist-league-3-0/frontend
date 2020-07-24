@@ -3,8 +3,9 @@ import FrontendRoutes from "./../../routes/frontendRoutes";
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Asset from '../../assets/assets-common';
+import BackendRoutes from '../../routes/backendRoutes';
 
-const Header = () => {
+const Header = ({width}) => {
   return (
     <div className="dashboard-header">
       <NavLink to={FrontendRoutes.home}>
@@ -15,12 +16,18 @@ const Header = () => {
         />
       </NavLink>
       <div className="dashboard-links">
-        <div className="dashboard-link">
+        <NavLink to={FrontendRoutes.dashRoutes.settings} className="dashboard-link">
           <FontAwesomeIcon 
             icon={['fas', "user-circle"]} 
-            size="2x"
+            size={width <= 960 ? "lg" : "2x"}
           />
-        </div>
+        </NavLink>
+        <a href={BackendRoutes.logout} className="dashboard-link">
+          <FontAwesomeIcon 
+            icon={['fas', "sign-out-alt"]} 
+            size={width <= 960 ? "lg" : "2x"}
+          />
+        </a>
       </div>
     </div>
   )

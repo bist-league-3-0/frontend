@@ -39,3 +39,15 @@ $color-info: map-get($color, "info");
 $color-info-bg: map-get($color, "info-bg");
 
 $color-primary-washed: lighten($color-primary-1, 68%);
+
+.color-error {
+  color: $color-error;
+}
+
+.color-info {
+  color: $color-info;
+}
+
+.color-success {
+  color: $color-success
+}

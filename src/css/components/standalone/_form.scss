@@ -98,14 +98,17 @@
     .input-radio {
       width: auto;
 
+      &:not(:last-child) {
+        @media screen and (max-width: #{remToPx($bp-medium)}) {
+          @include fluid("margin-bottom", 1rem, 1.6rem);  
+        }
+      }
+
       label {
         display: flex;
         
-        & *:not(:first-child){
-          @include fluid("margin-left", .5rem, 2rem);
-        }
-
         .radio-description {
+          @include fluid("margin-left", .5rem, 2rem);
           @include typography("sm");
         }
       }

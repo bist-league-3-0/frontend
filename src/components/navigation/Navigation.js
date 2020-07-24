@@ -211,6 +211,11 @@ const Navigation = (props) => {
           link: FrontendRoutes.home,
           text: "home"
         },
+        dashboard: {
+          state: "idle",
+          link: FrontendRoutes.dashboard,
+          text: "dashboard"
+        },
         logout: {
           state: "idle",
           link: FrontendRoutes.logout,
