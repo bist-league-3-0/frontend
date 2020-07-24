@@ -3,7 +3,7 @@ import DashboardComponent from './components/components-common';
 import axios from 'axios';
 import BackendRoutes from '../../../routes/backendRoutes';
 
-const SettingContent = ({user}) => {
+const SettingContent = ({user, refresh}) => {
   const [email, setEmail] = useState(user?.account?.email);
   const [password, setPassword] = useState("");
   const [verdict, setVerdict] = useState({status: "", message: ""})
@@ -32,6 +32,7 @@ const SettingContent = ({user}) => {
     .then (
       (res) => {
         setVerdict({message: res.data.message, status: "success"})
+        refresh();
       }
     )
     .catch(
@@ -56,6 +57,10 @@ const SettingContent = ({user}) => {
                 <div className="input-body">
                   <div className="input-group">
                     <label htmlFor="email" className="input-label">Change Email</label>
+                    <span className="input-text">
+                      This email is used for logging into team account. It is separated from leader email.
+                      The email state shall change once you are logged out from this session.
+                    </span>
                     <input type="email" name="email" id="email" required 
                       defaultValue={email}
                       onChange={e => setEmail(e.target.value)}

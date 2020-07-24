@@ -1,23 +1,72 @@
 import React, { useState } from "react";
+import axios from "axios";
 import BackendRoutes from "../../../routes/backendRoutes";
 
-const AddTeamMember = () => {
+const AddTeamMember = ({user, refresh}) => {
   const [memberName, setMemberName] = useState();
   const [gender, setGender] = useState("Male");
   const [major, setMajor] = useState();
   const [interest, setInterest] = useState();
   const [enrollmentyear, setEnrollmentyear] = useState();
   const [age, setAge] = useState();
+  const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [line, setLine] = useState();
   const [linkedin, setLinkedin] = useState();
-  
+  const [verdict, setVerdict] = useState({message: "", status: ""})
+
+  const submitAddMember = () => {
+    setVerdict({message: "Please wait.", status: "info"})
+    axios.post(
+      BackendRoutes.auth,
+      {email: user?.account?.email},
+      {withCredentials: true}
+    )
+    .then(
+      (res) => {
+        return axios.post(
+          BackendRoutes.bistAccount.addMember,
+          {
+            teamID: user?.teamAccount?.teamID,
+            memberName,
+            gender,
+            major,
+            interest,
+            enrollmentyear,
+            age,
+            phone,
+            line,
+            linkedin,
+            email
+          },
+          {
+            withCredentials: true,
+            headers: {
+              "Authorization" : `Bearer ${res.data.accessToken}`
+            }
+          }
+        )
+      }
+    )
+    .then (
+      (res) => {
+        console.log(res.data);
+        setVerdict({message: res.data.message, status: res.data.success ? "success" : "error"});
+        refresh();
+      }
+    )
+    .catch(
+      (e) => {
+        setVerdict({message: e.response.data.message, status: "error"})
+      }
+    )
+  }
 
   return (
     <div className="card-container">
       <div className="card-row">
         <div className="card">
-          <form className="form">
+          <form className="form" onSubmit={submitAddMember}>
             <div className="input-body">
               <div className="input-group">
                 <span className="input-heading boxsizing-default">
@@ -120,6 +169,14 @@ const AddTeamMember = () => {
               </div>
 
               <div className="input-group">
+                <label htmlFor="email" className="input-label">Email</label>
+                <input type="email" name="email" id="email" 
+                  onChange={e => setEmail(e.target.value)}
+                  defaultValue={email}
+                />
+              </div>
+
+              <div className="input-group">
                 <label htmlFor="phone" className="input-label">Phone Number</label>
                 <span className="input-text">
                   (Optional) Please fill this with your active number.
@@ -148,7 +205,6 @@ const AddTeamMember = () => {
                 </span>
                 <input type="text" name="linkedin" id="linkedin" defaultValue="http://linkedin.com/in/"
                   onChange={e => setLinkedin(e.target.value)}
-                  defaultValue={linkedin}
                 />
               </div>
 
@@ -156,9 +212,12 @@ const AddTeamMember = () => {
             <div className="input-footer">
               <input
                   type="submit"
-                  value="CHANGE MEMBER DATA"
+                  value="ADD MEMBER"
                   className="button-primary-filled"
                 />
+            </div>
+            <div className="flash-message" status={verdict.status}>
+              {verdict.message}
             </div>
           </form>
         </div>

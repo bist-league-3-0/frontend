@@ -2,10 +2,51 @@ import React, { useState } from 'react';
 import DashboardComponent from './components/components-common';
 import Component from '../../components-common';
 import BackendRoutes from '../../../routes/backendRoutes';
+import axios from 'axios';
 
-const TeamManagementContent = ({user}) => {
+const TeamManagementContent = ({user, refresh}) => {
   const [teamName, setTeamName] = useState(user?.account?.username);
   const [institution, setInstitution] = useState(user?.teamAccount?.institutionName);
+  const [verdict, setVerdict] = useState({status: "", message: ""});
+
+  const submitTeamChange = (e) => {
+    e.preventDefault();
+    setVerdict({message: "Please wait..", status: "info"})
+    axios.post(
+      BackendRoutes.auth,
+      {email: user?.account?.email},
+      {withCredentials: true}
+    )
+    .then(
+      (res) => {
+        return axios.post(
+          BackendRoutes.bistAccount.changeTeamData,
+          {
+            id: user?.account?.accountID,
+            institution,
+            teamName
+          },
+          {
+            withCredentials: true,
+            headers: {
+              "Authorization" : `Bearer ${res.data.accessToken}`
+            }
+          }
+        )
+      }
+    )
+    .then (
+      (res) => {
+        refresh();
+        setVerdict({message: res.data.message, status: res.data.success ? "success" : "error"})
+      }
+    )
+    .catch(
+      (e) => {
+        setVerdict({message: e.response.data.message, status: "error"})
+      }
+    )
+  }
 
   return (
     <div className="content-wrapper">
@@ -19,7 +60,7 @@ const TeamManagementContent = ({user}) => {
           <div className="card-row">
 
             <div className="card">
-              <form className="form">
+              <form className="form" onSubmit={submitTeamChange}>
                 <div className="input-body">
                   <div className="input-group">
                     <span className="input-heading boxsizing-default">
@@ -49,13 +90,16 @@ const TeamManagementContent = ({user}) => {
                   </div>
                 </div>
 
-
                 <div className="input-footer">
                   <input
                     type="submit"
                     value="CHANGE TEAM NAME"
                     className="button-primary-filled"
                   />
+                </div>
+
+                <div className="flash-message" status={verdict.status}>
+                  {verdict.message}
                 </div>
               </form>
             </div>

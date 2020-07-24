@@ -1,29 +1,118 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import Component from '../../components-common';
 import BackendRoutes from '../../../routes/backendRoutes';
 
-const MemberConfig = ({team, teamMember}) => {
+const MemberConfig = ({user, team, teamMember, refresh}) => {
   const [memberName, setMemberName] = useState(teamMember?.teamMemberName);
   const [gender, setGender] = useState(teamMember?.gender);
   const [major, setMajor] = useState(teamMember?.major);
   const [interest, setInterest] = useState(teamMember?.interest);
   const [enrollmentyear, setEnrollmentyear] = useState(new Date(teamMember?.yearOfEnrollment || "").getFullYear().toString());
   const [age, setAge] = useState(teamMember?.age);
+  const [email, setEmail] = useState(teamMember?.email);
   const [phone, setPhone] = useState(teamMember?.phoneNumber);
   const [line, setLine] = useState(teamMember?.lineID);
   const [linkedin, setLinkedin] = useState(teamMember?.linkedin);
   const [password, setPassword] = useState("");
+  const [changeVerdict, setChangeVerdict] = useState({message: "", status: ""});
+  const [deleteVerdict, setDeleteVerdict] = useState({message: "", status: ""});
 
   let name = teamMember?.teamMemberName || "";
   let firstName = name.split(" ")[0].toString();
+
+  const submitDeleteMember = (e) => {
+    setDeleteVerdict({message: "Please wait.", status: "info"})
+    axios.post(
+      BackendRoutes.auth,
+      {email: user?.account?.email},
+      {withCredentials: true}
+    )
+    .then(
+      (res) => {
+        return axios.post(
+          BackendRoutes.bistAccount.deleteMember,
+          {
+            accountID: user?.account?.accountID,
+            teamID: team?.teamID,
+            teamMemberID: teamMember?.teamMemberID,
+            password: password
+          },
+          {
+            withCredentials: true,
+            headers: {
+              "Authorization" : `Bearer ${res.data.accessToken}`
+            }
+          }
+        )
+      }
+    )
+    .then (
+      (res) => {
+        setDeleteVerdict({message: res.data.message, status: res.data.success ? "success" : "error"});
+        refresh();
+      }
+    )
+    .catch(
+      (e) => {
+        setDeleteVerdict({message: e.response.data.message, status: "error"})
+      }
+    )
+  }
+
+  const submitMemberChange = (e) => {
+    e.preventDefault();
+    setChangeVerdict({message: "Please wait.", status: "info"})
+    axios.post(
+      BackendRoutes.auth,
+      {email: user?.account?.email},
+      {withCredentials: true}
+    )
+    .then(
+      (res) => {
+        return axios.post(
+          BackendRoutes.bistAccount.changeMemberData,
+          {
+            id: teamMember?.teamMemberID,
+            memberName,
+            gender,
+            major,
+            interest,
+            enrollmentyear,
+            age,
+            email,
+            phone,
+            line,
+            linkedin
+          },
+          {
+            withCredentials: true,
+            headers: {
+              "Authorization" : `Bearer ${res.data.accessToken}`
+            }
+          }
+        )
+      }
+    )
+    .then (
+      (res) => {
+        setChangeVerdict({message: res.data.message, status: res.data.success ? "success" : "error"});
+        refresh();
+      }
+    )
+    .catch(
+      (e) => {
+        setChangeVerdict({message: e.response.data.message, status: "error"})
+      }
+    )
+  }
 
   const renderDeleteMember = () => {
     if (team?.leaderID !== teamMember?.teamMemberID) {
       return (
         <div className="card-row">
           <div className="card">
-            <form className="form">
+            <form className="form" onSubmit={submitDeleteMember}>
 
               <div className="input-body">
                 <div className="input-group">
@@ -51,6 +140,9 @@ const MemberConfig = ({team, teamMember}) => {
                   className="button-primary-filled"
                 />
               </div>
+              <div className="flash-message" status={deleteVerdict.status}>
+                {deleteVerdict.message}
+              </div>
             </form>
           </div>
           <div className="card medium-only boxsizing-default"/>
@@ -66,7 +158,7 @@ const MemberConfig = ({team, teamMember}) => {
 
       <div className="card-row">
         <div className="card">
-          <form className="form">
+          <form className="form" onSubmit={submitMemberChange}> 
             <div className="input-body">
               <div className="input-group">
                 <span className="input-heading boxsizing-default">
@@ -169,6 +261,14 @@ const MemberConfig = ({team, teamMember}) => {
               </div>
 
               <div className="input-group">
+                <label htmlFor="email" className="input-label">Email</label>
+                <input type="email" name="email" id="email" 
+                  onChange={e => setEmail(e.target.value)}
+                  defaultValue={email}
+                />
+              </div>
+
+              <div className="input-group">
                 <label htmlFor="phone" className="input-label">Phone Number</label>
                 <span className="input-text">
                   (Optional) Please fill this with your active number.
@@ -195,7 +295,7 @@ const MemberConfig = ({team, teamMember}) => {
                 <span className="input-text">
                   (Optional) Please enter a link to your LinkedIn profile, example: http://linkedin.com/in/linkedinyourname
                 </span>
-                <input type="text" name="linkedin" id="linkedin" defaultValue="http://linkedin.com/in/"
+                <input type="text" name="linkedin" id="linkedin"
                   onChange={e => setLinkedin(e.target.value)}
                   defaultValue={linkedin}
                 />
@@ -208,6 +308,10 @@ const MemberConfig = ({team, teamMember}) => {
                   value="CHANGE MEMBER DATA"
                   className="button-primary-filled"
                 />
+            </div>
+
+            <div className="flash-message" status={changeVerdict.status}>
+              {changeVerdict.message}
             </div>
           </form>
         </div>

@@ -25,16 +25,21 @@ const Dashboard = (props) => {
     e.target.parentElement.click();
   }
 
-  useEffect(() => {
-    let { id, role } = props.user;
-    if (role === 2) {
-      axios
+  const refreshUserUpdate = () => {
+    let { id } = props.user;
+    axios
       .post(BackendRoutes.getUser, { id }, { 
         withCredentials: true,
       })
       .then(({data}) => 
         setUserObject(data)
       );
+  }
+
+  useEffect(() => {
+    let { role } = props.user;
+    if (role === 2) {
+      refreshUserUpdate()
     }
   }, [props.user])
   
@@ -57,19 +62,19 @@ const Dashboard = (props) => {
                 <Component.Dashboard.Landing user={userObject}/>
               </Route>
               <Route path={dashRoutes.teamManagement}>
-                <Component.Dashboard.TeamManagement user={userObject}/>
+                <Component.Dashboard.TeamManagement user={userObject} refresh={refreshUserUpdate}/>
               </Route>
               <Route path={dashRoutes.memberManagement}>
-                <Component.Dashboard.MemberManagement user={userObject}/>
+                <Component.Dashboard.MemberManagement user={userObject} refresh={refreshUserUpdate}/>
               </Route>
               <Route path={dashRoutes.prelimFileSubmission}>
-                <Component.Dashboard.PreliminarySubmission user={userObject}/>
+                <Component.Dashboard.PreliminarySubmission user={userObject} refresh={refreshUserUpdate}/>
               </Route>
               <Route path={dashRoutes.finalFileSubmission}>
-                <Component.Dashboard.FinalSubmission user={userObject}/>
+                <Component.Dashboard.FinalSubmission user={userObject} refresh={refreshUserUpdate}/>
               </Route>
               <Route path={dashRoutes.settings}>
-                <Component.Dashboard.Setting user={userObject}/>
+                <Component.Dashboard.Setting user={userObject} refresh={refreshUserUpdate}/>
               </Route>
             </Switch>
           </div>

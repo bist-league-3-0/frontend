@@ -7,7 +7,7 @@ import FrontendRoutes from '../../../routes/frontendRoutes';
 import BackendRoutes from '../../../routes/backendRoutes';
 import Component from '../../components-common';
 
-const MemberManagementContent = ({user}) => {
+const MemberManagementContent = ({user, refresh}) => {
   const renderTeamMembers = user?.teamMember?.map((teamMember, index) => {
     return (
       <div className="card-style-business" key={index}>
@@ -50,7 +50,7 @@ const MemberManagementContent = ({user}) => {
     if (user?.teamAccount?.teamCount < 3) {
       return (
         <Route path={FrontendRoutes.dashRoutes.addMember}>
-          <Component.Dashboard.AddTeamMember/>
+          <Component.Dashboard.AddTeamMember user={user} refresh={refresh}/>
         </Route>
       )
     }
@@ -75,7 +75,7 @@ const MemberManagementContent = ({user}) => {
               path={FrontendRoutes.dashRoutes.memberManagement + teamMember?.teamMemberID + "/"}
               key={index}
             >
-              <Component.Dashboard.MemberConfig team={user?.teamAccount} teamMember={teamMember}/>
+              <Component.Dashboard.MemberConfig user={user} team={user?.teamAccount} teamMember={teamMember} refresh={refresh}/>
             </Route>
           )
         })}
