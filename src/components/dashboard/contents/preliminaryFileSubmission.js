@@ -22,7 +22,7 @@ const PreliminaryFileSubmission = ({user}) => {
                 <div className="input-body">
                   <div className="input-group">
                     <span className="input-heading boxsizing-default">
-                      Final File Submission
+                      Preliminary File Submission
                     </span>
                   </div>
                   <div className="input-group">

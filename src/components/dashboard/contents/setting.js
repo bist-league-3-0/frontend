@@ -1,9 +1,45 @@
 import React, { useState } from 'react';
 import DashboardComponent from './components/components-common';
+import axios from 'axios';
+import BackendRoutes from '../../../routes/backendRoutes';
 
 const SettingContent = ({user}) => {
   const [email, setEmail] = useState(user?.account?.email);
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("");
+  const [verdict, setVerdict] = useState({status: "", message: ""})
+
+  const submitAccountChange = (e) => {
+    e.preventDefault();
+    axios.post(
+      BackendRoutes.auth,
+      {email: user?.account?.email},
+      {withCredentials: true}
+    )
+    .then(
+      (res) => {
+        return axios.post(
+          BackendRoutes.bistAccount.changeAccountCredentials,
+          {email, password, oldEmail: user?.account?.email},
+          {
+            withCredentials: true,
+            headers: {
+              "Authorization" : `Bearer ${res.data.accessToken}`
+            }
+          }
+        )
+      }
+    )
+    .then (
+      (res) => {
+        setVerdict({message: res.data.message, status: "success"})
+      }
+    )
+    .catch(
+      (e) => {
+        setVerdict({message: e.response.data.message, status: "error"})
+      }
+    )
+  }
 
   return (
     <div className="content-wrapper">
@@ -16,7 +52,7 @@ const SettingContent = ({user}) => {
         <div className="card-container">
           <div className="card-row">
             <div className="card">
-              <form className="form">
+              <form className="form" onSubmit={submitAccountChange}>
                 <div className="input-body">
                   <div className="input-group">
                     <label htmlFor="email" className="input-label">Change Email</label>
@@ -40,6 +76,10 @@ const SettingContent = ({user}) => {
                     value="CHANGE ACCOUNT SETTINGS"
                     className="button-primary-filled"
                   />
+                </div>
+
+                <div className="flash-message" status={verdict.status}>
+                  {verdict.message}
                 </div>
               </form>
             </div>
