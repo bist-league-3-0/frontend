@@ -22,6 +22,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
   let firstName = name.split(" ")[0].toString();
 
   const submitDeleteMember = (e) => {
+    e.preventDefault();
     setDeleteVerdict({message: "Please wait.", status: "info"})
     axios.post(
       BackendRoutes.auth,
@@ -338,6 +339,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                     refresh={refresh}
                     context="ENROLLMENT"
                     filesLimit="1"
+                    memberID={teamMember?.teamMemberID}
                   />
                 </div>
               </div>
@@ -365,6 +367,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                     refresh={refresh}
                     context="ID_CARD"
                     filesLimit="1"
+                    memberID={teamMember?.teamMemberID}
                   />
                 </div>
               </div>
@@ -392,6 +395,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                     refresh={refresh}
                     context="PORTRAIT_PHOTO"
                     filesLimit="1"
+                    memberID={teamMember?.teamMemberID}
                   />
                 </div>
               </div>

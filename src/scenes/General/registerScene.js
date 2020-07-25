@@ -5,18 +5,18 @@ import { NavLink } from "react-router-dom";
 import FrontendRoutes from "../../routes/frontendRoutes";
 
 const RegisterScene = (props) => {
-  const [teamname, setTeamname] = useState("");
-  const [institution, setInstitution] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [leadername, setLeadername] = useState("");
+  const [teamname, setTeamname] = useState();
+  const [institution, setInstitution] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [leadername, setLeadername] = useState();
   const [gender, setGender] = useState("Male");
-  const [major, setMajor] = useState("");
-  const [interest, setInterest] = useState("");
+  const [major, setMajor] = useState();
+  const [interest, setInterest] = useState();
   const [enrollmentyear, setEnrollmentyear] = useState(2020);
   const [age, setAge] = useState(18);
-  const [phone, setPhone] = useState("");
-  const [line, setLine] = useState("");
+  const [phone, setPhone] = useState();
+  const [line, setLine] = useState();
   const [linkedin, setLinkedin] = useState("http://linkedin.com/in/");
 
   const [verdict, setVerdict] = useState({status: "", message:""});
@@ -73,7 +73,7 @@ const RegisterScene = (props) => {
               <span className="input-text">
                 Team names that contain any offense towards a certain ethnicity, religion, or race are strictly prohibited.
               </span>
-              <input type="text" name="teamname" id="teamname" required
+              <input type="text" name="teamname" id="teamname" required defaultValue={teamname}
                 onChange={(event) => {
                   setTeamname(event.target.value);
                 }}
@@ -85,7 +85,7 @@ const RegisterScene = (props) => {
               <span className="input-text">
                 Please write your institution / school name without abbreviating its name and please write it in official name, ex: Institut Teknologi Bandung, not Bandung Institute of Technology
               </span>
-              <input type="text" name="institution" id="institution" required
+              <input type="text" name="institution" id="institution" required defaultValue={institution}
                 onChange={(event) => {
                   setInstitution(event.target.value);
                 }}
@@ -97,7 +97,7 @@ const RegisterScene = (props) => {
               <span className="input-text">
                 Please fill this with your team leader email.
               </span>
-              <input type="email" name="email" id="email" required
+              <input type="email" name="email" id="email" required defaultValue={email}
                 onChange={(event) => {
                   setEmail(event.target.value);
                 }}
@@ -109,7 +109,7 @@ const RegisterScene = (props) => {
               <span className="input-text">
                 This password is for team account login. Password length should be 10 characters or more.
               </span>
-              <input type="password" name="password" id="password" required
+              <input type="password" name="password" id="password" required defaultValue={password}
                 onChange={(event) => {
                   setPassword(event.target.value);
                 }}
@@ -128,7 +128,7 @@ const RegisterScene = (props) => {
               <span className="input-text">
                 Insert your full name here.
               </span>
-              <input type="text" name="leadername" id="leadername" required
+              <input type="text" name="leadername" id="leadername" required defaultValue={leadername}
                 onChange={(event) => {
                   setLeadername(event.target.value);
                 }}
@@ -173,7 +173,7 @@ const RegisterScene = (props) => {
               <span className="input-text">
                 Please write your major without abbreviating its name and please write it in official name, ex: Teknik Informatika, not IT / IF
               </span>
-              <input type="text" name="major" id="major" required
+              <input type="text" name="major" id="major" required defaultValue={major}
                 onChange={(event) => {
                   setMajor(event.target.value);
                 }}
@@ -185,7 +185,7 @@ const RegisterScene = (props) => {
               <span className="input-text">
                 Please write down your interests in information technology field, i.e. information security, artificial intelligence, UI/UX, etc.
               </span>
-              <input type="text" name="interest" id="interest" required
+              <input type="text" name="interest" id="interest" required defaultValue={interest}
                 onChange={(event) => {
                   setInterest(event.target.value);
                 }}
@@ -197,7 +197,7 @@ const RegisterScene = (props) => {
               <span className="input-text">
                 Please enter the year you got admitted at your current institution.
               </span>
-              <input type="number" name="enrollment" id="enrollment" min="2012" max="2020" defaultValue="2020" required
+              <input type="number" name="enrollment" id="enrollment" min="2012" max="2020" required defaultValue={enrollmentyear}
                 onChange={(event) => {
                   setEnrollmentyear(event.target.value);
                 }}
@@ -221,7 +221,7 @@ const RegisterScene = (props) => {
               <span className="input-text">
                 (Optional) Please fill this with your active number.
               </span>
-              <input type="text" name="phone" id="phone" 
+              <input type="text" name="phone" id="phone" defaultValue={phone}
                 onChange={(event) => {
                   setPhone(event.target.value);
                 }}
@@ -233,7 +233,7 @@ const RegisterScene = (props) => {
               <span className="input-text">
                 (Optional) If you have a LINE Account, please insert your LINE account here
               </span>
-              <input type="text" name="line" id="line"
+              <input type="text" name="line" id="line" defaultValue={line}
                 onChange={(event) => {
                   setLine(event.target.value);
                 }}

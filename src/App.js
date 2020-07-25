@@ -62,7 +62,9 @@ const App = () => {
         <Switch>
           {/* General Routes */}
           <Route exact path={FrontendRoutes.home}>
-            <div>HELLO WORLD</div>
+            <div>
+              <img src="https://storage.cloud.google.com/bist-account-files/PAYMENT_49.jpg" alt=""/>
+            </div>
           </Route>
           <Route path={FrontendRoutes.login}>
             <Scene.LoginScene user={user}/>
