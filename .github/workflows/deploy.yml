@@ -1,0 +1,48 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout to master
+      uses: actions/checkout@v2
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: "12.x"
+    - name: Installing dependencies
+      run: npm install
+    - name: Build project
+      run: npm run build
+    - name: Archive production artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: build
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: build
+      - name: Setup GCP CLI
+        uses: GoogleCloudPlatform/github-actions@0.1.2
+        with:
+          version: '290.0.1'
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+      - name: Deploy files to bucket
+        run: gsutil rsync -R build gs://bistleague.com
