@@ -63,7 +63,7 @@ const App = () => {
           {/* General Routes */}
           <Route exact path={FrontendRoutes.home}>
             <div>
-              <img src="https://storage.cloud.google.com/bist-account-files/PAYMENT_49.jpg" alt=""/>
+              Hello World
             </div>
           </Route>
           <Route path={FrontendRoutes.login}>
