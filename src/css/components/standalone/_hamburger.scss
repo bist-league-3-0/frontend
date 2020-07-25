@@ -1,0 +1,44 @@
+$height: 0.2rem;
+
+.hamburger {
+  @include fluid("width", 4rem, 6rem);
+  @include fluid("height", 4rem, 6rem);
+  @include fluid("padding", 0.5rem, 1rem);
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+
+    &:not(.active) .line2 {
+      width: 80%;
+    }
+  }
+
+  .line {
+    @include fluid("height", $height);
+    width: 100%;
+    background-color: $color-primary-1;
+    position: relative;
+    transition: $defaultTransition;
+
+    &.line1 {
+      @include fluid("top", 1rem - ($height / 2), 1.5rem - ($height / 2));
+    }
+
+    &.line2 {
+      @include fluid("top", 2rem - ($height / 2), 2.5rem - ($height / 2));
+    }
+  }
+
+  &.active {
+    & .line1 {
+      @include fluid("top", 1.5rem, 2rem);
+      transform: rotateZ(-45deg) rotateY(180deg);
+    }
+
+    & .line2 {
+      @include fluid("top", 1.5rem - ($height), 2rem - ($height));
+      transform: rotate(45deg) rotateY(-180deg);
+    }
+  }
+}

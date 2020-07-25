@@ -1,40 +1,101 @@
 // Import Essential Modules
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { BrowserRouter as Router, Switch, Route, useLocation, Redirect } from "react-router-dom";
+import BackendRoutes from "./routes/backendRoutes";
+import FrontendRoutes from "./routes/frontendRoutes";
 // End of Essential Modules
 
 // Import Styles
-import './App.css';
+import "./css/base.scss";
+import "./css/main.scss";
 // End of Styles
 
-// Import Scenes
-import LoginScene from './scenes/Login/loginScene';
-import RegisterScene from './scenes/Register/registerScene';
-import CheckAuth from './scenes/Login/checkAuth';
-import Dashboard from './scenes/General/dashboard';
-// End of Import Scenes
+// Import Common Files
+import * as Scene from "./scenes/scene-common";
+import Component from './components/components-common';
+// End of Common Files
 
 // App Class Declaration
-export default class App extends Component {
-  render() {
-    return (
+const App = () => {
+
+  // APP Logics
+  const isAuth = () => {
+    return user.role >= 2 && user.role <= 4;
+  }
+  // End of App Logics
+
+  const defaultUserState = { id: 0, email: "", role: 1 };
+  const [width, setWidth] = useState(window.innerWidth);
+  const [user, setUser] = useState(defaultUserState);
+
+  window.addEventListener("resize", () => {
+    setWidth(window.innerWidth);
+  });
+
+  const fetchData = async () => {
+    let res = await axios.get(BackendRoutes.check, { withCredentials: true });
+
+    if (typeof res.data.passport != "undefined") {
+      return res.data.passport;
+    } else {
+      return {};
+    }
+  };
+
+  useEffect(() => {
+    fetchData()
+      .then(res => {
+        let temp = Object.values(res);
+        temp = temp.pop();
+        return typeof temp != "undefined" ? temp : defaultUserState;
+      })
+      .then(temp => {
+        setUser(temp);
+      })
+  }, []);
+
+  return (
+    <div>
       <Router>
+        <Component.Navigation width={width} user={user}/>
         <Switch>
-          <Route exact path="/">
-            <Dashboard/>
+          {/* General Routes */}
+          <Route exact path={FrontendRoutes.home}>
+            <div>HELLO WORLD</div>
           </Route>
-          <Route path="/login">
-            <LoginScene/>
+          <Route path={FrontendRoutes.login}>
+            <Scene.LoginScene user={user}/>
           </Route>
-          <Route path="/register">
-            <RegisterScene/>
+          <Route path={FrontendRoutes.register}>
+            <Scene.RegisterScene />
           </Route>
-          <Route path="/auth">
-            <CheckAuth/>
+          <Route path={FrontendRoutes.forgotPasswordValidate}>
+            <Scene.ForgotPasswordValidateScene />
+          </Route>
+          <Route path={FrontendRoutes.forgotPassword}>
+            <Scene.ForgotPasswordScene />
+          </Route>
+
+          {/* Auth Routes */}
+          <Route path={FrontendRoutes.dashboard}>
+          {isAuth() 
+            ? <Scene.Dashboard user={user} width={width}/> 
+            : <Redirect to={FrontendRoutes.login}/>
+          }
+          </Route> 
+
+          {/* Error routes */}
+          <Route path={FrontendRoutes.forbidden}>
+            <Scene.ErrorScene code="403"/>
+          </Route>
+          <Route>
+            <Scene.ErrorScene code="404"/>
           </Route>
         </Switch>
       </Router>
-    );
-  }
-}
-// End of Class
+    </div>
+  );
+};
+
+export default App;

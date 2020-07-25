@@ -1,0 +1,100 @@
+// Mixin boxsizing-x
+// @param string(optional)
+// default to return fluidpaddingx()
+//
+// $type:
+//   - scene: returns padding left and right of 12.5vw on big breakpoint onwards
+//   - scene-md: return padding left and right of 12.5vw on medium breakpoint onwards
+//
+// $apply-option:
+//   - default: none
+//   - left: only applies left padding
+//   - right: only applies right padding
+
+@mixin boxsizing-x($type: "", $apply-option: "") {
+  @if $type == "scene" {
+    @if $apply-option == "left" {
+      @include fluid("padding-left", $bs-scene-floor, $bs-scene-ceil);
+      @media screen and (min-width: #{remToPx($bp-large)}) {
+        padding-left: 12.5vw;
+      }
+    } @else if $apply-option == "right" {
+      @include fluid("padding-right", $bs-scene-floor, $bs-scene-ceil);
+      @media screen and (min-width: #{remToPx($bp-large)}) {
+        padding-right: 12.5vw;
+      }
+    } @else {
+      @include fluidpaddingx($bs-scene-floor, $bs-scene-ceil);
+      @media screen and (min-width: #{remToPx($bp-large)}) {
+        padding-left: 12.5vw;
+        padding-right: 12.5vw;
+      }
+    }
+  } @else if $type == "scene-md" {
+    @if $apply-option == "left" {
+      @include fluid("padding-left", $bs-scene-floor, $bs-scene-ceil);
+      @media screen and (min-width: #{remToPx($bp-medium)}) {
+        padding-left: 12.5vw;
+      }
+    } @else if $apply-option == "right" {
+      @include fluid("padding-right", $bs-scene-floor, $bs-scene-ceil);
+      @media screen and (min-width: #{remToPx($bp-medium)}) {
+        padding-right: 12.5vw;
+      }
+    } @else {
+      @include fluidpaddingx($bs-scene-floor, $bs-scene-ceil);
+      @media screen and (min-width: #{remToPx($bp-medium)}) {
+        padding-left: 12.5vw;
+        padding-right: 12.5vw;
+      }
+    }
+  } @else if $type == "component" {
+    @if $apply-option == "left" {
+      @include fluid("padding-left", $bs-component-default);
+    } @else if $apply-option == "right" {
+      @include fluid("padding-right", $bs-component-default);
+    } @else {
+      @include fluidpaddingx($bs-component-default, $bs-component-default);
+    }
+  } @else if $type == "button" {
+    @include fluidpaddingx($bs-button-x-floor, $bs-button-x-ceil);
+  } @else {
+    @include fluidpaddingx($bs-scene-floor, $bs-scene-ceil);
+  }
+}
+
+// Mixin boxsizing-y
+// @param string(optional)
+// default to return fluidpaddingy()
+
+@mixin boxsizing-y($type: "", $apply-option: "") {
+  @if $type == "scene" {
+    @if $apply-option == "top" {
+      @include fluid("padding-top", $bs-nav-heightFloor, $bs-nav-heightCeil);
+    }
+    @else if $apply-option == "bottom" {
+      @include fluid("padding-bottom", $bs-nav-heightFloor, $bs-nav-heightCeil);
+    } 
+    @else {
+      @include fluid("padding-top", $bs-nav-heightFloor, $bs-nav-heightCeil);
+      @include fluid("padding-bottom", 2rem);
+    }
+  } 
+  @else if $type == "component" {
+    @if $apply-option == "bottom" {
+      @include fluid("padding-bottom", $bs-component-default);
+    }
+    @else if $apply-option == "top" {
+      @include fluid("padding-top", $bs-component-default);
+    }
+    @else {
+      @include fluidpaddingy($bs-component-default, $bs-component-default);
+    }
+  } 
+  @else if $type == "button" {
+    @include fluidpaddingy($bs-button-y-floor, $bs-button-y-ceil);
+  } 
+  @else {
+    @include fluidpaddingy($bs-scene-floor, $bs-scene-ceil);
+  }
+}

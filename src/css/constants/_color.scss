@@ -1,0 +1,53 @@
+// Constant: Colors
+$color: (
+  "primary-1": #84002f,
+  "primary-2": #30022c,
+  "primary-3": #7f6add,
+  "secondary-1": #cc002f,
+  "secondary-2": #f31a1e,
+  "black": #000000,
+  "white": #ffffff,
+  "gray-1": #2a2a2a,
+  "gray-2": #545454,
+  "gray-3": #7e7e7e,
+  "gray-4": #f2f2f2,
+  "success": #0f8a44,
+  "success-bg": #d9f2e3,
+  "error": #f20d0d,
+  "error-bg": #fad1d1,
+  "info": #2f80ed,
+  "info-bg": #d0f1fb,
+);
+
+$color-primary-1: map-get($color, "primary-1");
+$color-primary-2: map-get($color, "primary-2");
+$color-primary-3: map-get($color, "primary-3");
+$color-secondary-1: map-get($color, "secondary-1");
+$color-secondary-2: map-get($color, "secondary-2");
+$color-black: map-get($color, "black");
+$color-white: map-get($color, "white");
+$color-gray-1: map-get($color, "gray-1");
+$color-gray-2: map-get($color, "gray-2");
+$color-gray-3: map-get($color, "gray-3");
+$color-gray-4: map-get($color, "gray-4");
+
+$color-success: map-get($color, "success");
+$color-success-bg: map-get($color, "success-bg");
+$color-error: map-get($color, "error");
+$color-error-bg: map-get($color, "error-bg");
+$color-info: map-get($color, "info");
+$color-info-bg: map-get($color, "info-bg");
+
+$color-primary-washed: lighten($color-primary-1, 68%);
+
+.color-error {
+  color: $color-error;
+}
+
+.color-info {
+  color: $color-info;
+}
+
+.color-success {
+  color: $color-success
+}

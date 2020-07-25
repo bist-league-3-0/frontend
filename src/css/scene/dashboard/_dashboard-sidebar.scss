@@ -1,0 +1,67 @@
+.dashboard-sidebar {
+  @include boxsizing-y("scene", "bottom");
+  @include fluid("width", 30rem, 42rem);
+  @include typography("p");
+  @include scrollbars(.2rem, $color-error-bg, $color-primary-1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: inherit;
+  background-color: $color-gray-4;
+  overflow-y: scroll;
+  transition: $defaultTransition;
+  z-index: 900;
+
+  hr {
+    border: none;
+    border-top: remToVw(144rem, .1rem) solid darken($color-gray-4, 20%);
+  }
+
+  .sidebar-pill-group {
+    @include boxsizing-y("component");
+    @include boxsizing-x("component");
+    width: 100%;
+  }
+
+  .sidebar-component {
+    @include boxsizing-x("component");
+    transition: $defaultTransition;
+    width: 100%;
+  }
+
+  .sidebar-pill {
+    @include boxsizing-x("component");
+    @include boxsizing-y("component");
+    transition: $defaultTransition;
+    width: 100%;
+    color: $color-gray-1;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: $color-primary-washed;
+      color: $color-primary-1;
+    }
+  }
+
+  .selected-pill>.sidebar-pill{
+    font-weight: 700;
+    color: $color-primary-1;
+  }
+
+  @media screen and (max-width:#{remToPx($bp-medium)}) {
+    position: fixed;
+    width: 100%;
+    height: initial;
+    top: 0;
+    bottom: 0;
+    
+    &[state=active]{
+      right: 0%;
+    }
+    
+    &[state=inactive]{
+      right: 100%;
+    }
+  }
+}
