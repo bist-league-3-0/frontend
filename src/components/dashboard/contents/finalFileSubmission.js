@@ -3,7 +3,7 @@ import DashboardComponent from './components/components-common';
 import Component from '../../components-common';
 import BackendRoutes from '../../../routes/backendRoutes';
 
-const FinalFileSubmission = ({user}) => {
+const FinalFileSubmission = ({user, refresh}) => {
   return (
     <div className="content-wrapper">
       <DashboardComponent.ContentHeader 
@@ -31,9 +31,12 @@ const FinalFileSubmission = ({user}) => {
                     <Component.DropZone 
                       validTypes={["application/pdf"]}
                       buttonText="UPLOAD FILE"
-                      postURL={BackendRoutes.uploadFile.payment}
+                      postURL={BackendRoutes.bistAccount.uploadFinal}
                       idName="component-upload-finalfile"
-                      filesLimit="1"
+                      user={user}
+                      refresh={refresh}
+                      context="FINAL"
+                      filesLimit="2"
                     />
                   </div>
                 </div>

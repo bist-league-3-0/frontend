@@ -332,8 +332,11 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                   <Component.DropZone 
                     validTypes={["image/jpeg", "image/png"]}
                     buttonText="UPLOAD PROOF OF ENROLLMENT"
-                    postURL={BackendRoutes.uploadFile.payment}
+                    postURL={BackendRoutes.bistAccount.uploadEnrollment}
                     idName="component-upload-enrollment"
+                    user={user}
+                    refresh={refresh}
+                    context="ENROLLMENT"
                     filesLimit="1"
                   />
                 </div>
@@ -356,8 +359,11 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                   <Component.DropZone 
                     validTypes={["image/jpeg", "image/png"]}
                     buttonText="UPLOAD STUDENT ID CARD"
-                    postURL={BackendRoutes.uploadFile.payment}
+                    postURL={BackendRoutes.bistAccount.uploadIDCard}
                     idName="component-upload-studentid"
+                    user={user}
+                    refresh={refresh}
+                    context="ID_CARD"
                     filesLimit="1"
                   />
                 </div>
@@ -380,8 +386,11 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                   <Component.DropZone 
                     validTypes={["image/jpeg", "image/png"]}
                     buttonText="UPLOAD PORTRAIT PHOTO"
-                    postURL={BackendRoutes.uploadFile.payment}
+                    postURL={BackendRoutes.bistAccount.uploadPortrait}
                     idName="component-upload-portrait"
+                    user={user}
+                    refresh={refresh}
+                    context="PORTRAIT_PHOTO"
                     filesLimit="1"
                   />
                 </div>

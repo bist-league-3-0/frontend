@@ -117,7 +117,7 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
     for (let file of validFiles) {
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('email', user?.account?.email);
+      formData.append('accountID', user?.account?.accountID);
       formData.append('context', context);
       setVerdict({status: "info", message: "Please wait, we are uploading your file"});
 

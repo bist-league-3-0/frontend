@@ -33,6 +33,7 @@ const SettingContent = ({user, refresh}) => {
       (res) => {
         setVerdict({message: res.data.message, status: "success"})
         refresh();
+        window.location.replace("/");
       }
     )
     .catch(
@@ -81,6 +82,9 @@ const SettingContent = ({user, refresh}) => {
                     value="CHANGE ACCOUNT SETTINGS"
                     className="button-primary-filled"
                   />
+                  <span className="input-text">
+                    As soon as you changed your email and/or password, you will be logged out from this session.
+                  </span>
                 </div>
 
                 <div className="flash-message" status={verdict.status}>

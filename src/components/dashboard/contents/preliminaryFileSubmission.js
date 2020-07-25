@@ -3,7 +3,7 @@ import DashboardComponent from './components/components-common';
 import Component from '../../components-common';
 import BackendRoutes from '../../../routes/backendRoutes';
 
-const PreliminaryFileSubmission = ({user}) => {
+const PreliminaryFileSubmission = ({user, refresh}) => {
 
   return (
     <div className="content-wrapper">
@@ -32,8 +32,11 @@ const PreliminaryFileSubmission = ({user}) => {
                     <Component.DropZone 
                       validTypes={["application/pdf"]}
                       buttonText="UPLOAD FILE"
-                      postURL={BackendRoutes.uploadFile.payment}
+                      postURL={BackendRoutes.bistAccount.uploadPreliminary}
                       idName="component-upload-prelimfile"
+                      user={user}
+                      refresh={refresh}
+                      context="PRELIMINARY"
                       filesLimit="1"
                     />
                   </div>
