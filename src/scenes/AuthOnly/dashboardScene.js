@@ -37,7 +37,7 @@ const Dashboard = (props) => {
   }
 
   useEffect(() => {
-    let { role } = props.user;
+    let role = props?.user?.role;
     if (role === 2) {
       refreshUserUpdate()
     }
@@ -59,21 +59,27 @@ const Dashboard = (props) => {
           <div className="dashboard-content">
             <Switch>
               <Route exact path={FrontendRoutes.dashboard}>
+                <Component.BISTHelmet title="Dashboard"/>
                 <Component.Dashboard.Landing user={userObject}/>
               </Route>
               <Route path={dashRoutes.teamManagement}>
+                <Component.BISTHelmet title="Team Management"/>
                 <Component.Dashboard.TeamManagement user={userObject} refresh={refreshUserUpdate}/>
               </Route>
               <Route path={dashRoutes.memberManagement}>
+                <Component.BISTHelmet title="Member Management"/>
                 <Component.Dashboard.MemberManagement user={userObject} refresh={refreshUserUpdate}/>
               </Route>
               <Route path={dashRoutes.prelimFileSubmission}>
+                <Component.BISTHelmet title="Preliminary File Submission"/>
                 <Component.Dashboard.PreliminarySubmission user={userObject} refresh={refreshUserUpdate}/>
               </Route>
               <Route path={dashRoutes.finalFileSubmission}>
+                <Component.BISTHelmet title="Final File Submission"/>
                 <Component.Dashboard.FinalSubmission user={userObject} refresh={refreshUserUpdate}/>
               </Route>
               <Route path={dashRoutes.settings}>
+                <Component.BISTHelmet title="Settings"/>
                 <Component.Dashboard.Setting user={userObject} refresh={refreshUserUpdate}/>
               </Route>
             </Switch>

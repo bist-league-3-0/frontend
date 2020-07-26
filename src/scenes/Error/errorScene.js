@@ -1,4 +1,5 @@
 import React from 'react';
+import Component from '../../components/components-common';
 
 const ErrorScene = (props) => {
 
@@ -16,10 +17,10 @@ const ErrorScene = (props) => {
   const errorDescription = () => {
     if (props.code === "404") {
       return (
-        <span className="error-description">
+        <p className="error-description">
           That means your requested page is not found. <br/>
           Maybe you are trying to fiddle our URL path?
-        </span>
+        </p>
       );
     }
     else if (props.code === "403") {
@@ -42,6 +43,7 @@ const ErrorScene = (props) => {
 
   return (
     <div className="error-scene">
+      <Component.BISTHelmet title={props.code}/>
       <div className="error-header">
         <h1 className="error-code">
           {props.code}

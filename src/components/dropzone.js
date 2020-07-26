@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import BackendRoutes from '../routes/backendRoutes';
 
-const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, refresh, context}) => {
+const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, refresh, context, memberID}) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [validFiles, setValidFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
@@ -119,6 +119,7 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
       formData.append('file', file);
       formData.append('accountID', user?.account?.accountID);
       formData.append('context', context);
+      formData.append('memberID', memberID);
       setVerdict({status: "info", message: "Please wait, we are uploading your file"});
 
       axios.post(

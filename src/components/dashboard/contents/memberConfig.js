@@ -22,6 +22,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
   let firstName = name.split(" ")[0].toString();
 
   const submitDeleteMember = (e) => {
+    e.preventDefault();
     setDeleteVerdict({message: "Please wait.", status: "info"})
     axios.post(
       BackendRoutes.auth,
@@ -243,7 +244,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                 <span className="input-text">
                   Please enter the year you got admitted at your current institution.
                 </span>
-                <input type="number" name="enrollment" id="enrollment" min="2012" max="2020" defaultValue="2020" required
+                <input type="number" name="enrollment" id="enrollment" min="2012" max="2020" required
                   onChange={e => setEnrollmentyear(e.target.value)}
                   defaultValue={enrollmentyear}
                 />
@@ -254,7 +255,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                 <span className="input-text">
                   Please insert your current age.
                 </span>
-                <input type="number" name="age" id="age" min="0" max="100" defaultValue="18" required
+                <input type="number" name="age" id="age" min="0" max="100" required
                   onChange={e => setAge(e.target.value)}
                   defaultValue={age}
                 />
@@ -338,6 +339,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                     refresh={refresh}
                     context="ENROLLMENT"
                     filesLimit="1"
+                    memberID={teamMember?.teamMemberID}
                   />
                 </div>
               </div>
@@ -365,6 +367,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                     refresh={refresh}
                     context="ID_CARD"
                     filesLimit="1"
+                    memberID={teamMember?.teamMemberID}
                   />
                 </div>
               </div>
@@ -392,6 +395,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                     refresh={refresh}
                     context="PORTRAIT_PHOTO"
                     filesLimit="1"
+                    memberID={teamMember?.teamMemberID}
                   />
                 </div>
               </div>

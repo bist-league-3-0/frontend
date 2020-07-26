@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import BackendRoutes from "../../routes/backendRoutes";
 import { NavLink, Redirect } from "react-router-dom";
 import FrontendRoutes from "../../routes/frontendRoutes";
+import Component from "../../components/components-common";
 
 const LoginScene = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verdict, setVerdict] = useState({ status: "", message: "" });
-
-  useEffect(() => {
-    document.title = "Log in | BIST League 3.0";
-  }, []);
-
+  
   const checkAuth = () => {
     let roles = [2, 3, 4];
     if (roles.includes(props.user.role)) {
@@ -46,6 +43,7 @@ const LoginScene = (props) => {
   return (
     <div className="login-scene">
       {checkAuth()}
+      <Component.BISTHelmet title="Log in"/>
       <div className="login-form-container">
         <form onSubmit={onLogin} className="form">
           <span className="form-title">Welcome Back!</span>

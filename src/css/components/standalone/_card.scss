@@ -98,10 +98,13 @@ $gravatar-height-ceil: 6rem;
 
         .header-gravatar {
           @include fluid("height", $gravatar-height-floor, $gravatar-height-ceil);
+          @include fluid("width", $gravatar-height-floor, $gravatar-height-ceil);
           @include fluid("top", $gravatar-height-floor / 2, $gravatar-height-ceil / 2);
           position: relative;
           border-radius: 50%;
           z-index: 100;
+          background-size: cover !important;
+          background-position: 50% 50% !important;
         }
       }
 

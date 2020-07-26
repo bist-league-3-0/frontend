@@ -1,7 +1,7 @@
 // Import Essential Modules
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Switch, Route, useLocation, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import BackendRoutes from "./routes/backendRoutes";
 import FrontendRoutes from "./routes/frontendRoutes";
 // End of Essential Modules
@@ -21,13 +21,12 @@ const App = () => {
 
   // APP Logics
   const isAuth = () => {
-    return user.role >= 2 && user.role <= 4;
+    return user?.role >= 2 && user?.role <= 4;
   }
   // End of App Logics
 
-  const defaultUserState = { id: 0, email: "", role: 1 };
   const [width, setWidth] = useState(window.innerWidth);
-  const [user, setUser] = useState(defaultUserState);
+  const [user, setUser] = useState({ id: 0, email: "", role: 1 });
 
   window.addEventListener("resize", () => {
     setWidth(window.innerWidth);
@@ -48,7 +47,7 @@ const App = () => {
       .then(res => {
         let temp = Object.values(res);
         temp = temp.pop();
-        return typeof temp != "undefined" ? temp : defaultUserState;
+        return typeof temp != "undefined" ? temp : { id: 0, email: "", role: 1 };
       })
       .then(temp => {
         setUser(temp);
@@ -62,7 +61,9 @@ const App = () => {
         <Switch>
           {/* General Routes */}
           <Route exact path={FrontendRoutes.home}>
-            <div>HELLO WORLD</div>
+            <div>
+              <Scene.LandingScene/>
+            </div>
           </Route>
           <Route path={FrontendRoutes.login}>
             <Scene.LoginScene user={user}/>
