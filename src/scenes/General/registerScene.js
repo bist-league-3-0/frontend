@@ -3,6 +3,7 @@ import axios from "axios";
 import BackendRoutes from "../../routes/backendRoutes";
 import { NavLink } from "react-router-dom";
 import FrontendRoutes from "../../routes/frontendRoutes";
+import Component from "../../components/components-common";
 
 const RegisterScene = (props) => {
   const [teamname, setTeamname] = useState();
@@ -46,8 +47,6 @@ const RegisterScene = (props) => {
 
   useEffect(
     () => {
-      document.title = "Register | BIST League 3.0";
-
       axios.get(BackendRoutes.checkAuth, {withCredentials: true})
         .then((res) => {if (res.data) {window.location.replace("/")}});
     }, []
@@ -55,8 +54,8 @@ const RegisterScene = (props) => {
 
   return (
     <div className="register-scene">
+      <Component.BISTHelmet title="Register"/>
       <div className="register-form-container">
-
         <form onSubmit={onRegister} className="form">
           <span className="form-title">Create Team Account</span>
           <div className="input-body">

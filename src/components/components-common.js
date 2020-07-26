@@ -7,10 +7,11 @@ import TeamManagementContent from './dashboard/contents/teamManagement';
 import MemberManagementContent from './dashboard/contents/memberManagement';
 import PreliminaryFileSubmission from './dashboard/contents/preliminaryFileSubmission';
 import FinalFileSubmission from './dashboard/contents/finalFileSubmission';
-import DropZone from './dropzone';
 import MemberConfig from './dashboard/contents/memberConfig';
 import AddTeamMember from './dashboard/contents/addMember';
 import SettingContent from "./dashboard/contents/setting";
+import DropZone from './dropzone';
+import BISTHelmet from "./bist-helmet";
 
 const Dashboard = {
   Header: DashboardHeader, 
@@ -29,7 +30,8 @@ const Component = {
   Navigation,
   Dashboard,
   Hamburger,
-  DropZone
+  DropZone,
+  BISTHelmet
 }
 
 export default Component;

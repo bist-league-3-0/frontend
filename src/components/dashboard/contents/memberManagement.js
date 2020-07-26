@@ -9,10 +9,23 @@ import Component from '../../components-common';
 
 const MemberManagementContent = ({user, refresh}) => {
   const renderTeamMembers = user?.teamMember?.map((teamMember, index) => {
+    
+    let image = () => {
+      if (teamMember?.photoPortrait) {
+        let fileObj = user?.file?.filter(obj => {
+          return obj.fileID === teamMember?.photoPortrait;
+        });
+
+        return fileObj.pop().filename
+      } else {
+        return gravatar.url(teamMember?.email, {d:"identicon"})
+      }
+    }
+
     return (
       <div className="card-style-business" key={index}>
         <div className="card-header">
-          <img className="header-gravatar" src={gravatar.url(teamMember?.email, {d:"identicon"})}/>
+          <div className="header-gravatar" style={{background: `url(${image()})`}}/>
         </div>
         <div className="card-body">
           <div className="card-body-text">
@@ -50,6 +63,7 @@ const MemberManagementContent = ({user, refresh}) => {
     if (user?.teamAccount?.teamCount < 3) {
       return (
         <Route path={FrontendRoutes.dashRoutes.addMember}>
+          <Component.BISTHelmet title="Add Member"/>
           <Component.Dashboard.AddTeamMember user={user} refresh={refresh}/>
         </Route>
       )
@@ -62,6 +76,7 @@ const MemberManagementContent = ({user, refresh}) => {
     return (
       <Switch>
         <Route exact path={FrontendRoutes.dashRoutes.memberManagement}>
+        <Component.BISTHelmet title="Member Management"/>
         <div className="card-container">
           <div className="card-row">
             {renderTeamMembers}
@@ -70,11 +85,15 @@ const MemberManagementContent = ({user, refresh}) => {
         </div>
         </Route>
         {Object.values(user?.teamMember).map((teamMember, index) => {
+          let name = teamMember?.teamMemberName || "";
+          let firstName = name.split(" ")[0].toString();
+
           return (
             <Route 
               path={FrontendRoutes.dashRoutes.memberManagement + teamMember?.teamMemberID + "/"}
               key={index}
             >
+              <Component.BISTHelmet title={`Manage ${firstName}'s data`}/>
               <Component.Dashboard.MemberConfig user={user} team={user?.teamAccount} teamMember={teamMember} refresh={refresh}/>
             </Route>
           )

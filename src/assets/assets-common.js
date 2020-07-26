@@ -3,13 +3,15 @@ import LogoBistAlt from "./LogoBistAlt.svg";
 import NavAsset from "./NavAsset.svg";
 import AuthAsset from "./AuthpageAsset.svg";
 import LogoBistWhite from "./LogoBistWhite.svg";
+import MetaLogo from "./MetaLogo.svg";
 
 const Asset = {
   LogoBist,
   LogoBistAlt,
   NavAsset,
   AuthAsset,
-  LogoBistWhite
+  LogoBistWhite,
+  MetaLogo
 };
 
 export default Asset;

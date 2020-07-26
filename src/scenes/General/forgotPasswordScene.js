@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import FrontendRoutes from "../../routes/frontendRoutes";
+import Component from "../../components/components-common";
 
 const ForgotPasswordScene = () => {
   const [email, setEmail] = useState("");
@@ -42,6 +43,7 @@ const ForgotPasswordScene = () => {
 
   return (
     <div className="forgot-password-scene">
+      <Component.BISTHelmet title="Forgot Password"/>
       <div className="forgot-password-container">
         <form onSubmit={sendMail} className="form">
           <span className="form-title">

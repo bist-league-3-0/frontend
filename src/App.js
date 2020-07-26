@@ -21,7 +21,7 @@ const App = () => {
 
   // APP Logics
   const isAuth = () => {
-    return user.role >= 2 && user.role <= 4;
+    return user?.role >= 2 && user?.role <= 4;
   }
   // End of App Logics
 
@@ -63,7 +63,7 @@ const App = () => {
           {/* General Routes */}
           <Route exact path={FrontendRoutes.home}>
             <div>
-              Hello World
+              <Scene.LandingScene/>
             </div>
           </Route>
           <Route path={FrontendRoutes.login}>
