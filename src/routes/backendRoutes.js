@@ -15,6 +15,9 @@ BackendRoutes.logout = BackendRoutes.auth + "logout/";
 BackendRoutes.check = BackendRoutes.login + "check/";
 BackendRoutes.checkAuth = BackendRoutes.login + "check-authentication/";
 BackendRoutes.getUser = BackendRoutes.auth + "users/";
+BackendRoutes.forgotPassword = BackendRoutes.auth + "forgot-password/";
+BackendRoutes.forgotPasswordValidate =
+  BackendRoutes.forgotPassword + "forgot-validate/";
 
 BackendRoutes.uploadFile = {
   payment: BackendRoutes.home + "payment/upload/",

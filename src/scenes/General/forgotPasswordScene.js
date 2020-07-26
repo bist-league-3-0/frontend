@@ -3,6 +3,7 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import FrontendRoutes from "../../routes/frontendRoutes";
 import Component from "../../components/components-common";
+import BackendRoutes from "../../routes/backendRoutes";
 
 const ForgotPasswordScene = () => {
   const [email, setEmail] = useState("");
@@ -10,21 +11,13 @@ const ForgotPasswordScene = () => {
 
   const sendMail = async (event) => {
     event.preventDefault();
-    console.log(
-      `${process.env.REACT_APP_API_URL}/api/bistleague3/auth/forgot-password/`
-    );
-
     setVerdict({
       status: "info",
       message: "Please wait, we are sending your request to the server.",
     });
 
     await axios
-      .post(
-        `${process.env.REACT_APP_API_URL}/api/bistleague3/auth/forgot-password/`,
-        { email },
-        { withCredentials: true }
-      )
+      .post(BackendRoutes.forgotPassword, { email }, { withCredentials: true })
       .then((response) => {
         setVerdict({
           status: "success",
@@ -43,12 +36,10 @@ const ForgotPasswordScene = () => {
 
   return (
     <div className="forgot-password-scene">
-      <Component.BISTHelmet title="Forgot Password"/>
+      <Component.BISTHelmet title="Forgot Password" />
       <div className="forgot-password-container">
         <form onSubmit={sendMail} className="form">
-          <span className="form-title">
-            Forgot Password
-          </span>
+          <span className="form-title">Forgot Password</span>
 
           <div className="input-body">
             <div className="input-group">
@@ -56,10 +47,14 @@ const ForgotPasswordScene = () => {
                 Email
               </label>
               <span className="input-text">
-                Insert your team account email here, then we will send you a mail for further instructions
+                Insert your team account email here, then we will send you a
+                mail for further instructions
               </span>
               <input
-                type="email" name="email" id="email" required
+                type="email"
+                name="email"
+                id="email"
+                required
                 value={email}
                 onChange={(event) => {
                   setEmail(event.target.value);
@@ -73,26 +68,21 @@ const ForgotPasswordScene = () => {
           </div>
 
           <div className="input-footer">
-            <input 
+            <input
               type="submit"
               value="Send Mail"
               className="button-primary-filled"
             />
             <div className="input-text">
               Perhaps you have remembered your password?&ensp;
-              <NavLink to={FrontendRoutes.login}>
-                Login
-              </NavLink>
+              <NavLink to={FrontendRoutes.login}>Login</NavLink>
             </div>
           </div>
-
         </form>
       </div>
-      <div className="forgot-password-asset medium-only"/>
+      <div className="forgot-password-asset medium-only" />
     </div>
   );
 };
 
 export default ForgotPasswordScene;
-
-

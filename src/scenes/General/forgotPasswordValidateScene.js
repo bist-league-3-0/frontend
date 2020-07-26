@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Component from "../../components/components-common";
+import BackendRoutes from "../../routes/backendRoutes";
 
 const ForgotPasswordValidateScene = (props) => {
   const [password, setPassword] = useState("");
@@ -18,10 +19,7 @@ const ForgotPasswordValidateScene = (props) => {
     });
     // console.log(new URLSearchParams(window.location.search));
     await axios
-      .post(
-        `${process.env.REACT_APP_API_URL}/api/bistleague3/auth/forgot-password/validate`,
-        { email, password, token }
-      )
+      .post(BackendRoutes.forgotPasswordValidate, { email, password, token })
       .then((response) => {
         setVerdict({
           status: "success",
@@ -40,21 +38,21 @@ const ForgotPasswordValidateScene = (props) => {
 
   return (
     <div className="forgot-password-scene">
-      <Component.BISTHelmet title="Forgot Password Validation"/>
+      <Component.BISTHelmet title="Forgot Password Validation" />
       <div className="forgot-password-container">
         <form onSubmit={changePassword} className="form">
+          <span className="form-title">Forgot Password</span>
 
-          <span className="form-title">
-            Forgot Password
-          </span>
-          
           <div className="input-body">
             <div className="input-group">
               <label htmlFor="password" className="input-label">
                 PASSWORD
               </label>
               <input
-                type="password" name="password" id="password" required
+                type="password"
+                name="password"
+                id="password"
+                required
                 value={password}
                 onChange={(event) => {
                   setPassword(event.target.value);
@@ -67,7 +65,10 @@ const ForgotPasswordValidateScene = (props) => {
                 RETYPE PASSWORD
               </label>
               <input
-                type="password" name="password" id="password" required
+                type="password"
+                name="password"
+                id="password"
+                required
                 value={retypePassword}
                 onChange={(event) => {
                   setRetypePassword(event.target.value);
@@ -81,19 +82,18 @@ const ForgotPasswordValidateScene = (props) => {
           </div>
 
           <div className="input-footer">
-              <button
-                type="submit"
-                className="button-primary-filled"
-                disabled={password !== retypePassword || password.length < 8}
-              >
+            <button
+              type="submit"
+              className="button-primary-filled"
+              disabled={password !== retypePassword || password.length < 8}
+            >
               Change password
             </button>
           </div>
         </form>
-        
       </div>
 
-      <div className="forgot-password-asset medium-only"/>
+      <div className="forgot-password-asset medium-only" />
     </div>
   );
 };
