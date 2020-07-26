@@ -16,6 +16,7 @@ const AddTeamMember = ({user, refresh}) => {
   const [verdict, setVerdict] = useState({message: "", status: ""})
 
   const submitAddMember = (e) => {
+    e.preventDefault();
     setVerdict({message: "Please wait.", status: "info"})
     axios.post(
       BackendRoutes.auth,
