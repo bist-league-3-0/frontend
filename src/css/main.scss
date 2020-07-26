@@ -7,6 +7,7 @@
 @import "./modules/scrollbar";
 
 // Import Constants
+@import "./constants/assets";
 @import "./constants/baseline";
 @import "./constants/color";
 @import "./constants/fonts";
@@ -28,6 +29,7 @@
 @import "./components/standalone/dropzone";
 
 // Scene Specific Modules
+@import "./scene/landing-scene";
 @import "./scene/login-scene";
 @import "./scene/register-scene";
 @import "./scene/forgot-password-scene";

@@ -4,6 +4,8 @@ import NavAsset from "./NavAsset.svg";
 import AuthAsset from "./AuthpageAsset.svg";
 import LogoBistWhite from "./LogoBistWhite.svg";
 import MetaLogo from "./MetaLogo.svg";
+import LandingHeroAsset from "./landing/landing-hero-asset.png";
+import LandingHeroBg from "./landing/landing-hero-bg.png";
 
 const Asset = {
   LogoBist,
@@ -11,7 +13,9 @@ const Asset = {
   NavAsset,
   AuthAsset,
   LogoBistWhite,
-  MetaLogo
+  MetaLogo,
+  LandingHeroAsset,
+  LandingHeroBg
 };
 
 export default Asset;

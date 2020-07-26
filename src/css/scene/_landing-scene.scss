@@ -1,0 +1,63 @@
+.landing-scene {
+  // background-color: $color-white-2;
+  display: flex;
+  flex-direction: column;
+
+  .landing-hero {
+    @include boxsizing-x("scene");
+    @include boxsizing-y("scene");
+    @include typography("p");
+    background:
+      linear-gradient(240deg, #FFFFFF 35%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.3) 70%, #FFFFFF 100%),
+      $asset-landing-hero-bg;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    .hero-title {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      .hero-asset {
+        @include fluid("height", 2.8rem, 4rem);
+      }
+
+      .hero-title-text {
+        @include typography("hero-title");
+      }
+
+      .hero-title-subtext {
+        @include typography("h3");
+        color: $color-gray-2;
+      }
+    }
+
+    .hero-links {
+      display: flex;
+      justify-content: space-between;
+
+      @media screen and (max-width: #{remToPx($bp-medium)}) {
+        justify-content: center;
+      }
+        
+      .bist-link {
+        @include fluidpaddingx(1.2rem, 2rem);
+        color: $color-primary-1;
+        text-decoration: underline;
+
+        &:hover {
+          color: $color-primary-2;
+          cursor: pointer;
+          transition: $defaultTransition;
+        }
+      }
+    }
+  }
+
+}

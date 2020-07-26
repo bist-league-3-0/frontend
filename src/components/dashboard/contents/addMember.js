@@ -151,7 +151,7 @@ const AddTeamMember = ({user, refresh}) => {
                 <span className="input-text">
                   Please enter the year you got admitted at your current institution.
                 </span>
-                <input type="number" name="enrollment" id="enrollment" min="2012" max="2020" defaultValue="2020" required
+                <input type="number" name="enrollment" id="enrollment" min="2012" max="2020" required
                   onChange={e => setEnrollmentyear(e.target.value)}
                   defaultValue={enrollmentyear}
                 />
@@ -162,7 +162,7 @@ const AddTeamMember = ({user, refresh}) => {
                 <span className="input-text">
                   Please insert your current age.
                 </span>
-                <input type="number" name="age" id="age" min="0" max="100" defaultValue="18" required
+                <input type="number" name="age" id="age" min="0" max="100" required
                   onChange={e => setAge(e.target.value)}
                   defaultValue={age}
                 />
