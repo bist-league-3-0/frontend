@@ -5,47 +5,55 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout to master
-      uses: actions/checkout@v2
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: "12.x"
-    - name: Installing dependencies
-      run: npm install
-    - name: Build project
-      run: npm run build
-      env:
-        CI: false
-    - name: Archive production artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: build
-        path: build
+      - name: Checkout to master
+        uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Installing dependencies
+        run: npm install
+      - name: Build project
+        run: npm run build
+        env:
+          CI: false
+      - name: Archive production artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+
   deploy:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
     steps:
+      # Download artifact from previous step
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
           name: build
           path: build
+
+      # Setup gcp CLI for use
       - name: Setup GCP CLI
         uses: GoogleCloudPlatform/github-actions@0.1.2
         with:
-          version: '290.0.1'
+          version: "290.0.1"
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      # Removing files from the bucket
+      - name: Remove files from previous iteration
+        run: gsutil rm gs://bistleague.com/**/*
+
+      # Deploying new iteration to the bucket
       - name: Deploy files to bucket
         run: gsutil rsync -R build gs://bistleague.com
