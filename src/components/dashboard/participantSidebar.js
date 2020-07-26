@@ -1,8 +1,9 @@
 import React from 'react';
 import SidebarPill from "./sidebarPill";
-import FrontendRoutes from "./../../routes/frontendRoutes";
+import FrontendRoutes from "../../routes/frontendRoutes";
+import AuthGroups from '../../scenes/authGroup';
 
-const Sidebar = ({state, handleClick}) => {
+const ParticipantSidebar = ({state, handleClick, role}) => {
   let { dashRoutes } = FrontendRoutes;
   
   return (
@@ -47,15 +48,19 @@ const Sidebar = ({state, handleClick}) => {
           icon={['fas', 'file-upload']}
           handleClick={handleClick}
         />
-        <SidebarPill 
-          to={dashRoutes.finalFileSubmission} 
-          text="Final File Submission" 
-          icon={['fas', "file-upload"]}
-          handleClick={handleClick}
-        />
+        {
+          AuthGroups.finalGroup.includes(role)
+          ? (<SidebarPill 
+              to={dashRoutes.finalFileSubmission} 
+              text="Final File Submission" 
+              icon={['fas', "file-upload"]}
+              handleClick={handleClick}
+            />)
+          : null
+        }
       </div>
     </div>
   )
 }
 
-export default Sidebar;
+export default ParticipantSidebar;

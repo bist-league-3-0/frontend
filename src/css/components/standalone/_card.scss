@@ -140,5 +140,50 @@ $gravatar-height-ceil: 6rem;
         }
       }
     }
+
+    .card-style-block {
+      @include boxsizing-x(component);
+      @include boxsizing-y(component);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+
+      background-color: $color-primary-1;
+      color: $color-white;
+
+      &.block-white {
+        background-color: $color-white;
+        color: $color-gray-2;
+      }
+
+      @media screen and (min-width:#{remToPx($bp-medium)}) {
+        @include fluidmarginx(2rem, 2rem);
+      }
+
+      .card-body {
+        display: flex;
+        justify-content: space-between;
+        
+        .card-key {
+          @include typography("p");
+        }
+  
+        .card-value {
+          @include typography("h2")
+        }
+      }
+
+      .card-link {
+        @include typography("sm");
+        color: $color-primary-1;
+        transition: $defaultTransition;
+        cursor: pointer;
+
+        &:hover {
+          color: $color-primary-2;
+        }
+      }
+    }
   }
 }

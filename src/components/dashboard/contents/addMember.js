@@ -3,19 +3,20 @@ import axios from "axios";
 import BackendRoutes from "../../../routes/backendRoutes";
 
 const AddTeamMember = ({user, refresh}) => {
-  const [memberName, setMemberName] = useState("b");
+  const [memberName, setMemberName] = useState("");
   const [gender, setGender] = useState("Male");
-  const [major, setMajor] = useState("b");
-  const [interest, setInterest] = useState("b");
+  const [major, setMajor] = useState("");
+  const [interest, setInterest] = useState("");
   const [enrollmentyear, setEnrollmentyear] = useState(2020);
   const [age, setAge] = useState(18);
-  const [email, setEmail] = useState("b@b");
-  const [phone, setPhone] = useState("b");
-  const [line, setLine] = useState("b");
-  const [linkedin, setLinkedin] = useState("b");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [line, setLine] = useState("");
+  const [linkedin, setLinkedin] = useState("");
   const [verdict, setVerdict] = useState({message: "", status: ""})
 
   const submitAddMember = (e) => {
+    e.preventDefault();
     setVerdict({message: "Please wait.", status: "info"})
     axios.post(
       BackendRoutes.auth,
@@ -57,6 +58,7 @@ const AddTeamMember = ({user, refresh}) => {
     )
     .catch(
       (e) => {
+        console.log(e.response.data.message);
         setVerdict({message: e.response.data.message, status: "error"})
       }
     )

@@ -1,6 +1,6 @@
 import Navigation from './navigation/Navigation';
 import Hamburger from './navigation/hamburger';
-import DashboardSidebar from './dashboard/sidebar';
+import ParticipantSidebar from './dashboard/participantSidebar';
 import DashboardHeader from './dashboard/header';
 import DashboardLanding from './dashboard/contents/dashboard';
 import TeamManagementContent from './dashboard/contents/teamManagement';
@@ -13,9 +13,12 @@ import SettingContent from "./dashboard/contents/setting";
 import DropZone from './dropzone';
 import BISTHelmet from "./bist-helmet";
 
+import AdminSidebar from './dashboard/adminSidebar';
+import AdminDashboardLanding from './dashboard/contents/admin/landing';
+
 const Dashboard = {
   Header: DashboardHeader, 
-  Sidebar: DashboardSidebar,
+  ParticipantSidebar: ParticipantSidebar,
   Landing: DashboardLanding,
   TeamManagement: TeamManagementContent,
   MemberManagement: MemberManagementContent,
@@ -26,9 +29,15 @@ const Dashboard = {
   Setting: SettingContent,
 }
 
+const AdminDashboard = {
+  Sidebar: AdminSidebar,
+  Landing: AdminDashboardLanding
+}
+
 const Component = {
   Navigation,
   Dashboard,
+  AdminDashboard,
   Hamburger,
   DropZone,
   BISTHelmet
