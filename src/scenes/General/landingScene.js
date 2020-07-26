@@ -11,30 +11,32 @@ const LandingScene = ({width}) => {
       <section className="landing-hero">
         <div/>
         <div className="hero-title">
-          <img className="hero-asset" src={Asset.LandingHeroAsset}/>
+          <img className="hero-asset" src={Asset.LandingHeroAsset} alt=""/>
           <span className="hero-title-text">BIST League 3.0</span>
           <span className="hero-title-subtext">Business-IT Case Competition</span>
         </div>
         <div className="hero-links">
           <div className="bist-links">
-            <a href={SocialRoutes.instagram} className="bist-link" target="_blank" >
+            <a href={SocialRoutes.instagram} className="bist-link" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={['fab', "instagram"]} size={width > 960 ? "2x" : "lg"}/>
             </a>
-            <a href={SocialRoutes.linkedin} className="bist-link" target="_blank">
+            <a href={SocialRoutes.linkedin} className="bist-link" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={['fab', "linkedin"]} size={width > 960 ? "2x" : "lg"}/>
             </a>
-            <a href={SocialRoutes.line} className="bist-link" target="_blank">
+            <a href={SocialRoutes.line} className="bist-link" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={['fab', "line"]} size={width > 960 ? "2x" : "lg"}/>
             </a>
-            <a href={SocialRoutes.facebook} className="bist-link" target="_blank">
+            <a href={SocialRoutes.facebook} className="bist-link" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={['fab', "facebook"]} size={width > 960 ? "2x" : "lg"}/>
             </a>
-            <a href={SocialRoutes.twitter} className="bist-link" target="_blank">
+            <a href={SocialRoutes.twitter} className="bist-link" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={['fab', "twitter"]} size={width > 960 ? "2x" : "lg"}/>
             </a>
           </div>
           <div className="bist-links  medium-only">
-            <span className="bist-link">Guidebook</span>
+            <a href="https://bit.ly/CompetitionGuidebook" className="bist-link" target="_blank" rel="noopener noreferrer">
+              Guidebook
+            </a>
           </div>
         </div>
       </section>
