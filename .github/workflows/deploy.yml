@@ -52,7 +52,7 @@ jobs:
 
       # Removing files from the bucket
       - name: Remove files from previous iteration
-        run: gsutil rm gs://bistleague.com/**/*
+        run: gsutil rm gs://bistleague.com/**
 
       # Deploying new iteration to the bucket
       - name: Deploy files to bucket
