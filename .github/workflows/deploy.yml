@@ -56,4 +56,5 @@ jobs:
 
       # Deploying new iteration to the bucket
       - name: Deploy files to bucket
+        if: ${{ always() }}
         run: gsutil rsync -R build gs://bistleague.com
