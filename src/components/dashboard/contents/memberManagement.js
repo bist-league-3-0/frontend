@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import gravatar from "gravatar";
 import { NavLink, Switch, Route } from 'react-router-dom';
 import FrontendRoutes from '../../../routes/frontendRoutes';
-import BackendRoutes from '../../../routes/backendRoutes';
 import Component from '../../components-common';
 
 const MemberManagementContent = ({user, refresh}) => {
@@ -50,7 +49,7 @@ const MemberManagementContent = ({user, refresh}) => {
     if (user?.teamAccount?.teamCount < 3) {
       return (
         <NavLink to={FrontendRoutes.dashRoutes.addMember} className="card button-primary">
-          <FontAwesomeIcon icon={'far', 'plus-circle'} size="3x"/>
+          <FontAwesomeIcon icon={['fas', 'plus-circle']} size="3x"/>
           <span>Add Team Member</span>
         </NavLink>
       )

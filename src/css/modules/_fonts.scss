@@ -21,6 +21,8 @@ $roboto: "Roboto", sans-serif;
     @include fluid("font-size", $fontsize-h3-floor, $fontsize-h3-ceil);
   } @else if $option == "sm" {
     @include fluid("font-size", $fontsize-sm-floor, $fontsize-sm-ceil);
+  } @else if $option == "hero-title" {
+    @include fluid("font-size", $fontsize-hero-title-floor, $fontsize-hero-title-ceil);
   } @else {
     @include fluid("font-size", $fontsize-p-floor, $fontsize-p-ceil);
   }

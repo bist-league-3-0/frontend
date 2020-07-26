@@ -1,7 +1,7 @@
 // Import Essential Modules
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Switch, Route, useLocation, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import BackendRoutes from "./routes/backendRoutes";
 import FrontendRoutes from "./routes/frontendRoutes";
 // End of Essential Modules
@@ -25,9 +25,8 @@ const App = () => {
   }
   // End of App Logics
 
-  const defaultUserState = { id: 0, email: "", role: 1 };
   const [width, setWidth] = useState(window.innerWidth);
-  const [user, setUser] = useState(defaultUserState);
+  const [user, setUser] = useState({ id: 0, email: "", role: 1 });
 
   window.addEventListener("resize", () => {
     setWidth(window.innerWidth);
@@ -48,7 +47,7 @@ const App = () => {
       .then(res => {
         let temp = Object.values(res);
         temp = temp.pop();
-        return typeof temp != "undefined" ? temp : defaultUserState;
+        return typeof temp != "undefined" ? temp : { id: 0, email: "", role: 1 };
       })
       .then(temp => {
         setUser(temp);
