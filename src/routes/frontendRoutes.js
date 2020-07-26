@@ -3,6 +3,7 @@ const FrontendURL = "/";
 
 // Frontend Routes
 FrontendRoutes.home = FrontendURL;
+FrontendRoutes.competition = FrontendRoutes.home + "competition/"; //////////////////////////////////////////////////
 FrontendRoutes.login = FrontendRoutes.home + "login/";
 FrontendRoutes.register = FrontendRoutes.home + "register/";
 FrontendRoutes.forgotPassword = FrontendRoutes.home + "forgot-password/";
@@ -26,6 +27,7 @@ FrontendRoutes.dashRoutes.addMember = FrontendRoutes.dashRoutes.memberManagement
 // Routes to show navigation bar
 FrontendRoutes.showNav = [
   FrontendRoutes.home,
+  FrontendRoutes.competition, ////////////////////////////
   FrontendRoutes.login,
   FrontendRoutes.register,
   FrontendRoutes.forgotPassword,

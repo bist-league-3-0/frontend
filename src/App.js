@@ -4,6 +4,7 @@ import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import BackendRoutes from "./routes/backendRoutes";
 import FrontendRoutes from "./routes/frontendRoutes";
+
 // End of Essential Modules
 
 // Import Styles
@@ -65,6 +66,11 @@ const App = () => {
               <Scene.LandingScene/>
             </div>
           </Route>
+
+          <Route path={FrontendRoutes.competition}>
+            <Scene.CompetitionScene/>
+          </Route>
+
           <Route path={FrontendRoutes.login}>
             <Scene.LoginScene user={user}/>
           </Route>

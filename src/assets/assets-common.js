@@ -6,6 +6,7 @@ import LogoBistWhite from "./LogoBistWhite.svg";
 import MetaLogo from "./MetaLogo.svg";
 import LandingHeroAsset from "./landing/landing-hero-asset.png";
 import LandingHeroBg from "./landing/landing-hero-bg.png";
+import Timeline from "./competitiion/Timeline.png";
 
 const Asset = {
   LogoBist,
@@ -15,7 +16,8 @@ const Asset = {
   LogoBistWhite,
   MetaLogo,
   LandingHeroAsset,
-  LandingHeroBg
+  LandingHeroBg,
+  Timeline
 };
 
 export default Asset;

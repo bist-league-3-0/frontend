@@ -238,6 +238,11 @@ const Navigation = (props) => {
           state: "active",
           link: FrontendRoutes.register,
           text: "register"
+        },
+        competition:{
+          state: "active",
+          link: FrontendRoutes.competition,
+          text: "competition"
         }
       });
     }

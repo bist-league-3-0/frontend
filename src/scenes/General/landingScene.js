@@ -40,6 +40,7 @@ const LandingScene = ({width}) => {
           </div>
         </div>
       </section>
+     
     </section>
   )
 }

@@ -1,0 +1,207 @@
+.competition-scene{
+    
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    
+    .competition-container{
+        @include boxsizing-x("scene");
+        @include boxsizing-y("scene");
+        @include typography("p");
+        min-height: 100vh;
+        
+
+        .logo{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .competition{
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+            justify-content: center;
+            align-items: flex-end;
+    
+
+            .competition-text{
+                @include typography("hero-title");
+                
+            }
+
+            .competition-subtext{
+                @include typography("h3");
+              
+            }
+            
+            .competition-asset {
+                @include fluid("height", 2.8rem, 4rem);
+                
+                
+            }
+        }
+        
+        .theme{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: aliceblue;
+            justify-content: space-evenly;
+            height: 50vh;
+            
+            .theme-header{
+                @include typography("hero-title");
+            }
+
+            .theme-text{
+                text-align: center;
+                // font-family: $roboto;
+                @include typography("h1");
+            }
+        }
+
+        .prize{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: yellow;
+            justify-content: space-evenly;
+            height: 50vh;
+
+            .prize-header{
+                @include typography("hero-title");
+            }
+
+            .prize-text{
+                @include typography("hero-title");
+            }
+        }
+
+        .requirements{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: skyblue;
+            height: 25vh;
+            justify-content: space-evenly;
+            .requirements-header{
+                @include typography("h1");
+            }
+
+            .requirements-text{
+                @include typography("p");
+            }
+        }
+
+        .timeline{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: $color-gray-4;
+            height: 50vh;
+            justify-content: space-between;
+            
+
+            .image-container{
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+                 
+            }
+            .timeline-header{
+                @include typography("h1");
+            }
+
+            .timeline-text{
+                @include typography("p");
+            }
+        }
+
+        
+        
+        .registration-fee{
+            display: flex;
+            
+            height: 25vh;
+            flex-direction: column;
+            align-items: center;
+            background-color: gray;
+            justify-content: space-evenly;
+            
+            .content{
+                background-color: blanchedalmond;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+                .left{
+                    display: flex;
+                    flex-direction: column;
+                }
+                .right{
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+            .registration-fee-header{
+                @include typography("h1");
+            }
+
+            .registration-fee-text{
+                @include typography("p");
+            }
+        }
+
+        .register{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: burlywood;
+            height: 25vh;
+            justify-content: space-evenly;
+
+            .register-header{
+                @include typography("h1");
+            }
+
+            .register-text{
+                @include typography("p");
+            }
+        }
+
+        .contact-person{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            height: 25vh;
+            justify-content: center;
+            background-color: rosybrown;
+
+            .contact-person-header{
+                @include typography("h1");
+            }
+
+            .contact-person-text{
+                @include typography("p");
+            }
+        }
+
+        .guidebook{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: wheat;
+
+            .guidebook-header{
+                @include typography("h1");
+            }
+
+            .guidebook-text{
+                @include typography("p");
+            }
+        }
+
+        
+    }
+}
