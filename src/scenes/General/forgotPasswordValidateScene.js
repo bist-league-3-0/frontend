@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Component from "../../components/components-common";
 
 const ForgotPasswordValidateScene = (props) => {
   const [password, setPassword] = useState("");
@@ -39,6 +40,7 @@ const ForgotPasswordValidateScene = (props) => {
 
   return (
     <div className="forgot-password-scene">
+      <Component.BISTHelmet title="Forgot Password Validation"/>
       <div className="forgot-password-container">
         <form onSubmit={changePassword} className="form">
 

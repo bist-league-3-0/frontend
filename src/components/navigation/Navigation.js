@@ -270,7 +270,7 @@ const Navigation = (props) => {
           <div className="header-link">
             <Hamburger handler={{handleClick, handleChildClick}}/>
           </div>
-          <div className="header-link medium-only">
+          <div className="header-link">
             <p>{state === "active" ? "Back" : "Menu"}</p>
           </div>
         </div>

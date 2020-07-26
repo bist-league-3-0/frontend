@@ -36,7 +36,7 @@ const FinalFileSubmission = ({user, refresh}) => {
                       user={user}
                       refresh={refresh}
                       context="FINAL"
-                      filesLimit="2"
+                      filesLimit="1"
                     />
                   </div>
                 </div>

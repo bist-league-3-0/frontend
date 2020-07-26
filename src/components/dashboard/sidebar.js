@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SidebarPill from "./sidebarPill";
 import FrontendRoutes from "./../../routes/frontendRoutes";
 
