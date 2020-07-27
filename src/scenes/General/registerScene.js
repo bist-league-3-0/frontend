@@ -21,10 +21,17 @@ const RegisterScene = (props) => {
   const [linkedin, setLinkedin] = useState("http://linkedin.com/in/");
 
   const [verdict, setVerdict] = useState({status: "", message:""});
+  const [requestRunning, setRequestRunning] = useState(false);
 
   const onRegister = async (event) => {
     event.preventDefault();
     let endpoint = BackendRoutes.register;
+
+    if (requestRunning) {
+      return;
+    }
+
+    setRequestRunning(true);
 
     await axios
       .post(endpoint, {teamname, leadername, email, password, phone, line, institution, major, gender, interest, enrollmentyear, age, linkedin}, {withCredentials: true})
@@ -34,6 +41,7 @@ const RegisterScene = (props) => {
           message: res.data.message
         })
         window.location.replace(FrontendRoutes.login);
+        setRequestRunning(false);
         return;
       })
       .catch((e) => {
@@ -41,6 +49,7 @@ const RegisterScene = (props) => {
           status: "error",
           message: e.response.data.message
         });
+        setRequestRunning(false);
         return;
       })
   }
@@ -256,7 +265,7 @@ const RegisterScene = (props) => {
             </div>
           </div>
           <div className="input-footer">
-            <input type="submit" value="REGISTER" className="button-primary-filled"/>
+            <input type="submit" value="REGISTER" className="button-primary-filled" disabled={requestRunning}/>
             <div className="input-text">
               <NavLink to={FrontendRoutes.login}>
                 Already have an account?
@@ -271,28 +280,3 @@ const RegisterScene = (props) => {
 }
 
 export default RegisterScene;
-
-// return (
-//   <div>
-//     <h1>Register Form</h1>
-//     <form action="http://localhost:9000/api/bistleague3/auth/register" method="post">
-//         <div>
-//           <label htmlFor="email">Email:</label>
-//           <input type="email" name="email" id="email"/>
-//         </div>
-//         <div>
-//           <label htmlFor="password">Password:</label>
-//           <input type="password" name="password" id="password"/>
-//         </div>
-//         {/* <div>
-//             <label htmlFor="password">Verify Password:</label>
-//             <input type="password" name="password" id="password"/>
-//         </div> */}
-//         <div>
-//           <label htmlFor="username">Username:</label>
-//           <input type="username" name="username" id="username"/>
-//         </div>
-//         <input type="submit" value="register"/>
-//     </form>
-//   </div>
-// );

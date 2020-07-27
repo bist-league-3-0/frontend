@@ -17,13 +17,21 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
   const [password, setPassword] = useState("");
   const [changeVerdict, setChangeVerdict] = useState({message: "", status: ""});
   const [deleteVerdict, setDeleteVerdict] = useState({message: "", status: ""});
+  const [requestRunning, setRequestRunning] = useState(false);
 
   let name = teamMember?.teamMemberName || "";
   let firstName = name.split(" ")[0].toString();
 
   const submitDeleteMember = (e) => {
     e.preventDefault();
-    setDeleteVerdict({message: "Please wait.", status: "info"})
+    setDeleteVerdict({message: "Please wait.", status: "info"});
+
+    if (requestRunning) {
+      return;
+    }
+
+    setRequestRunning(true);
+
     axios.post(
       BackendRoutes.auth,
       {email: user?.account?.email},
@@ -52,10 +60,12 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
       (res) => {
         setDeleteVerdict({message: res.data.message, status: res.data.success ? "success" : "error"});
         refresh();
+        setRequestRunning(false);
       }
     )
     .catch(
       (e) => {
+        setRequestRunning(false);
         setDeleteVerdict({message: e.response.data.message, status: "error"})
       }
     )
@@ -63,7 +73,15 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
 
   const submitMemberChange = (e) => {
     e.preventDefault();
-    setChangeVerdict({message: "Please wait.", status: "info"})
+
+    setChangeVerdict({message: "Please wait.", status: "info"});
+
+    if (requestRunning) {
+      return;
+    }
+
+    setRequestRunning(true);
+
     axios.post(
       BackendRoutes.auth,
       {email: user?.account?.email},
@@ -99,6 +117,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
       (res) => {
         setChangeVerdict({message: res.data.message, status: res.data.success ? "success" : "error"});
         refresh();
+        setRequestRunning(false);
       }
     )
     .catch(
@@ -139,6 +158,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                   type="submit"
                   value="DELETE MEMBER"
                   className="button-primary-filled"
+                  disabled={requestRunning}
                 />
               </div>
               <div className="flash-message" status={deleteVerdict.status}>
@@ -308,6 +328,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                   type="submit"
                   value="CHANGE MEMBER DATA"
                   className="button-primary-filled"
+                  disabled={requestRunning}
                 />
             </div>
 
@@ -328,7 +349,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                 </div>
                 <div className="input-group">
                   <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
+                    Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
                   </span>
                   <Component.DropZone 
                     validTypes={["image/jpeg", "image/png"]}
@@ -356,7 +377,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                 </div>
                 <div className="input-group">
                   <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
+                    Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
                   </span>
                   <Component.DropZone 
                     validTypes={["image/jpeg", "image/png"]}
@@ -384,7 +405,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                 </div>
                 <div className="input-group">
                   <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
+                    Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
                   </span>
                   <Component.DropZone 
                     validTypes={["image/jpeg", "image/png"]}

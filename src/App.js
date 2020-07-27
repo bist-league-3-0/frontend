@@ -18,11 +18,13 @@ import Component from './components/components-common';
 
 // App Class Declaration
 const App = () => {
+  const prelimRole = 2;
+  const finalRole = 3;
+  const adminRole= 4;
+  const adminGroup = [4];
+  const participantGroup = [3, 4]; 
+  const authGroup = [2, 3, 4];
 
-  // APP Logics
-  const isAuth = () => {
-    return user?.role >= 2 && user?.role <= 4;
-  }
   // End of App Logics
 
   const [width, setWidth] = useState(window.innerWidth);
@@ -80,7 +82,7 @@ const App = () => {
 
           {/* Auth Routes */}
           <Route path={FrontendRoutes.dashboard}>
-          {isAuth() 
+          {authGroup.includes(user?.role)
             ? <Scene.Dashboard user={user} width={width}/> 
             : <Redirect to={FrontendRoutes.login}/>
           }

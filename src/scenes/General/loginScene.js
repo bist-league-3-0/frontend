@@ -9,6 +9,7 @@ const LoginScene = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verdict, setVerdict] = useState({ status: "", message: "" });
+  const [requestRunning, setRequestRunning] = useState(false);
   
   const checkAuth = () => {
     let roles = [2, 3, 4];
@@ -21,6 +22,12 @@ const LoginScene = (props) => {
     event.preventDefault();
     let endpoint = BackendRoutes.login;
 
+    if (requestRunning) {
+      return;
+    }
+
+    setRequestRunning(true);
+
     await axios
       .post(endpoint, { email, password }, { withCredentials: true })
       .then(() => {
@@ -28,6 +35,7 @@ const LoginScene = (props) => {
           status: "success",
           message: "Successfully Logged In, Please Wait",
         });
+        setRequestRunning(false);
         window.location.replace(FrontendRoutes.dashboard);
         return;
       })
@@ -36,6 +44,7 @@ const LoginScene = (props) => {
           status: "error",
           message: err.response.data.message,
         });
+        setRequestRunning(false);
         return;
       });
   };
@@ -82,6 +91,7 @@ const LoginScene = (props) => {
               type="submit"
               value="LOG IN"
               className="button-primary-filled"
+              disabled={requestRunning}
             />
             <div className="input-text">
               Don't have a team account? &ensp;

@@ -39,4 +39,10 @@ BackendRoutes.bistAccount = {
   uploadFinal: BistAccount + "submission/upload-final/",
 };
 
+const AdminAccount = BackendRoutes.auth + "admin/";
+
+BackendRoutes.adminAccount = {
+  getDashboardData: AdminAccount + "get-dashboard-data"
+}
+
 module.exports = BackendRoutes;

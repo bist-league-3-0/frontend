@@ -26,7 +26,7 @@ const FinalFileSubmission = ({user, refresh}) => {
                   </div>
                   <div className="input-group">
                     <span className="input-text">
-                      Please drop your file(s) below (Supported Files: .pdf)
+                      Please drop your file(s) below (Supported Files: .pdf, max: 8MB)
                     </span>
                     <Component.DropZone 
                       validTypes={["application/pdf"]}

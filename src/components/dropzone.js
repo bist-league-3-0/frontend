@@ -16,6 +16,7 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
   const [errorMessage, setErrorMessage] = useState("");
   const [unsupportedFiles, setUnsupportedFiles] = useState([]);
   const [verdict, setVerdict] = useState({message: "", status:""});
+  const [requestRunning, setRequestRunning] = useState(false);
 
   const fileSize = (size) => {
     if (size === 0) return '0 Bytes';
@@ -34,6 +35,10 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
     if (validTypes.indexOf(file.type) === -1){
       return false;
     }
+
+    if (file.size >= 8 * 1024 * 1024) {
+      return false;
+    }
     
     return true;
   }
@@ -46,7 +51,7 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
         } else {
           file.invalid = true;
           setSelectedFiles(prevArray => [...prevArray, file]);
-          setErrorMessage("Sorry, file type not Permitted!");
+          setErrorMessage("Sorry, file type not Permitted or file size is too large (max: 8MB)");
           setUnsupportedFiles(prevArray => [...prevArray, file]);
         }
       }
@@ -114,6 +119,13 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
 
   const uploadFiles = (e) => {
     e.preventDefault();
+
+    if (requestRunning) {
+      return;
+    }
+
+    setRequestRunning(true);
+    
     for (let file of validFiles) {
       const formData = new FormData();
       formData.append('file', file);
@@ -148,12 +160,15 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
 
           document.getElementById(`${idName}`).reset();
           refresh();
+
+          setRequestRunning(false);
         }
       )
       .catch(
         (e) => {
           setVerdict({status:"error", message: e.response.data.message})
           document.getElementById(`${idName}`).reset();
+          setRequestRunning(false);
         }
       )
     }
@@ -221,7 +236,7 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
 
         {
           unsupportedFiles.length === 0 && validFiles.length 
-          ? <button className="button-primary-filled" onClick={uploadFiles}>{buttonText || "UPLOAD FILE"}</button>
+          ? <button className="button-primary-filled" onClick={uploadFiles} disabled={requestRunning}>{buttonText || "UPLOAD FILE"}</button>
           : ''
         }
 

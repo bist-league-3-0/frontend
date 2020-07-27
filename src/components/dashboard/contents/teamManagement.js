@@ -8,10 +8,18 @@ const TeamManagementContent = ({user, refresh}) => {
   const [teamName, setTeamName] = useState(user?.account?.username);
   const [institution, setInstitution] = useState(user?.teamAccount?.institutionName);
   const [verdict, setVerdict] = useState({status: "", message: ""});
+  const [requestRunning, setRequestRunning] = useState(false);
 
   const submitTeamChange = (e) => {
     e.preventDefault();
-    setVerdict({message: "Please wait..", status: "info"})
+    setVerdict({message: "Please wait..", status: "info"});
+    
+    if (requestRunning) {
+      return;
+    }
+
+    setRequestRunning(true);
+    
     axios.post(
       BackendRoutes.auth,
       {email: user?.account?.email},
@@ -38,11 +46,13 @@ const TeamManagementContent = ({user, refresh}) => {
     .then (
       (res) => {
         refresh();
+        setRequestRunning(false);
         setVerdict({message: res.data.message, status: res.data.success ? "success" : "error"})
       }
     )
     .catch(
       (e) => {
+        setRequestRunning(false);
         setVerdict({message: e.response.data.message, status: "error"})
       }
     )
@@ -93,8 +103,9 @@ const TeamManagementContent = ({user, refresh}) => {
                 <div className="input-footer">
                   <input
                     type="submit"
-                    value="CHANGE TEAM NAME"
+                    value="CHANGE TEAM INFO"
                     className="button-primary-filled"
+                    disabled={requestRunning}
                   />
                 </div>
 
@@ -114,7 +125,7 @@ const TeamManagementContent = ({user, refresh}) => {
                   </div>
                   <div className="input-group">
                     <span className="input-text">
-                      Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
+                      Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
                     </span>
                     <Component.DropZone 
                       validTypes={["image/jpeg", "image/png"]}
