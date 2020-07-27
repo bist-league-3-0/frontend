@@ -16,19 +16,35 @@ const CompetitionScene = ({width}) => {
           </div> */}
           
           <div className="competition">
-            <span className="competition-text">BIST League 3.0 </span>
-            <span className="competition-subtext">Business-IT Case Competition</span>
-            
+              <span className="competition-text">BIST League 3.0 </span>
+              <span className="competition-subtext">Business-IT Case Competition</span>
           </div>
+          
+            
+      
 
           <div className="theme">
             <span className="theme-header">THEME</span>
+            <div className="line line1" ></div>
             <span className="theme-text">Achieving Business Sustainability through Holistic Approach of Information Security</span>
+            <div className="line line2"></div>
           </div>
 
           <div className="prize">
             <span className="prize-header">WIN UP TO</span>
-            <span className="prize-text">Rp20.000.000,-</span>
+            <div className="prize-text">
+              <div className="left">
+                <div className="line line3"></div>
+                <div className="line line3"></div>
+                <div className="line line3"></div>
+                <div className="line line3"></div>
+              </div>
+              <span>Rp20.000.000,-</span>
+              <div className="right">
+                <div className="line line1"></div>
+                <div className="line line2"></div>
+              </div>
+            </div>
           </div>
           
           <div className="requirements">

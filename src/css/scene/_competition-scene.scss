@@ -5,7 +5,7 @@
     background-repeat: no-repeat;
     
     .competition-container{
-        @include boxsizing-x("scene");
+        // @include boxsizing-x("scene");
         @include boxsizing-y("scene");
         @include typography("p");
         min-height: 100vh;
@@ -17,45 +17,76 @@
             align-items: center;
         }
         .competition{
+            @include boxsizing-x("scene");
             display: flex;
             flex-direction: column;
             height: 80vh;
             justify-content: center;
-            align-items: flex-end;
-    
-
+            background:
+                linear-gradient(120deg, white 30%, rgba(255, 255, 255, 0) 100%),
+                linear-gradient(240deg, $color-primary-1 20%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.3) 70%, #FFFFFF 100%),
+                $asset-competition-bg;
+        
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: $color-primary-1;
+            font-weight: bold;
             .competition-text{
                 @include typography("hero-title");
                 
             }
+            border-radius: 10px;
 
             .competition-subtext{
                 @include typography("h3");
-              
-            }
-            
-            .competition-asset {
-                @include fluid("height", 2.8rem, 4rem);
                 
-                
-            }
+            } 
         }
         
         .theme{
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: aliceblue;
+            // background-color: aliceblue;
             justify-content: space-evenly;
             height: 50vh;
             
+            
+
+            &:hover {
+                &:not(.active) .line1 {
+                  width: 0%;
+                }
+
+                &:not(.active) .line2 {
+                    width: 80%;
+                  }
+            }
+
+            .line {
+                @include fluid("height", $height);
+                background-color: $color-primary-1;
+                position: relative;
+                transition: $defaultTransition;
+            
+                &.line1 {
+                  @include fluid("bottom", 1rem - ($height / 2), 1.5rem - ($height / 2));
+                  width: 80%;
+                }
+            
+                &.line2 {
+                  @include fluid("top", 2rem - ($height / 2), 2.5rem - ($height / 2));
+                  width: 0%;
+                }
+            }
             .theme-header{
                 @include typography("hero-title");
             }
 
             .theme-text{
                 text-align: center;
-                // font-family: $roboto;
+                font-family: $roboto;
                 @include typography("h1");
             }
         }
@@ -64,33 +95,107 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: yellow;
-            justify-content: space-evenly;
+            background-color: $color-gray-4;
+            justify-content: center;
             height: 50vh;
 
             .prize-header{
-                @include typography("hero-title");
+                @include typography("h1");
             }
 
+
             .prize-text{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
                 @include typography("hero-title");
+                
+            .line {
+                @include fluid("height", $height);
+                background-color: $color-primary-1;
+                position: relative;
+                transition: $defaultTransition;
+            
+                &.line1 {
+                    @include fluid("bottom", 1rem - ($height / 2), 1.5rem - ($height / 2));
+                    width: 0%;
+                }
+            
+                &.line2 {
+                    @include fluid("top", 2rem - ($height / 2), 2.5rem - ($height / 2));
+                    width: 0%;
+                    
+                }
+
+                &.line3 {
+                    @include fluid("top", 2rem - ($height / 2), 2.5rem - ($height / 2));
+                    width: 0%;
+                }
             }
+
+            .left{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                
+            }
+
+            .right{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-between;
+                width: 100%; 
+
+            }
+            
+            
         }
+
+        &:hover {
+            &:not(.active) .line1 {
+                @include fluid("top", 1.5rem, 2rem);
+                transform: rotateZ(45deg) rotateY(180deg);
+                width: 100%;
+            }
+
+            &:not(.active) .line2 {
+                @include fluid("top", 1.5rem, 2rem);
+                transform: rotateZ(-45deg) rotateY(-180deg);
+                width: 100%;
+            }
+
+            &:not(.active) .line3 {
+                @include fluid("top", 1.5rem, 2rem);
+                transform: rotateZ(-500deg) rotateY(180deg);
+                width: 80%;
+            }
+
+           
+        }
+    }
 
         .requirements{
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: skyblue;
+           
             height: 25vh;
             justify-content: space-evenly;
             .requirements-header{
                 @include typography("h1");
             }
 
-            .requirements-text{
+            .requirements-text li{
                 @include typography("p");
+
+                list-style: none;
             }
+            
+            
         }
 
         .timeline{
@@ -176,7 +281,7 @@
             align-items: flex-start;
             height: 25vh;
             justify-content: center;
-            background-color: rosybrown;
+            background-color: $color-primary-2;
 
             .contact-person-header{
                 @include typography("h1");

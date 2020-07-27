@@ -6,7 +6,9 @@ import LogoBistWhite from "./LogoBistWhite.svg";
 import MetaLogo from "./MetaLogo.svg";
 import LandingHeroAsset from "./landing/landing-hero-asset.png";
 import LandingHeroBg from "./landing/landing-hero-bg.png";
-import Timeline from "./competitiion/Timeline.png";
+import Timeline from "./competition/Timeline.png";
+import BoxGradient from "./BoxGradient.svg";
+import CompetitionBG from "./competition/CompetitionBackground.jpg";
 
 const Asset = {
   LogoBist,
@@ -17,7 +19,9 @@ const Asset = {
   MetaLogo,
   LandingHeroAsset,
   LandingHeroBg,
-  Timeline
+  Timeline,
+  BoxGradient,
+  CompetitionBG
 };
 
 export default Asset;
