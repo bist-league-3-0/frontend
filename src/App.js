@@ -59,7 +59,7 @@ const App = () => {
   return (
     <div>
       <Router>
-        <Component.Navigation width={width} user={user}/>
+        {/* <Component.Navigation width={width} user={user}/> */}
         <Switch>
           {/* General Routes */}
           <Route exact path={FrontendRoutes.home}>
@@ -67,7 +67,7 @@ const App = () => {
               <Scene.LandingScene/>
             </div>
           </Route>
-          <Route path={FrontendRoutes.login}>
+          {/* <Route path={FrontendRoutes.login}>
             <Scene.LoginScene user={user}/>
           </Route>
           <Route path={FrontendRoutes.register}>
@@ -78,7 +78,7 @@ const App = () => {
           </Route>
           <Route path={FrontendRoutes.forgotPassword}>
             <Scene.ForgotPasswordScene />
-          </Route>
+          </Route> */}
 
           {/* Auth Routes */}
           <Route path={FrontendRoutes.dashboard}>

@@ -33,9 +33,12 @@ const LandingScene = ({width}) => {
               <FontAwesomeIcon icon={['fab', "twitter"]} size={width > 960 ? "2x" : "lg"}/>
             </a>
           </div>
-          <div className="bist-links  medium-only">
-            <a href="https://bit.ly/CompetitionGuidebook" className="bist-link" target="_blank" rel="noopener noreferrer">
+          <div className="bist-links ">
+            <a href="https://bit.ly/CompetitionGuidebook" className="bist-link other-links" target="_blank" rel="noopener noreferrer">
               Guidebook
+            </a>
+            <a href="" className="bist-link button-primary-filled color-white other-links" target="_blank" rel="noopener noreferrer">
+              Early Registration
             </a>
           </div>
         </div>
