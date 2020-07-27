@@ -119,8 +119,15 @@ const Dashboard = (props) => {
 
               {/* Admin Routes */}
               {
-                
+                AuthGroups.adminGroup.includes(props?.user?.role)
+                ? <Route path={FrontendRoutes.adminRoutes.payment}>
+                    <Component.BISTHelmet title="Payment"/>
+                    <Component.AdminDashboard.Payment user={userObject}/>
+                  </Route>
+                : null
               }
+
+
               <Route>
                 <Redirect to={FrontendRoutes.dashboard}/>
               </Route>

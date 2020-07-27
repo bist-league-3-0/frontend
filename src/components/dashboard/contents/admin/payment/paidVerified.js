@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PaymentVerified = () => {
+const AdminPaymentVerified = () => {
   return (
     <div>
       Hello World
@@ -8,4 +8,4 @@ const PaymentVerified = () => {
   )
 }
 
-export default PaymentVerified
+export default AdminPaymentVerified

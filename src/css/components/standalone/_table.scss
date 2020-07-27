@@ -1,0 +1,22 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .table-row {
+    display: flex;
+    flex-direction: row;
+
+    .table-cell {
+      flex-grow: 1;
+      @include fluidpaddingx(1.2rem, 2rem);
+      border: 1px solid black;
+    }
+
+    @each $name in '1' '2' '3' '4' '5' '6' '7' '8' '9' '10' '11' '12' {
+      .cell-grow-#{$name} {
+        flex-grow: #{$name};
+      }
+    }
+  }
+}

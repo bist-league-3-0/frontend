@@ -3,8 +3,6 @@ import SidebarPill from "./sidebarPill";
 import FrontendRoutes from "../../routes/frontendRoutes";
 
 const AdminSidebar = ({state, handleClick, role}) => {
-  let { dashRoutes } = FrontendRoutes;
-  
   return (
     <div className="dashboard-sidebar" state={state}>
       <div className="sidebar-pill-group">
@@ -12,6 +10,13 @@ const AdminSidebar = ({state, handleClick, role}) => {
           to={FrontendRoutes.dashboard} 
           text="Dashboard" 
           icon={['fas', "border-all"]}
+          whenExact={true}
+          handleClick={handleClick}
+        />
+        <SidebarPill 
+          to={FrontendRoutes.adminRoutes.payment} 
+          text="Payment" 
+          icon={['fas', "money-bill-wave"]}
           whenExact={true}
           handleClick={handleClick}
         />
