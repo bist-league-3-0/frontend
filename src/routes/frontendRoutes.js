@@ -21,6 +21,13 @@ FrontendRoutes.dashRoutes = {
   settings: FrontendRoutes.dashboard + "settings/"
 }
 
+FrontendRoutes.adminRoutes = {
+  payment: FrontendRoutes.dashboard + "payment/",
+  paymentUnpaid: FrontendRoutes.dashboard + "payment/unpaid-teams",
+  paymentUnverified: FrontendRoutes.dashboard + "payment/unverified-teams",
+  paymentVerified: FrontendRoutes.dashboard + "payment/verified-teams",
+}
+
 FrontendRoutes.dashRoutes.addMember = FrontendRoutes.dashRoutes.memberManagement + "add-member/"
 
 // Routes to show navigation bar

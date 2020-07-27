@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PaymentUnpaid = () => {
+const PaymentComponent = () => {
   return (
     <div>
       Hello World
@@ -8,4 +8,4 @@ const PaymentUnpaid = () => {
   )
 }
 
-export default PaymentUnpaid
+export default PaymentComponent

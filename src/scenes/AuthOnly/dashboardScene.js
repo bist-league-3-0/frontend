@@ -82,6 +82,8 @@ const Dashboard = (props) => {
                 <Component.BISTHelmet title="Settings"/>
                 <Component.Dashboard.Setting user={userObject} refresh={refreshUserUpdate}/>
               </Route>
+
+              {/* Participant Routes */}
               {
                 AuthGroups.participantGroup.includes(props?.user?.role)
                 ? <Route path={dashRoutes.teamManagement}>
@@ -113,6 +115,11 @@ const Dashboard = (props) => {
                     <Component.Dashboard.FinalSubmission user={userObject} refresh={refreshUserUpdate}/>
                   </Route>
                 : null
+              }
+
+              {/* Admin Routes */}
+              {
+                
               }
               <Route>
                 <Redirect to={FrontendRoutes.dashboard}/>
