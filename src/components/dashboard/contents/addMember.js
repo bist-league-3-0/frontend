@@ -13,11 +13,19 @@ const AddTeamMember = ({user, refresh}) => {
   const [phone, setPhone] = useState("");
   const [line, setLine] = useState("");
   const [linkedin, setLinkedin] = useState("");
-  const [verdict, setVerdict] = useState({message: "", status: ""})
+  const [verdict, setVerdict] = useState({message: "", status: ""});
+  const [requestRunning, setRequestRunning] = useState(false);
 
   const submitAddMember = (e) => {
     e.preventDefault();
-    setVerdict({message: "Please wait.", status: "info"})
+    setVerdict({message: "Please wait.", status: "info"});
+
+    if (requestRunning) {
+      return;
+    }
+
+    setRequestRunning(true);
+
     axios.post(
       BackendRoutes.auth,
       {email: user?.account?.email},
@@ -53,6 +61,7 @@ const AddTeamMember = ({user, refresh}) => {
       (res) => {
         console.log(res.data);
         setVerdict({message: res.data.message, status: res.data.success ? "success" : "error"});
+        setRequestRunning(false);
         refresh();
       }
     )
@@ -60,6 +69,7 @@ const AddTeamMember = ({user, refresh}) => {
       (e) => {
         console.log(e.response.data.message);
         setVerdict({message: e.response.data.message, status: "error"})
+        setRequestRunning(false);
       }
     )
   }
@@ -216,6 +226,7 @@ const AddTeamMember = ({user, refresh}) => {
                   type="submit"
                   value="ADD MEMBER"
                   className="button-primary-filled"
+                  disabled={requestRunning}
                 />
             </div>
             <div className="flash-message" status={verdict.status}>

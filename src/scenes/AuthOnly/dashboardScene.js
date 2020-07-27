@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import FrontendRoutes from "../../routes/frontendRoutes";
 import Component from "./../../components/components-common";
 import axios from "axios";
@@ -114,6 +114,9 @@ const Dashboard = (props) => {
                   </Route>
                 : null
               }
+              <Route>
+                <Redirect to={FrontendRoutes.dashboard}/>
+              </Route>
             </Switch>
           </div>
 

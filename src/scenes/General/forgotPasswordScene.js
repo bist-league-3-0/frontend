@@ -8,9 +8,17 @@ import BackendRoutes from "../../routes/backendRoutes";
 const ForgotPasswordScene = () => {
   const [email, setEmail] = useState("");
   const [verdict, setVerdict] = useState({ status: "", message: "" });
+  const [requestRunning, setRequestRunning] = useState(false);
 
   const sendMail = async (event) => {
     event.preventDefault();
+    
+    if (requestRunning) {
+      return;
+    }
+
+    setRequestRunning(true);
+
     setVerdict({
       status: "info",
       message: "Please wait, we are sending your request to the server.",
@@ -23,6 +31,7 @@ const ForgotPasswordScene = () => {
           status: "success",
           message: response.data.message,
         });
+        setRequestRunning(false);
         return;
       })
       .catch((err) => {
@@ -30,6 +39,7 @@ const ForgotPasswordScene = () => {
           status: "error",
           message: err.response.data.message,
         });
+        setRequestRunning(false);
         return;
       });
   };
@@ -72,6 +82,7 @@ const ForgotPasswordScene = () => {
               type="submit"
               value="Send Mail"
               className="button-primary-filled"
+              disabled={requestRunning}
             />
             <div className="input-text">
               Perhaps you have remembered your password?&ensp;

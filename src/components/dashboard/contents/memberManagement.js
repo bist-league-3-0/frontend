@@ -2,7 +2,7 @@ import React from 'react';
 import DashboardComponent from './components/components-common';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import gravatar from "gravatar";
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import FrontendRoutes from '../../../routes/frontendRoutes';
 import Component from '../../components-common';
 
@@ -98,6 +98,9 @@ const MemberManagementContent = ({user, refresh}) => {
           )
         })}
         {renderAddMemberRoute()}
+        <Route>
+          <Redirect to={FrontendRoutes.dashboard}/>
+        </Route>
       </Switch>
     )
   }

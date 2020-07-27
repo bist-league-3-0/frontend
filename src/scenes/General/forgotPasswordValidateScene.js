@@ -7,6 +7,7 @@ const ForgotPasswordValidateScene = (props) => {
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
   const [verdict, setVerdict] = useState({ status: "", message: "" });
+  const [requestRunning, setRequestRunning] = useState(false);
 
   const changePassword = async (event) => {
     event.preventDefault();
@@ -17,7 +18,13 @@ const ForgotPasswordValidateScene = (props) => {
       status: "info",
       message: "Please wait, we are sending your request to the server.",
     });
-    // console.log(new URLSearchParams(window.location.search));
+
+    if (requestRunning) {
+      return;
+    }
+
+    setRequestRunning(true);
+    
     await axios
       .post(BackendRoutes.forgotPasswordValidate, { email, password, token })
       .then((response) => {
@@ -25,6 +32,7 @@ const ForgotPasswordValidateScene = (props) => {
           status: "success",
           message: response.data.message,
         });
+        setRequestRunning(false);
         return;
       })
       .catch((err) => {
@@ -32,6 +40,7 @@ const ForgotPasswordValidateScene = (props) => {
           status: "error",
           message: err.response.data.message,
         });
+        setRequestRunning(false);
         return;
       });
   };
@@ -86,6 +95,7 @@ const ForgotPasswordValidateScene = (props) => {
               type="submit"
               className="button-primary-filled"
               disabled={password !== retypePassword || password.length < 8}
+              disabled={requestRunning}
             >
               Change password
             </button>

@@ -6,10 +6,18 @@ import BackendRoutes from '../../../routes/backendRoutes';
 const SettingContent = ({user, refresh}) => {
   const [email, setEmail] = useState(user?.account?.email);
   const [password, setPassword] = useState("");
-  const [verdict, setVerdict] = useState({status: "", message: ""})
+  const [verdict, setVerdict] = useState({status: "", message: ""});
+  const [requestRunning, setRequestRunning] = useState(false);
 
   const submitAccountChange = (e) => {
     e.preventDefault();
+
+    if (requestRunning) {
+      return;
+    }
+
+    setRequestRunning(true);
+
     axios.post(
       BackendRoutes.auth,
       {email: user?.account?.email},
@@ -33,11 +41,13 @@ const SettingContent = ({user, refresh}) => {
       (res) => {
         setVerdict({message: res.data.message, status: "success"})
         refresh();
+        setRequestRunning(false)
         window.location.replace("/");
       }
     )
     .catch(
       (e) => {
+        setRequestRunning(false);
         setVerdict({message: e.response.data.message, status: "error"})
       }
     )
@@ -81,6 +91,7 @@ const SettingContent = ({user, refresh}) => {
                     type="submit"
                     value="CHANGE ACCOUNT SETTINGS"
                     className="button-primary-filled"
+                    disabled={requestRunning}
                   />
                   <span className="input-text">
                     As soon as you changed your email and/or password, you will be logged out from this session.
