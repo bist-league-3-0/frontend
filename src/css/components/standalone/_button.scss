@@ -36,18 +36,27 @@
     $color-text: map-get($color, "primary-1");
     $color-bg-hover: rgba(map-get($color, "primary-1"), 0.1);
     $border-hover: map-get($color, "primary-1");
-  } @else if $string == "secondary-filled" {
+  } 
+  @else if $string == "secondary-filled" {
     $color-bg: map-get($color, "secondary-1");
     $border: map-get($color, "secondary-1");
     $color-text: map-get($color, "white");
     $color-bg-hover: map-get($color, "secondary-2");
     $border-hover: map-get($color, "secondary-2");
-  } @else if $string == "secondary" {
+  } 
+  @else if $string == "secondary" {
     $color-bg: map-get($color, "white");
     $border: map-get($color, "secondary-1");
     $color-text: map-get($color, "secondary-1");
     $color-bg-hover: rgba(map-get($color, "primary-1"), 0.1);
     $border-hover: map-get($color, "primary-1");
+  } 
+  @else if $string == "primary-washed-filled" {
+    $color-bg: scale-color($color-primary-1, $alpha: -95%);
+    $border: transparent;
+    $color-text: $color-primary-1;
+    $color-bg-hover: scale-color($color-primary-1, $alpha: -90%);
+    $border-hover: transparent;
   }
 
   background-color: $color-bg;
@@ -84,4 +93,8 @@
 
 .button-secondary-filled {
   @include button("secondary-filled");
+}
+
+.button-primary-washed-filled {
+  @include button("primary-washed-filled");
 }

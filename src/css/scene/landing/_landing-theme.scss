@@ -1,0 +1,48 @@
+.landing-theme {
+  @include boxsizing-x("scene");
+  @include boxsizing-y("");
+  @include typography("p");
+  min-height: 90vh;
+  width: 100%;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: #{remToPx($bp-medium)}) {
+    flex-direction: column-reverse;
+  }
+
+  .theme-text {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .text-title {
+      @include typography("h1");
+      @include fluid("margin-bottom", 2rem);
+    }
+
+    .text-subtitle {
+      @include typography("p");
+      color: $color-gray-3;
+    }
+  }
+
+  .theme-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+
+    @media screen and (max-width: #{remToPx($bp-medium)}) {
+      justify-content: center;
+      @include boxsizing-y("");
+    }
+
+    .theme-image {
+      @include fluid("width", 16rem, 36rem);
+    }
+  }
+}

@@ -1,0 +1,84 @@
+.landing-hero {
+  @include boxsizing-x("scene");
+  @include boxsizing-y("");
+  @include typography("p");
+  background:
+    linear-gradient(240deg, #FFFFFF 35%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.3) 70%, #FFFFFF 100%),
+    $asset-landing-hero-bg;
+  min-height: 90vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    @media screen and (max-width: #{remToPx($bp-medium)}) {
+      align-items: center;
+    }
+
+    .hero-asset {
+      @include fluid("height", 2.8rem, 4rem);
+    }
+
+    .hero-title-text {
+      @include typography("hero-title");
+    }
+
+    .hero-title-subtext {
+      @include typography("h3");
+      color: $color-gray-2;
+    }
+
+    .hero-title-links {
+      @include fluid("margin-top", 1.2rem, 2rem);
+      display: flex;
+
+      .title-link {
+        &:not(:first-child) {
+          @include fluid("margin-left", 1.2rem, 2rem);
+        }
+      }
+    }
+  }
+
+  .hero-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    @media screen and (max-width: #{remToPx($bp-medium)}) {
+      align-items: flex-end;
+    }
+      
+    .bist-links {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      @media screen and (max-width: #{remToPx($bp-medium)}) {
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: flex-end;
+      }
+
+      .bist-link {
+        color: $color-primary-1;
+        @include fluidmarginx(1.2rem, 2rem);
+
+        &:hover {
+          color: $color-primary-3;
+          cursor: pointer;
+          transition: $defaultTransition;
+        }
+      }
+    }
+  }
+}

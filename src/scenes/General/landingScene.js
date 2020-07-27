@@ -14,6 +14,14 @@ const LandingScene = ({width}) => {
           <img className="hero-asset" src={Asset.LandingHeroAsset} alt=""/>
           <span className="hero-title-text">BIST League 3.0</span>
           <span className="hero-title-subtext">Business-IT Case Competition</span>
+          <div className="hero-title-links">
+            <a href="https://bit.ly/CompetitionGuidebook" className="title-link button-primary-washed-filled" target="_blank" rel="noopener noreferrer">
+              Guidebook
+            </a>
+            <a href="https://forms.gle/nMQw2R9RcD9J2NcD9" className="title-link button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
+              Early Registration
+            </a>
+          </div>
         </div>
         <div className="hero-links">
           <div className="bist-links">
@@ -33,14 +41,28 @@ const LandingScene = ({width}) => {
               <FontAwesomeIcon icon={['fab', "twitter"]} size={width > 960 ? "2x" : "lg"}/>
             </a>
           </div>
-          <div className="bist-links ">
-            <a href="https://bit.ly/CompetitionGuidebook" className="bist-link other-links" target="_blank" rel="noopener noreferrer">
+          {/* <div className="bist-links ">
+            <a href="https://bit.ly/CompetitionGuidebook" className="bist-link button-primary-washed-filled other-links" target="_blank" rel="noopener noreferrer">
               Guidebook
             </a>
-            <a href="" className="bist-link button-primary-filled color-white other-links" target="_blank" rel="noopener noreferrer">
+            <a href="https://forms.gle/nMQw2R9RcD9J2NcD9" className="bist-link button-primary-filled color-white other-links" target="_blank" rel="noopener noreferrer">
               Early Registration
             </a>
-          </div>
+          </div> */}
+        </div>
+      </section>
+
+      <section className="landing-theme">
+        <div className="theme-text">
+          <span className="text-title">
+            Achieving Business Sustainability Through Holistic Approach of Information Security
+          </span>
+          <span className="text-subtitle">
+            Business Information System and Technology (BIST) League 3.0 is a national-level competition that is present and meant for participants to hone and prove their problem-solving abilities in business and technology problems.
+          </span>
+        </div>
+        <div className="theme-image-wrapper">
+          <img className="theme-image" src={Asset.LandingThemeAsset} alt=""/>
         </div>
       </section>
     </section>
