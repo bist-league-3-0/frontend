@@ -328,7 +328,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                 </div>
                 <div className="input-group">
                   <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
+                    Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
                   </span>
                   <Component.DropZone 
                     validTypes={["image/jpeg", "image/png"]}
@@ -356,7 +356,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                 </div>
                 <div className="input-group">
                   <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
+                    Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
                   </span>
                   <Component.DropZone 
                     validTypes={["image/jpeg", "image/png"]}
@@ -384,7 +384,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                 </div>
                 <div className="input-group">
                   <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, .jpeg, and .gif)
+                    Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
                   </span>
                   <Component.DropZone 
                     validTypes={["image/jpeg", "image/png"]}

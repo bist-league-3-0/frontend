@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DashboardComponent from '../components/components-common';
 import Axios from 'axios';
 import BackendRoutes from '../../../../routes/backendRoutes';
+import { Switch, Route } from 'react-router-dom';
 
 const AdminDashboardContent = ({user}) => {
   const [dashboardData, setDashboardData] = useState({x: 0});
@@ -57,6 +58,8 @@ const AdminDashboardContent = ({user}) => {
               <span className="card-link">Get Verified Teams</span>
             </div>
           </div>
+
+          
 
         </div>
       </div>
