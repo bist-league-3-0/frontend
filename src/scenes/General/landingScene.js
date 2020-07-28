@@ -4,10 +4,9 @@ import Asset from '../../assets/assets-common';
 import SocialRoutes from '../../routes/socialRoutes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const LandingScene = ({width}) => {
+const LandingScene = ({width, height}) => {
   return(
     <section className="landing-scene">
-      <Component.BISTHelmet title="Landing"/>
       <section className="landing-hero">
         <div/>
         <div className="hero-title">
@@ -41,14 +40,12 @@ const LandingScene = ({width}) => {
               <FontAwesomeIcon icon={['fab', "twitter"]} size={width > 960 ? "2x" : "lg"}/>
             </a>
           </div>
-          {/* <div className="bist-links ">
-            <a href="https://bit.ly/CompetitionGuidebook" className="bist-link button-primary-washed-filled other-links" target="_blank" rel="noopener noreferrer">
-              Guidebook
-            </a>
-            <a href="https://forms.gle/nMQw2R9RcD9J2NcD9" className="bist-link button-primary-filled color-white other-links" target="_blank" rel="noopener noreferrer">
-              Early Registration
-            </a>
-          </div> */}
+        </div>
+      </section>
+
+      <section className="landing-scroller">
+        <div className="scroller-arrow">
+          <img src={Asset.ScrollerArrow} alt="" onClick={(e) => {window.scrollTo({top: height, behavior:"smooth"})}}/>
         </div>
       </section>
 

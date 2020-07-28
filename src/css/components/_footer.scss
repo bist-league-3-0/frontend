@@ -1,0 +1,113 @@
+.bist-footer {
+  @include boxsizing-x("scene");
+  @include boxsizing-y("component");
+  @include typography("p");
+
+  background-color: $color-gray-4;
+  color: $color-gray-2;
+
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    @include fluid("margin-bottom", 0.8rem, 1.2rem);
+    @include typography("h1");
+    color: $color-gray-1;
+    font-weight: normal;
+  }
+
+  .footer-body {
+    @include boxsizing-y();
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    @media screen and (max-width: #{remToPx($bp-medium)}) {
+      flex-direction: column;   
+      justify-content: flex-start;
+    }
+
+    .footer-social {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      
+      a {
+        color: $color-gray-2;
+        transition: $defaultTransition;
+
+        &:hover{color: $color-primary-1;}
+        &:not(:first-child) {
+          @include fluid("margin-left", 1.6rem, 2rem);
+        }
+      }
+    }
+
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+
+      @media screen and (max-width: #{remToPx($bp-medium)}){
+        @include fluid("margin-top", 3rem, 3rem);
+        text-align: left;
+      }
+  
+      .contact-list {
+        @include fluid("margin-bottom", 1.2rem, 2rem);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        @media screen and (max-width: #{remToPx($bp-medium)}){
+          align-items: flex-start;
+        }
+  
+        .contact-title {
+          @include typography("h3");
+          color: $color-gray-1;
+        }
+  
+        .contact-content {
+          @include typography("sm");
+          color: $color-gray-2;
+        }
+      }
+    }
+  }
+
+  .footer-foot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .footer-logos {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      img:not(:first-child) {
+        @include fluid("margin-left", 2rem);
+      }
+
+      #sti-logo, #stei-logo {
+        @include fluid("height", 4rem, 5rem);
+      }
+
+      #bist-logo {
+        @include fluid("height", 4.8rem, 6.4rem);
+      }
+    }
+
+    .footer-text {
+      @include fluid("margin-top", 2rem);
+      @include typography("sm");
+      text-align: center;
+
+      p:not(:last-child) {
+        @include fluid("margin-bottom", 1.2rem);
+      }
+    }
+  }
+}

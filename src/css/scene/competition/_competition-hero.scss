@@ -1,0 +1,31 @@
+.competition-hero {
+  @include boxsizing-x("scene");
+  @include boxsizing-y("scene");
+  min-height: 50vh;
+  background:
+    linear-gradient(120deg, #FFFFFF 35%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.3) 70%, #FFFFFF 100%),
+    url("../../../assets/competition/competition-hero-bg.png")
+    no-repeat 55% 30%;
+  
+  @media screen and (max-width: #{remToPx($bp-medium)}) {
+    background:
+      linear-gradient(210deg, #FFFFFF 25%, rgba(255, 255, 255, 0.6) 100%),
+      linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.3) 70%, #FFFFFF 100%),
+      url("../../../assets/competition/competition-hero-bg.png")
+      no-repeat 55% 30%;
+  }
+
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  .competition-title {
+    @include typography("hero-title");
+    @include fluid("margin-bottom", 1.2rem, 2rem);
+    color: $color-gray-1
+  }
+}

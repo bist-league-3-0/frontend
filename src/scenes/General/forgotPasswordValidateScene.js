@@ -94,8 +94,7 @@ const ForgotPasswordValidateScene = (props) => {
             <button
               type="submit"
               className="button-primary-filled"
-              disabled={password !== retypePassword || password.length < 8}
-              disabled={requestRunning}
+              disabled={(password !== retypePassword || password.length < 8) && requestRunning}
             >
               Change password
             </button>

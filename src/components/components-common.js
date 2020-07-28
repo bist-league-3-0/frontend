@@ -12,6 +12,7 @@ import AddTeamMember from './dashboard/contents/addMember';
 import SettingContent from "./dashboard/contents/setting";
 import DropZone from './dropzone';
 import BISTHelmet from "./bist-helmet";
+import BISTFooter from "./bist-footer";
 
 import AdminSidebar from './dashboard/adminSidebar';
 import AdminDashboardLanding from './dashboard/contents/admin/landing';
@@ -48,7 +49,8 @@ const Component = {
   AdminDashboard,
   Hamburger,
   DropZone,
-  BISTHelmet
+  BISTHelmet,
+  BISTFooter
 }
 
 export default Component;

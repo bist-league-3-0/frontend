@@ -14,58 +14,47 @@ import "./css/main.scss";
 // Import Common Files
 import * as Scene from "./scenes/scene-common";
 import Component from './components/components-common';
+import AuthGroups from "./scenes/authGroup";
 // End of Common Files
 
 // App Class Declaration
 const App = () => {
-  const prelimRole = 2;
-  const finalRole = 3;
-  const adminRole= 4;
-  const adminGroup = [4];
-  const participantGroup = [3, 4]; 
-  const authGroup = [2, 3, 4];
-
-  // End of App Logics
-
   const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
   const [user, setUser] = useState({ id: 0, email: "", role: 1 });
 
   window.addEventListener("resize", () => {
     setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
   });
 
-  const fetchData = async () => {
-    let res = await axios.get(BackendRoutes.check, { withCredentials: true });
-
-    if (typeof res.data.passport != "undefined") {
-      return res.data.passport;
-    } else {
-      return {};
-    }
-  };
-
   useEffect(() => {
-    fetchData()
-      .then(res => {
-        let temp = Object.values(res);
-        temp = temp.pop();
-        return typeof temp != "undefined" ? temp : { id: 0, email: "", role: 1 };
-      })
-      .then(temp => {
-        setUser(temp);
-      })
+    axios.get(BackendRoutes.check, { withCredentials: true })
+    .then (({data}) => {
+      if (data?.passport?.user) {
+        setUser(data?.passport?.user);
+      }
+    })
+    .catch (e => {
+      console.log("Cannot reach backend server...")
+    })
   }, []);
 
   return (
     <div>
       <Router>
-        {/* <Component.Navigation width={width} user={user}/> */}
+        <Component.Navigation width={width} user={user}/>
         <Switch>
           {/* General Routes */}
           <Route exact path={FrontendRoutes.home}>
-            <div>
-              <Scene.LandingScene/>
-            </div>
+            <Component.BISTHelmet title="Landing"/>
+            <Scene.LandingScene height={height}/>
+            <Component.BISTFooter width={width} height={height}/>
+          </Route>
+          <Route path={FrontendRoutes.competition}>
+            <Component.BISTHelmet title="Competition"/>
+            <Scene.CompetitionScene/>
+            <Component.BISTFooter width={width} height={height}/>
           </Route>
           {/* <Route path={FrontendRoutes.login}>
             <Scene.LoginScene user={user}/>
@@ -82,10 +71,10 @@ const App = () => {
 
           {/* Auth Routes */}
           <Route path={FrontendRoutes.dashboard}>
-          {authGroup.includes(user?.role)
-            ? <Scene.Dashboard user={user} width={width}/> 
-            : <Redirect to={FrontendRoutes.login}/>
-          }
+            {AuthGroups.authGroup.includes(user?.role)
+              ? <Scene.Dashboard user={user} width={width}/> 
+              : <Redirect to={FrontendRoutes.login}/>
+            }
           </Route> 
 
           {/* Error routes */}

@@ -8,6 +8,7 @@ FrontendRoutes.register = FrontendRoutes.home + "register/";
 FrontendRoutes.forgotPassword = FrontendRoutes.home + "forgot-password/";
 FrontendRoutes.forgotPasswordValidate = FrontendRoutes.home + "forgot-password/validate";
 FrontendRoutes.dashboard = FrontendRoutes.home + "dashboard/";
+FrontendRoutes.competition = FrontendRoutes.home + "competition/"
 
 // Error Routes
 FrontendRoutes.forbidden = FrontendRoutes.home + "forbidden/";
@@ -31,12 +32,14 @@ FrontendRoutes.adminRoutes = {
 FrontendRoutes.dashRoutes.addMember = FrontendRoutes.dashRoutes.memberManagement + "add-member/"
 
 // Routes to show navigation bar
+// App not animated? include route here!
 FrontendRoutes.showNav = [
   FrontendRoutes.home,
   FrontendRoutes.login,
   FrontendRoutes.register,
   FrontendRoutes.forgotPassword,
-  FrontendRoutes.forgotPasswordValidate
+  FrontendRoutes.forgotPasswordValidate,
+  FrontendRoutes.competition
 ]
 
 module.exports = FrontendRoutes;

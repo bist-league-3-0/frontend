@@ -7,7 +7,6 @@
 @import "./modules/scrollbar";
 
 // Import Constants
-@import "./constants/assets";
 @import "./constants/baseline";
 @import "./constants/color";
 @import "./constants/fonts";
@@ -28,11 +27,15 @@
 @import "./components/standalone/card";
 @import "./components/standalone/dropzone";
 @import "./components/standalone/table";
+@import "./components/standalone/flex-grid-system";
+@import "./components/standalone/timeline";
 
 // Scene Specific Modules
 @import "./scene/landing-scene";
+@import "./scene/competition-scene";
 @import "./scene/login-scene";
 @import "./scene/register-scene";
 @import "./scene/forgot-password-scene";
 @import "./scene/error-scene";
 @import "./scene/dashboard-scene";
+@import "./components/footer";

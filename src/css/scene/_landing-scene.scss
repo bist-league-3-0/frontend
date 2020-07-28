@@ -5,4 +5,38 @@
 
   @import "./landing/landing-hero";
   @import "./landing/landing-theme";
+
+  .landing-scroller {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: $defaultTransition;
+    
+    // animation
+      // name
+      // duration
+      // timing-function
+      // delay
+      // direction
+      // iteration-count
+      // fill-mode
+      // play-state
+
+    .scroller-arrow {
+      animation: move-scroller 2s $defaultCubicBezier infinite;
+      cursor: pointer;
+    }
+
+    img {
+      @include fluid("width", 4rem, 6rem);
+    }
+  }
+}
+
+@keyframes move-scroller {
+  0% {opacity: 0; transform: translateY(-2vh) rotateY(45deg)}
+  20% {opacity: 1; transform: rotateY(0deg);}
+  20% {opacity: 1; transform: rotateY(0deg);}
+  100% {opacity: 0; transform: translateY(2vh) rotateY(90deg);}
 }

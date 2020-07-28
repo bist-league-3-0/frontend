@@ -1,0 +1,25 @@
+.competition-scene {
+  display: flex;
+  flex-direction: column;
+
+  @import "./competition/competition-hero";
+  @import "./competition/competition-body";
+
+  .competition-prize{
+    display: flex;
+    flex-direction: column;
+    min-height: 30vh;
+    justify-content: center;
+    align-items: center;
+
+    .prize-title {
+      @include typography("h3");
+      color: $color-gray-1;
+    }
+
+    .prize-amount {
+      @include typography("h1");
+      color: $color-primary-1;
+    }
+  }
+}

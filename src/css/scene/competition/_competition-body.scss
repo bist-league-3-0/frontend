@@ -1,0 +1,91 @@
+.competition-body {
+  @include boxsizing-x("scene");
+  @include boxsizing-y("");
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    @include typography("h1");
+    @include fluid("margin-bottom", 1.2rem, 2rem);
+    font-weight: normal;
+    color: $color-gray-1;
+  }
+
+  h2 {
+    @include typography("h2");
+    font-weight: normal;
+    color: $color-gray-1;
+  }
+
+  h3 {
+    @include typography("h3");
+    font-weight: normal;
+    color: $color-gray-2;
+  }
+
+  p, li {
+    @include typography("p");
+    font-weight: normal;
+    color: $color-gray-3;
+    @include fluid("margin-bottom", 0.6rem, 1rem);
+
+    &:not(li) {
+      @include fluid("margin-bottom", 1.2rem, 2rem);
+    }
+  }
+
+  ul {
+    @include fluid("padding-left", 2rem, 2rem);
+    @include fluid("margin-bottom", 1.2rem, 2rem);
+  }
+}
+
+.competition-description {
+  display: flex;
+  flex-direction: row;
+}
+
+.competition-fee {
+  @include fluid("margin-bottom", 4rem, 5rem);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.competition-requirement {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.competition-registration-fee {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  &:not(:last-child) {
+    @include fluid("margin-bottom", 1.2rem, 2rem);
+  }
+
+  .registration-description {
+    @include fluid("padding-right", 1.2rem, 2rem);
+    display: flex;
+    flex-direction: column;
+
+    .registration-title {
+      @include typography("h3");
+      color: $color-gray-1;
+    }
+
+    .registration-date {
+      @include typography("sm");
+      color: $color-gray-3;
+    }
+  }
+
+  .registration-fee {
+    @include typography("h2");
+  }
+}

@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FrontendRoutes from '../../routes/frontendRoutes';
 import BackendRoutes from '../../routes/backendRoutes';
 import SocialRoutes from '../../routes/socialRoutes';
+import AuthGroups from '../../scenes/authGroup';
 
 const Navigation = (props) => {
   const [state, setState] = useState("inactive");
@@ -165,12 +166,12 @@ const Navigation = (props) => {
   // END OF SOCIAL LINKS RENDER
 
   // BODY LINKS RENDER
-  let bodyLinks = Object.values(navigationLink).map( value => {
+  let bodyLinks = Object.values(navigationLink).map( (value, key) => {
     if ( value.text === "logout") { 
       return (
         <a 
           className="body-link"
-          key={value.text}
+          key={key}
           id={value.text} 
           state={value.state}
           onMouseOver={handleMouseOver}
@@ -191,7 +192,7 @@ const Navigation = (props) => {
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
             onClick={handleClick}
-            key={value.text}
+            key={key}
           >
           {value.text}
           </span>
@@ -203,8 +204,7 @@ const Navigation = (props) => {
 
   // TRY SET ROLE STATE 
   useEffect(() => {
-    let roles = [2, 3, 4];
-    if (roles.includes(props.user.role)){
+    if (AuthGroups.authGroup.includes(props.user.role)){
       setNavigationLink({
         home: {
           state: "idle",
@@ -225,23 +225,28 @@ const Navigation = (props) => {
     } else {
       setNavigationLink({
         home: {
-          state: "active",
+          state: "idle",
           link: FrontendRoutes.home,
           text: "home"
         },
-        login: {
-          state: "active",
-          link: FrontendRoutes.login,
-          text: "login"
-        },
-        register: {
-          state: "active",
-          link: FrontendRoutes.register,
-          text: "register"
+        // login: {
+        //   state: "idle",
+        //   link: FrontendRoutes.login,
+        //   text: "login"
+        // },
+        // register: {
+        //   state: "idle",
+        //   link: FrontendRoutes.register,
+        //   text: "register"
+        // },
+        competition: {
+          state: "idle",
+          link: FrontendRoutes.competition,
+          text: "competition"
         }
       });
     }
-  }, [props.user.role])
+  }, [props?.user?.role])
   // END OF SET ROLE STATE
 
   if (FrontendRoutes.showNav.indexOf(useLocation().pathname) < 0) {

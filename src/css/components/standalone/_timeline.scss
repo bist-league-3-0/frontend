@@ -1,0 +1,34 @@
+.timeline-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  @include typography("p");
+
+  .timeline-content {
+    @include boxsizing-x("component");
+    @include boxsizing-y("component");
+    border: remToVw(96rem, .15rem) solid $color-primary-1;
+    @include fluid("border-radius", .5rem, 1rem);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .content-title {
+      @include typography("h3");
+      color: $color-primary-1;
+    }
+
+    .content-date {
+      @include typography("p");
+      color: $color-gray-2;
+    }
+  }
+
+  .timeline-separator {
+    width: 0;
+    @include fluid("height", 3rem, 5rem);
+    border: remToVw(96rem, .075rem) solid $color-primary-1;
+    align-self: center;
+  }
+}

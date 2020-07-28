@@ -7,6 +7,10 @@ import MetaLogo from "./MetaLogo.svg";
 import LandingHeroAsset from "./landing/landing-hero-asset.png";
 import LandingHeroBg from "./landing/landing-hero-bg.png";
 import LandingThemeAsset from "./landing/landing-theme-asset.svg";
+import CompetitionHeroBg from "./competition/competition-hero-bg.png";
+import ScrollerArrow from "./ScrollDown.svg";
+import STEI_LOGO from "./STEI_LOGO.png";
+import STI_LOGO from "./STI_Logo.png";
 
 const Asset = {
   LogoBist,
@@ -17,7 +21,11 @@ const Asset = {
   MetaLogo,
   LandingHeroAsset,
   LandingHeroBg,
-  LandingThemeAsset
+  LandingThemeAsset,
+  CompetitionHeroBg,
+  ScrollerArrow,
+  STEI_LOGO,
+  STI_LOGO
 };
 
 export default Asset;
