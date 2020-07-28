@@ -71,7 +71,7 @@ const CompetitionScene = () => {
               <div className="competition-registration-fee">
                 <div className="registration-description">
                   <span className="registration-title">Normal</span>
-                  <span className="registration-date">August 11 &ndash; September 26, 2020</span>
+                  <span className="registration-date">August 11 &ndash; September 22, 2020</span>
                 </div>
                 <span className="registration-fee">Rp300.000,-</span>
               </div>
@@ -106,7 +106,7 @@ const CompetitionScene = () => {
               <div className="timeline-separator"/>
               <div className="timeline-content">
                 <span className="content-title">
-                  September 26 &mdash; October 9, 2020
+                  September 23 &mdash; October 9, 2020
                 </span>
                 <span className="content-date">
                   Preliminary Round

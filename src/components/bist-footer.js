@@ -31,12 +31,31 @@ const BISTFooter = ({width}) => {
           <h1>Contacts</h1>
           <div className="contact-list">
             <span className="contact-title">Competition</span>
-            <span className="contact-name">Jingga</span>
-            <div className="contact-content">
-              <p>0896-2563-3431</p>
-              <p>LINE: jingga115</p>
+            <div className="contact-wrapper">
+              <div className="contact-wrapper-element">
+                <span className="contact-name">Jingga</span>
+                <div className="contact-content">
+                  <p>0896-2563-3431</p>
+                  <p>LINE: jingga115</p>
+                </div>
+              </div>
+              <div className="contact-wrapper-element">
+                <span className="contact-name">Hatta</span>
+                <div className="contact-content">
+                  <p>0822-8498-2375</p>
+                  <p>LINE: yanzahattari</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* <div className="contact-list">
+            <span className="contact-title">Competition</span>
+            <span className="contact-name">Hatta</span>
+            <div className="contact-content">
+              <p>0822-8498-2375</p>
+              <p>LINE: yanzahattari</p>
+            </div>
+          </div> */}
         </div>
       </div>
       <div className="footer-foot">

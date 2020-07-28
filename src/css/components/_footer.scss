@@ -63,6 +63,14 @@
         @media screen and (max-width: #{remToPx($bp-medium)}){
           align-items: flex-start;
         }
+
+        .contact-wrapper {
+          @include fluidmarginy(.4rem, .8rem);
+          
+          .contact-wrapper-element:not(:first-child) {
+            @include fluid("margin-top", .2rem, .4rem)
+          }
+        }
   
         .contact-title {
           @include typography("h3");
