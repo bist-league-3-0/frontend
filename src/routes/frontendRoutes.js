@@ -23,6 +23,7 @@ FrontendRoutes.dashRoutes = {
 }
 
 FrontendRoutes.adminRoutes = {
+  teams: FrontendRoutes.dashboard + "teams/",
   payment: FrontendRoutes.dashboard + "payment/",
   paymentUnpaid: FrontendRoutes.dashboard + "payment/unpaid-teams",
   paymentUnverified: FrontendRoutes.dashboard + "payment/unverified-teams",

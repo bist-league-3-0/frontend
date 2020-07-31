@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import Asset from '../../assets/assets-common';
 import Hamburger from './hamburger';
@@ -204,7 +204,7 @@ const Navigation = (props) => {
 
   // TRY SET ROLE STATE 
   useEffect(() => {
-    if (AuthGroups.authGroup.includes(props.user.role)){
+    if (AuthGroups.authGroup.includes(props?.user?.role)){
       setNavigationLink({
         home: {
           state: "idle",
@@ -229,16 +229,16 @@ const Navigation = (props) => {
           link: FrontendRoutes.home,
           text: "home"
         },
-        // login: {
-        //   state: "idle",
-        //   link: FrontendRoutes.login,
-        //   text: "login"
-        // },
-        // register: {
-        //   state: "idle",
-        //   link: FrontendRoutes.register,
-        //   text: "register"
-        // },
+        login: {
+          state: "idle",
+          link: FrontendRoutes.login,
+          text: "login"
+        },
+        register: {
+          state: "idle",
+          link: FrontendRoutes.register,
+          text: "register"
+        },
         competition: {
           state: "idle",
           link: FrontendRoutes.competition,
@@ -246,31 +246,35 @@ const Navigation = (props) => {
         }
       });
     }
-  }, [props?.user?.role])
+  }, [props])
   // END OF SET ROLE STATE
+
+  const navbarRef = useRef(null);
 
   if (FrontendRoutes.showNav.indexOf(useLocation().pathname) < 0) {
     return null
   } else {
     var prevScrollpos = window.pageYOffset;
-    window.onscroll = function() {
-      var currentScrollPos = window.pageYOffset;
-      if (state === "inactive") {
-        if (prevScrollpos > currentScrollPos) {
-          document.getElementById("navbar").style.top = "0";
+    window.onscroll = () => {
+      try {
+        var currentScrollPos = window.pageYOffset;
+        if (state === "inactive") {
+          if (prevScrollpos > currentScrollPos) {
+            navbarRef.current.style.top = "0";
+          } else {
+            navbarRef.current.style.top = "-15rem";
+          }
+          prevScrollpos = currentScrollPos;
         } else {
-            document.getElementById("navbar").style.top = "-15rem";
+          window.scrollTo(0, prevScrollpos);
         }
-        prevScrollpos = currentScrollPos;
-      } else {
-        window.scrollTo(0, prevScrollpos);
-      }
+      } catch {}
     }
   }
   
   return(
     <div className="navigation-wrapper">
-      <nav className="navigation-header" id="navbar">
+      <nav className="navigation-header" id="navbar" ref={navbarRef}>
         <div className="header-links">
           <div className="header-link">
             <Hamburger handler={{handleClick, handleChildClick}}/>

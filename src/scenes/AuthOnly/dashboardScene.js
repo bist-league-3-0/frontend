@@ -126,7 +126,14 @@ const Dashboard = (props) => {
                   </Route>
                 : null
               }
-
+              {
+                AuthGroups.adminGroup.includes(props?.user?.role)
+                ? <Route path={FrontendRoutes.adminRoutes.teams}>
+                    <Component.BISTHelmet title="Teams"/>
+                    <Component.AdminDashboard.Teams user={userObject}/>
+                  </Route>
+                : null
+              }
 
               <Route>
                 <Redirect to={FrontendRoutes.dashboard}/>

@@ -14,6 +14,13 @@ const AdminSidebar = ({state, handleClick, role}) => {
           handleClick={handleClick}
         />
         <SidebarPill 
+          to={FrontendRoutes.adminRoutes.teams} 
+          text="Teams" 
+          icon={['fas', "users"]}
+          whenExact={true}
+          handleClick={handleClick}
+        />
+        <SidebarPill 
           to={FrontendRoutes.adminRoutes.payment} 
           text="Payment" 
           icon={['fas', "money-bill-wave"]}

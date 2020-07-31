@@ -24,13 +24,11 @@ BackendRoutes.uploadFile = {
 };
 
 BackendRoutes.bistAccount = {
-  changeAccountCredentials:
-    BistAccount + "account-settings/change-account-credentials/",
+  changeAccountCredentials: BistAccount + "account-settings/change-account-credentials/",
   changeTeamData: BistAccount + "team-management/change-team-data/",
   uploadPayment: BistAccount + "team-management/upload-payment/",
   changeMemberData: BistAccount + "member-management/change-member-data/",
-  uploadEnrollment:
-    BistAccount + "member-management/upload-proof-of-enrollment/",
+  uploadEnrollment: BistAccount + "member-management/upload-proof-of-enrollment/",
   uploadIDCard: BistAccount + "member-management/upload-student-id-card/",
   uploadPortrait: BistAccount + "member-management/upload-portrait-photo/",
   deleteMember: BistAccount + "member-management/delete-member/",
@@ -42,7 +40,10 @@ BackendRoutes.bistAccount = {
 const AdminAccount = BackendRoutes.auth + "admin/";
 
 BackendRoutes.adminAccount = {
-  getDashboardData: AdminAccount + "get-dashboard-data"
+  getDashboardData: AdminAccount + "get-dashboard-data",
+  getTeamsData: AdminAccount + "get-teams/",
+  toggleTeamRole: AdminAccount + "toggle-team-role/",
+  togglePaymentStatus: AdminAccount + "toggle-payment-status/"
 }
 
 module.exports = BackendRoutes;

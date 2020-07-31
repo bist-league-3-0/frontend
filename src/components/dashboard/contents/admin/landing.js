@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DashboardComponent from '../components/components-common';
 import Axios from 'axios';
 import BackendRoutes from '../../../../routes/backendRoutes';
-import { Switch, Route, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import FrontendRoutes from '../../../../routes/frontendRoutes';
 
 const AdminDashboardContent = ({user}) => {

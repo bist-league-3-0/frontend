@@ -17,6 +17,8 @@ $color: (
   "error-bg": #fad1d1,
   "info": #2f80ed,
   "info-bg": #d0f1fb,
+  "warning": #F2994A,
+  "warning-bg": #FCE5D1
 );
 
 $color-primary-1: map-get($color, "primary-1");
@@ -38,20 +40,10 @@ $color-error: map-get($color, "error");
 $color-error-bg: map-get($color, "error-bg");
 $color-info: map-get($color, "info");
 $color-info-bg: map-get($color, "info-bg");
+$color-warning: map-get($color, "warning");
+$color-warning-bg: map-get($color, "warning-bg");
 
 $color-primary-washed: lighten($color-primary-1, 68%);
-
-.color-error {
-  color: $color-error;
-}
-
-.color-info {
-  color: $color-info;
-}
-
-.color-success {
-  color: $color-success
-}
 
 @each $key, $value in $color {
   .color-#{$key} {

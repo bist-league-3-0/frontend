@@ -1,22 +1,98 @@
-.table {
+
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+
+  a {
+    color: $color-primary-1;
+    text-decoration: underline !important;
+    transition: $defaultTransition;
+    cursor: pointer;
+
+    &:hover{
+      color: $color-primary-3;
+    }
+  }
+
+  .no-display {
+    display: none;
+  }
+
+  .dashboard-table {
+    @include typography("p");
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 100%;
+    border-spacing: 0;
+  }
+
+  .table-cell-big {
+    @include fluid("min-width", 16rem, 20rem);
+  }
+
+  .cell-team-data, .cell-files-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .team-name {
+      @include typography("h3");
+      color: $color-gray-1;
+    }
+
+    .team-email, .team-institution {
+      @include typography("sm");
+      color: $color-gray-3;
+    }
+  }
+
+  th, td {
+    @include fluidpadding(1.2rem, 1.6rem);
+    text-align: left;
+  }
+
+  tbody {
+    color: $color-gray-1;
+
+    tr:nth-child(even) {
+      background-color: $color-gray-4;
+    }
+
+    tr:nth-child(odd) {
+      background-color: $color-white;
+    }
+  }
+  
+  td {
+    vertical-align: top;
+  }
+  
+  thead {
+    background-color: $color-primary-1;
+    color: $color-white;
+  }
+}
+
+.dashboard-table-noresult {
+  @include boxsizing-x("component");
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 
-  .table-row {
-    display: flex;
-    flex-direction: row;
+  img {
+    @include fluid("width", 10rem, 16rem);
+    @include fluidmarginy(2rem, 2rem);
+  }
 
-    .table-cell {
-      flex-grow: 1;
-      @include fluidpaddingx(1.2rem, 2rem);
-      border: 1px solid black;
-    }
+  .noresult-title {
+    @include typography("h2");
+    color: $color-gray-2;
+  }
 
-    @each $name in '1' '2' '3' '4' '5' '6' '7' '8' '9' '10' '11' '12' {
-      .cell-grow-#{$name} {
-        flex-grow: #{$name};
-      }
-    }
+  .noresult-text {
+    @include typography("sm");
+    color: $color-gray-3;
   }
 }

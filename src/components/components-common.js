@@ -20,6 +20,7 @@ import AdminPaymentComponent from './dashboard/contents/admin/payment/paymentCom
 import AdminPaymentUnpaid from './dashboard/contents/admin/payment/unpaid';
 import AdminPaymentUnverified from './dashboard/contents/admin/payment/paidUnverified';
 import AdminPaymentVerified from './dashboard/contents/admin/payment/paidVerified';
+import AdminTeamsContent from './dashboard/contents/admin/teams';
 
 const Dashboard = {
   Header: DashboardHeader, 
@@ -40,7 +41,8 @@ const AdminDashboard = {
   Payment: AdminPaymentComponent,
   PaymentUnpaid: AdminPaymentUnpaid,
   PaymentUnverified: AdminPaymentUnverified,
-  PaymentVerified: AdminPaymentVerified
+  PaymentVerified: AdminPaymentVerified,
+  Teams: AdminTeamsContent
 }
 
 const Component = {

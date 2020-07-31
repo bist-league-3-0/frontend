@@ -56,7 +56,7 @@ const App = () => {
             <Scene.CompetitionScene/>
             <Component.BISTFooter width={width} height={height}/>
           </Route>
-          {/* <Route path={FrontendRoutes.login}>
+          <Route path={FrontendRoutes.login}>
             <Scene.LoginScene user={user}/>
           </Route>
           <Route path={FrontendRoutes.register}>
@@ -67,7 +67,7 @@ const App = () => {
           </Route>
           <Route path={FrontendRoutes.forgotPassword}>
             <Scene.ForgotPasswordScene />
-          </Route> */}
+          </Route>
 
           {/* Auth Routes */}
           <Route path={FrontendRoutes.dashboard}>

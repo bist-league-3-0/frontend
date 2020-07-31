@@ -8,30 +8,102 @@
   text-align: center;
 
   &[status=""] {
-    display: none;
+    opacity: 0;
+
+    &:not(.fixed) {
+      display: none;
+    }
   }
   
   &[status=success] {
     @include fluid("margin-bottom", 2rem);
+    opacity: 1;
     background-color: $color-success-bg;
     color: $color-success;
     border: remToVw($bp-large, 0.1rem) solid $color-success;
     border-radius: remToVw($bp-large, 0.5rem);
+
+    .progress-bar {
+      background-color: $color-success;
+    }
   }
 
   &[status=info] {
     @include fluid("margin-bottom", 2rem);
+    opacity: 1;
     background-color: $color-info-bg;
     color: $color-info;
     border: remToVw($bp-large, 0.1rem) solid $color-info;
     border-radius: remToVw($bp-large, 0.5rem);
+
+    .progress-bar {
+      background-color: $color-info;
+    }
   }
 
   &[status=error] {
     @include fluid("margin-bottom", 2rem);
+    opacity: 1;
     background-color: $color-error-bg;
     color: $color-error;
     border: remToVw($bp-large, 0.1rem) solid $color-error;
     border-radius: remToVw($bp-large, 0.5rem);
+
+    .progress-bar {
+      background-color: $color-error;
+    }
+  }
+
+  &[status=warning] {
+    @include fluid("margin-bottom", 2rem);
+    opacity: 1;
+    background-color: $color-warning-bg;
+    color: $color-warning;
+    border: remToVw($bp-large, 0.1rem) solid $color-warning;
+    border-radius: remToVw($bp-large, 0.5rem);
+
+    .progress-bar {
+      background-color: $color-warning;
+    }
+  }
+
+  &.fixed {
+    @include fluid("width", 26rem, 40rem);
+    @include fluid("right", 3rem, 5rem);
+    @include fluid("bottom", 5rem);
+    position: absolute;
+    z-index: 200;
+
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    transition: $defaultTransition;
+    
+    .flash-message-body {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    @media screen and (max-width: #{remToPx($bp-medium)}) {
+      @include fluid("bottom", 10rem, 12rem);      
+    }
+
+    &[status=""]{
+      @include fluid("bottom", 0rem, 0rem);
+      display: none;
+    }
+
+    .button-close {
+      @include fluid("margin-left", 2rem);
+      color: $color-primary-1;
+      cursor: pointer;
+    }
+
+    .progress-bar {
+      @include fluid("height", .2rem);
+      @include fluid("margin-top", 1.2rem, 2rem);
+    }
   }
 }
