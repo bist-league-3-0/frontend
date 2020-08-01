@@ -6,10 +6,14 @@ import BackendRoutes from '../../../../routes/backendRoutes';
 // import { NavLink } from 'react-router-dom';
 // import FrontendRoutes from '../../../../routes/frontendRoutes';
 
-const AdminTeamsContent = ({user}) => {
+const AdminTeamsContent = ({user, propsTeamnameFilter, propsPaymentFilter, propsRoleFilter}) => {
   const [teams, setTeams] = useState([]);
+  const [filteredTeams, setFilteredTeams] = useState([]);
   const [verdict, setVerdict] = useState({status: "", message: ""});
   const [flashMessageTime, setFlashMessageTime] = useState(0);
+  const [teamnameFilter, setTeamnameFilter] = useState(propsTeamnameFilter || "");
+  const [paymentFilter, setPaymentFilter] = useState(propsPaymentFilter || []);
+  const [roleFilter, setRoleFilter] = useState(propsRoleFilter || []);
 
 // FETCH DATA FUNCTION
 const fetchData = () => {
@@ -60,7 +64,29 @@ const fetchData = () => {
     if (flashMessageTime <= 0) setVerdict({status: "", message: ""});
 
     return () => clearTimeout(timeout);
-  }, [flashMessageTime])
+  }, [flashMessageTime]);
+
+// USE EFFECT FOR SEARCH TEAMS BY TEAM NAME
+  useEffect(() => {
+    if (!teamnameFilter && paymentFilter.length <= 0 && roleFilter.length <= 0) {
+      setFilteredTeams(teams);
+    }
+    
+    let temp = teams;
+    if (teamnameFilter) {
+      temp = temp.filter((data) => {return (data?.account?.username.toUpperCase().indexOf(teamnameFilter) > -1)});
+    }
+
+    if (paymentFilter.length > 0) {
+      temp = temp.filter(data => {return paymentFilter.includes(data?.teamStatus?.paymentStatus.toString())});
+    }
+
+    if (roleFilter.length > 0) {
+      temp = temp.filter(data => {return roleFilter.includes(data?.account?.roleID.toString())});
+    }
+
+    setFilteredTeams(temp);
+  }, [teamnameFilter, paymentFilter, roleFilter, teams]);
 
 // IDENTIFY TEAM STATUS
   const identifyTeamStatus = (role, accountID) => {
@@ -162,7 +188,7 @@ const fetchData = () => {
   }
 
 // RENDER TEAMS TABLE BODY FUNCTION
-  const renderTeams = teams.map((team, key) => {
+  const renderTeams = filteredTeams.map((team, key) => {
     let teamFiles = {};
     pushObject(teamFiles, "Payment File", getFileObject(team?.account?.files, team?.proofOfPayment));
     pushObject(teamFiles, "Preliminary File", getFileObject(team?.account?.files, team?.preliminarySubmission));
@@ -204,7 +230,7 @@ const fetchData = () => {
 
 // RENDER THE TABLE
   const renderTable = () => {
-    if (teams.length > 0) return (
+    if (filteredTeams.length > 0) return (
       <div className="table-wrapper">
         <table className="dashboard-table">
           <thead className="dashboard-table-head">
@@ -222,7 +248,6 @@ const fetchData = () => {
         </table>
       </div>
     )
-
     return <DashboardComponent.NoResultTable/>
   }
 
@@ -230,6 +255,26 @@ const fetchData = () => {
   const closeFlashMessage = () => {
     setVerdict({message: "", status: ""});
     setFlashMessageTime(0);
+  }
+
+// HANDLE PAYMENT FILTER CHECKBOX CHANGE
+  const handlePaymentFilterChange = (e) => {
+    let index = paymentFilter.indexOf(e.target.value);
+    if (index > -1) {
+      setPaymentFilter(paymentFilter.filter(item => item != e.target.value));
+    } else {
+      setPaymentFilter(paymentFilter.concat([e.target.value]));
+    }
+  }
+
+// HANDLE ROLE FILTER CHECKBOX CHANGE
+  const handleRoleFilterChange = (e) => {
+    let index = roleFilter.indexOf(e.target.value);
+    if (index > -1) {
+      setRoleFilter(roleFilter.filter(item => item != e.target.value));
+    } else {
+      setRoleFilter(roleFilter.concat([e.target.value]));
+    }
   }
 
 // ADMIN TEAMS CONTENT MAIN HOOK RETURN
@@ -241,6 +286,77 @@ const fetchData = () => {
       />
       <hr/>
       <div className="content-body">
+        <div className="card-container">
+          <div className="card-row">
+            <div className="card">
+              <div className="card-header">Search by Team Name</div>
+              <div className="card-body form">
+                <input type="text" name="searchFilter" id="searchFilter" onChange={(e) => {setTeamnameFilter(e.target.value.toUpperCase())}}/>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-header">Filter Option</div>
+              <div className="card-body form">
+                <div className="input-group">
+                  <div className="input-label">Payment Status</div>
+                  <div className="input-radio-wrapper force-row">
+                    <div className="input-radio">
+                      <input type="checkbox" name="paymentStatus" id="status-unpaid" value="0" onChange={handlePaymentFilterChange}
+                        defaultChecked={propsPaymentFilter?.includes("0")}
+                      />
+                      <label htmlFor="status-unpaid">
+                        <span className="radio-button"></span>
+                        <span className="radio-description">Not Paid</span>
+                      </label>
+                    </div>
+                    <div className="input-radio">
+                      <input type="checkbox" name="paymentStatus" id="status-paid-unverified" value="1" onChange={handlePaymentFilterChange}
+                        defaultChecked={propsPaymentFilter?.includes("1")}
+                      />
+                      <label htmlFor="status-paid-unverified">
+                        <span className="radio-button"></span>
+                        <span className="radio-description">Paid, Not Verified</span>
+                      </label>
+                    </div>
+                    <div className="input-radio">
+                      <input type="checkbox" name="paymentStatus" id="status-paid-verified" value="2" onChange={handlePaymentFilterChange}
+                        defaultChecked={propsPaymentFilter?.includes("2")}
+                      />
+                      <label htmlFor="status-paid-verified">
+                        <span className="radio-button"></span>
+                        <span className="radio-description">Paid and Verified</span>
+                      </label>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div className="input-group">
+                  <div className="input-label">Role</div>
+                  <div className="input-radio-wrapper force-row">
+                    <div className="input-radio">
+                      <input type="checkbox" name="roleStatus" id="role-preliminary" value="2" onChange={handleRoleFilterChange}
+                        defaultChecked={[propsRoleFilter]?.includes("2")}
+                      />
+                      <label htmlFor="role-preliminary">
+                        <span className="radio-button"></span>
+                        <span className="radio-description">Preliminary</span>
+                      </label>
+                    </div>
+                    <div className="input-radio">
+                      <input type="checkbox" name="roleStatus" id="role-final" value="3" onChange={handleRoleFilterChange}
+                        defaultChecked={propsRoleFilter?.includes("3")}
+                      />
+                      <label htmlFor="role-final">
+                        <span className="radio-button"></span>
+                        <span className="radio-description">Final</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         {renderTable()}
       </div>
       

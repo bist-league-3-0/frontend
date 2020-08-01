@@ -90,9 +90,16 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     @media screen and (max-width: #{remToPx($bp-medium)}){
       flex-direction: column;
+    }
+
+    &.force-row {
+      @media screen and (max-width: #{remToPx($bp-medium)}){
+        flex-direction: row;
+      }
     }
 
     .input-radio {
@@ -115,7 +122,7 @@
     }
   }
 
-  input[type="radio"] {
+  input[type="radio"], input[type="checkbox"]{
     display: none;
 
     &:checked + label {

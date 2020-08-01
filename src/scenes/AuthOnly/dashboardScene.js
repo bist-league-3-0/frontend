@@ -120,17 +120,28 @@ const Dashboard = (props) => {
               {/* Admin Routes */}
               {
                 AuthGroups.adminGroup.includes(props?.user?.role)
-                ? <Route path={FrontendRoutes.adminRoutes.payment}>
-                    <Component.BISTHelmet title="Payment"/>
-                    <Component.AdminDashboard.Payment user={userObject}/>
-                  </Route>
-                : null
-              }
-              {
-                AuthGroups.adminGroup.includes(props?.user?.role)
                 ? <Route path={FrontendRoutes.adminRoutes.teams}>
                     <Component.BISTHelmet title="Teams"/>
-                    <Component.AdminDashboard.Teams user={userObject}/>
+                    <Switch>
+                      <Route exact path={FrontendRoutes.adminRoutes.teams}>
+                        <Component.AdminDashboard.Teams user={userObject}/>
+                      </Route>
+                      <Route path={FrontendRoutes.adminRoutes.prelimTeams}>
+                        <Component.AdminDashboard.Teams user={userObject} propsRoleFilter={["2"]}/>
+                      </Route>
+                      <Route path={FrontendRoutes.adminRoutes.finalTeams}>
+                        <Component.AdminDashboard.Teams user={userObject} propsRoleFilter={["3"]}/>
+                      </Route>
+                      <Route path={FrontendRoutes.adminRoutes.paymentUnpaid}>
+                        <Component.AdminDashboard.Teams user={userObject} propsPaymentFilter={["0"]}/>
+                      </Route>
+                      <Route path={FrontendRoutes.adminRoutes.paymentUnverified}>
+                        <Component.AdminDashboard.Teams user={userObject} propsPaymentFilter={["1"]}/>
+                      </Route>
+                      <Route path={FrontendRoutes.adminRoutes.paymentVerified}>
+                        <Component.AdminDashboard.Teams user={userObject} propsPaymentFilter={["2"]}/>
+                      </Route>
+                    </Switch>
                   </Route>
                 : null
               }

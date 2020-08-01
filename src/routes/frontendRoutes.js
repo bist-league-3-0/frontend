@@ -25,9 +25,11 @@ FrontendRoutes.dashRoutes = {
 FrontendRoutes.adminRoutes = {
   teams: FrontendRoutes.dashboard + "teams/",
   payment: FrontendRoutes.dashboard + "payment/",
-  paymentUnpaid: FrontendRoutes.dashboard + "payment/unpaid-teams",
-  paymentUnverified: FrontendRoutes.dashboard + "payment/unverified-teams",
-  paymentVerified: FrontendRoutes.dashboard + "payment/verified-teams",
+  paymentUnpaid: FrontendRoutes.dashboard + "teams/unpaid-teams/",
+  paymentUnverified: FrontendRoutes.dashboard + "teams/unverified-teams/",
+  paymentVerified: FrontendRoutes.dashboard + "teams/verified-teams/",
+  prelimTeams: FrontendRoutes.dashboard + "teams/preliminary-teams/",
+  finalTeams: FrontendRoutes.dashboard + "teams/final-teams"
 }
 
 FrontendRoutes.dashRoutes.addMember = FrontendRoutes.dashRoutes.memberManagement + "add-member/"

@@ -20,13 +20,6 @@ const AdminSidebar = ({state, handleClick, role}) => {
           whenExact={true}
           handleClick={handleClick}
         />
-        <SidebarPill 
-          to={FrontendRoutes.adminRoutes.payment} 
-          text="Payment" 
-          icon={['fas', "money-bill-wave"]}
-          whenExact={true}
-          handleClick={handleClick}
-        />
       </div>
     </div>
   )

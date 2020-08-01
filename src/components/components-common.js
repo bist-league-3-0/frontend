@@ -16,10 +16,6 @@ import BISTFooter from "./bist-footer";
 
 import AdminSidebar from './dashboard/adminSidebar';
 import AdminDashboardLanding from './dashboard/contents/admin/landing';
-import AdminPaymentComponent from './dashboard/contents/admin/payment/paymentComponent';
-import AdminPaymentUnpaid from './dashboard/contents/admin/payment/unpaid';
-import AdminPaymentUnverified from './dashboard/contents/admin/payment/paidUnverified';
-import AdminPaymentVerified from './dashboard/contents/admin/payment/paidVerified';
 import AdminTeamsContent from './dashboard/contents/admin/teams';
 
 const Dashboard = {
@@ -38,10 +34,6 @@ const Dashboard = {
 const AdminDashboard = {
   Sidebar: AdminSidebar,
   Landing: AdminDashboardLanding,
-  Payment: AdminPaymentComponent,
-  PaymentUnpaid: AdminPaymentUnpaid,
-  PaymentUnverified: AdminPaymentUnverified,
-  PaymentVerified: AdminPaymentVerified,
   Teams: AdminTeamsContent
 }
 
