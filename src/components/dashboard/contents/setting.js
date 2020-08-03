@@ -39,10 +39,14 @@ const SettingContent = ({user, refresh}) => {
     )
     .then (
       (res) => {
-        setVerdict({message: res.data.message, status: "success"})
+        setVerdict({message: res.data.message, status: "success, logging out"})
         refresh();
-        setRequestRunning(false)
+        setRequestRunning(false);
         window.location.replace("/");
+        return axios.get(
+          BackendRoutes.logout,
+          {withCredentials: true}
+        );
       }
     )
     .catch(
