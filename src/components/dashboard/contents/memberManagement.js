@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardComponent from './components/components-common';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import gravatar from "gravatar";
 import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import FrontendRoutes from '../../../routes/frontendRoutes';
 import Component from '../../components-common';
+import FlashMessageFixed from './components/flash-message-fixed';
 
 const MemberManagementContent = ({user, refresh}) => {
+  const [verdict, setVerdict] = useState({status: "", message: ""});
+  const [flashMessageTime, setFlashMessageTime] = useState(0);
+
+// RENDER TEAM MEMBERS (MEMBER MANAGEMENT LANDING)
   const renderTeamMembers = user?.teamMember?.map((teamMember, index) => {
-    
     let image = () => {
       if (teamMember?.photoPortrait) {
         let fileObj = user?.file?.filter(obj => {
@@ -45,6 +49,7 @@ const MemberManagementContent = ({user, refresh}) => {
     )
   })
 
+// RENDER ADD MEMBER CARD
   const renderAddMember = () => {
     if (user?.teamAccount?.teamCount < 3) {
       return (
@@ -58,30 +63,37 @@ const MemberManagementContent = ({user, refresh}) => {
     return null;
   }
 
+// RENDER ADD MEMBER ROUTE
   const renderAddMemberRoute = () => {
     if (user?.teamAccount?.teamCount < 3) {
       return (
         <Route path={FrontendRoutes.dashRoutes.addMember}>
           <Component.BISTHelmet title="Add Member"/>
-          <Component.Dashboard.AddTeamMember user={user} refresh={refresh}/>
+          <Component.Dashboard.AddTeamMember 
+            user={user} 
+            refresh={refresh} 
+            setVerdict={setVerdict}
+            setFlashMessageTime={setFlashMessageTime}  
+          />
         </Route>
       )
     }
 
-    return null;
+    return <Redirect to={FrontendRoutes.dashRoutes.memberManagement}/>;
   }
-  
+
+// RENDER MEMBER ROUTES  
   const renderMemberRoutes = () => {
     return (
       <Switch>
         <Route exact path={FrontendRoutes.dashRoutes.memberManagement}>
-        <Component.BISTHelmet title="Member Management"/>
-        <div className="card-container">
-          <div className="card-row">
-            {renderTeamMembers}
-            {renderAddMember()}
+          <Component.BISTHelmet title="Member Management"/>
+          <div className="card-container">
+            <div className="card-row">
+              {renderTeamMembers}
+              {renderAddMember()}
+            </div>
           </div>
-        </div>
         </Route>
         {Object.values(user?.teamMember).map((teamMember, index) => {
           let name = teamMember?.teamMemberName || "";
@@ -93,18 +105,26 @@ const MemberManagementContent = ({user, refresh}) => {
               key={index}
             >
               <Component.BISTHelmet title={`Manage ${firstName}'s data`}/>
-              <Component.Dashboard.MemberConfig user={user} team={user?.teamAccount} teamMember={teamMember} refresh={refresh}/>
+              <Component.Dashboard.MemberConfig 
+                user={user} 
+                team={user?.teamAccount} 
+                teamMember={teamMember} 
+                refresh={refresh}
+                setVerdict={setVerdict}
+                setFlashMessageTime={setFlashMessageTime}
+              />
             </Route>
           )
         })}
         {renderAddMemberRoute()}
         <Route>
-          <Redirect to={FrontendRoutes.dashboard}/>
+          <Redirect to={FrontendRoutes.dashRoutes.memberManagement}/>
         </Route>
       </Switch>
     )
   }
 
+// RETURN MEMBER MANAGEMENT CONTENT
   return (
     <div className="content-wrapper">
       <DashboardComponent.ContentHeader 
@@ -115,6 +135,12 @@ const MemberManagementContent = ({user, refresh}) => {
       <div className="content-body">
         {renderMemberRoutes()}
       </div>
+      <FlashMessageFixed
+        flashMessageTime={flashMessageTime}
+        setFlashMessageTime={setFlashMessageTime}
+        verdict={verdict}
+        setVerdict={setVerdict}
+      />
     </div>
   )
 }

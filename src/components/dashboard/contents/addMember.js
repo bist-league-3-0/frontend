@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import axios from "axios";
 import BackendRoutes from "../../../routes/backendRoutes";
+import { useHistory } from "react-router-dom";
+import FrontendRoutes from "../../../routes/frontendRoutes";
 
-const AddTeamMember = ({user, refresh}) => {
+const AddTeamMember = ({user, refresh, setVerdict, setFlashMessageTime}) => {
   const [memberName, setMemberName] = useState("");
   const [gender, setGender] = useState("Male");
   const [major, setMajor] = useState("");
   const [interest, setInterest] = useState("");
-  const [enrollmentyear, setEnrollmentyear] = useState(2020);
-  const [age, setAge] = useState(18);
+  const [enrollmentyear, setEnrollmentyear] = useState("2020");
+  const [age, setAge] = useState("18");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [line, setLine] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [verdict, setVerdict] = useState({message: "", status: ""});
+  const [linkedin, setLinkedin] = useState("http://linkedin.com/in/");
   const [requestRunning, setRequestRunning] = useState(false);
+
+  let history = useHistory();
 
   const submitAddMember = (e) => {
     e.preventDefault();
     setVerdict({message: "Please wait.", status: "info"});
+    setFlashMessageTime(2000);
 
     if (requestRunning) {
       return;
@@ -59,17 +63,19 @@ const AddTeamMember = ({user, refresh}) => {
     )
     .then (
       (res) => {
-        console.log(res.data);
         setVerdict({message: res.data.message, status: res.data.success ? "success" : "error"});
+        setFlashMessageTime(2000);
         setRequestRunning(false);
         refresh();
+        history.push(FrontendRoutes.dashRoutes.memberManagement);
       }
     )
     .catch(
       (e) => {
-        console.log(e.response.data.message);
-        setVerdict({message: e.response.data.message, status: "error"})
+        setVerdict({message: e.response.data.message, status: "error"});
+        setFlashMessageTime(2000);
         setRequestRunning(false);
+        refresh();
       }
     )
   }
@@ -215,7 +221,7 @@ const AddTeamMember = ({user, refresh}) => {
                 <span className="input-text">
                   (Optional) Please enter a link to your LinkedIn profile, example: http://linkedin.com/in/linkedinyourname
                 </span>
-                <input type="text" name="linkedin" id="linkedin" defaultValue="http://linkedin.com/in/"
+                <input type="text" name="linkedin" id="linkedin" defaultValue={linkedin}
                   onChange={e => setLinkedin(e.target.value)}
                 />
               </div>
@@ -228,9 +234,6 @@ const AddTeamMember = ({user, refresh}) => {
                   className="button-primary-filled"
                   disabled={requestRunning}
                 />
-            </div>
-            <div className="flash-message" status={verdict.status}>
-              {verdict.message}
             </div>
           </form>
         </div>

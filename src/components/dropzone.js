@@ -36,7 +36,7 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
       return false;
     }
 
-    if (file.size >= 8 * 1024 * 1024) {
+    if (file.size >= (8 * 1024 * 1024)) {
       return false;
     }
     

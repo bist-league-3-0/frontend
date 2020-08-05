@@ -3,6 +3,7 @@ import DashboardComponent from '../components/components-common';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Axios from 'axios';
 import BackendRoutes from '../../../../routes/backendRoutes';
+import FlashMessageFixed from '../components/flash-message-fixed';
 // import { NavLink } from 'react-router-dom';
 // import FrontendRoutes from '../../../../routes/frontendRoutes';
 
@@ -57,14 +58,6 @@ const fetchData = () => {
       setFlashMessageTime(2000);
     })
   }, []);
-
-// FLASH MESSAGE TIMER WITH USE EFFECT
-  useEffect(() => {
-    const timeout = flashMessageTime > 0 && setTimeout(() => setFlashMessageTime(flashMessageTime - 10), 10);
-    if (flashMessageTime <= 0) setVerdict({status: "", message: ""});
-
-    return () => clearTimeout(timeout);
-  }, [flashMessageTime]);
 
 // USE EFFECT FOR SEARCH TEAMS BY TEAM NAME
   useEffect(() => {
@@ -251,17 +244,11 @@ const fetchData = () => {
     return <DashboardComponent.NoResultTable/>
   }
 
-// CLOSE FLASH MESSAGE FUNCTION
-  const closeFlashMessage = () => {
-    setVerdict({message: "", status: ""});
-    setFlashMessageTime(0);
-  }
-
 // HANDLE PAYMENT FILTER CHECKBOX CHANGE
   const handlePaymentFilterChange = (e) => {
     let index = paymentFilter.indexOf(e.target.value);
     if (index > -1) {
-      setPaymentFilter(paymentFilter.filter(item => item != e.target.value));
+      setPaymentFilter(paymentFilter.filter(item => item !== e.target.value));
     } else {
       setPaymentFilter(paymentFilter.concat([e.target.value]));
     }
@@ -271,7 +258,7 @@ const fetchData = () => {
   const handleRoleFilterChange = (e) => {
     let index = roleFilter.indexOf(e.target.value);
     if (index > -1) {
-      setRoleFilter(roleFilter.filter(item => item != e.target.value));
+      setRoleFilter(roleFilter.filter(item => item !== e.target.value));
     } else {
       setRoleFilter(roleFilter.concat([e.target.value]));
     }
@@ -360,15 +347,12 @@ const fetchData = () => {
         {renderTable()}
       </div>
       
-      <div className="flash-message fixed" status={verdict.status} onClick={closeFlashMessage}>
-        <div className="flash-message-body">
-          <span className="flash-message-text">
-            {verdict.message}
-          </span>
-          <FontAwesomeIcon icon={["fas", "times-circle"]} className="button-close" size="lg"/>
-        </div>
-        <div className="progress-bar" style={{width: `${flashMessageTime / 20}%`}}/>
-      </div>
+      <FlashMessageFixed
+        flashMessageTime={flashMessageTime}
+        setFlashMessageTime={setFlashMessageTime}
+        verdict={verdict}
+        setVerdict={setVerdict}
+      />
     </div>
   )
 }

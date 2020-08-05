@@ -12,6 +12,7 @@ import AuthGroups from '../../scenes/authGroup';
 const Navigation = (props) => {
   const [state, setState] = useState("inactive");
   const [navigationLink, setNavigationLink] = useState({});
+  const [yOffset, setYOffset] = useState(window.pageYOffset);
 
   const [socialLink, setSocialLink] = useState({
     instagram: {
@@ -202,7 +203,7 @@ const Navigation = (props) => {
   })
   // END OF BODY LINKS RENDER
 
-  // TRY SET ROLE STATE 
+// TRY SET ROLE STATE 
   useEffect(() => {
     if (AuthGroups.authGroup.includes(props?.user?.role)){
       setNavigationLink({
@@ -247,34 +248,45 @@ const Navigation = (props) => {
       });
     }
   }, [props])
-  // END OF SET ROLE STATE
+// END OF SET ROLE STATE
 
-  const navbarRef = useRef(null);
+// SCROLLING EFFECT (Unused, many oppose this idea...)
+  // const navbarRef = useRef(null);
+  // if (FrontendRoutes.showNav.indexOf(useLocation().pathname) < 0) {
+  //   return null
+  // } else {
+  //   var prevScrollpos = window.pageYOffset;
+  //   window.onscroll = () => {
+  //     try {
+  //       var currentScrollPos = window.pageYOffset;
+  //       if (state === "inactive") {
+  //         if (prevScrollpos > currentScrollPos) {
+  //           navbarRef.current.style.top = "0";
+  //         } else {
+  //           navbarRef.current.style.top = "-15rem";
+  //         }
+  //         prevScrollpos = currentScrollPos;
+  //       } else {
+  //         window.scrollTo(0, prevScrollpos);
+  //       }
+  //     } catch {}
+  //   }
+  // }
+
+// Set State of Y Offset
+  useEffect(() => {
+    window.onscroll = () => {
+      setYOffset(window.pageYOffset);
+    }
+  }, [])
 
   if (FrontendRoutes.showNav.indexOf(useLocation().pathname) < 0) {
     return null
-  } else {
-    var prevScrollpos = window.pageYOffset;
-    window.onscroll = () => {
-      try {
-        var currentScrollPos = window.pageYOffset;
-        if (state === "inactive") {
-          if (prevScrollpos > currentScrollPos) {
-            navbarRef.current.style.top = "0";
-          } else {
-            navbarRef.current.style.top = "-15rem";
-          }
-          prevScrollpos = currentScrollPos;
-        } else {
-          window.scrollTo(0, prevScrollpos);
-        }
-      } catch {}
-    }
   }
   
   return(
     <div className="navigation-wrapper">
-      <nav className="navigation-header" id="navbar" ref={navbarRef}>
+      <nav className="navigation-header" id="navbar" bg-active={(yOffset > 0 && state === "inactive").toString()}>
         <div className="header-links">
           <div className="header-link">
             <Hamburger handler={{handleClick, handleChildClick}}/>

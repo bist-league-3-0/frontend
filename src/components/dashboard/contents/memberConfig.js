@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Component from '../../components-common';
 import BackendRoutes from '../../../routes/backendRoutes';
+import { NavLink } from 'react-router-dom';
+import FrontendRoutes from '../../../routes/frontendRoutes';
 
-const MemberConfig = ({user, team, teamMember, refresh}) => {
+const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMessageTime}) => {
   const [memberName, setMemberName] = useState(teamMember?.teamMemberName);
   const [gender, setGender] = useState(teamMember?.gender);
   const [major, setMajor] = useState(teamMember?.major);
@@ -15,16 +17,76 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
   const [line, setLine] = useState(teamMember?.lineID);
   const [linkedin, setLinkedin] = useState(teamMember?.linkedin);
   const [password, setPassword] = useState("");
-  const [changeVerdict, setChangeVerdict] = useState({message: "", status: ""});
-  const [deleteVerdict, setDeleteVerdict] = useState({message: "", status: ""});
   const [requestRunning, setRequestRunning] = useState(false);
 
+// PUSH OBJECT HELPER FUNCTION
+  const pushObject = (object, name, value) => {
+    try {
+      return value ? object[name] = value : null;
+    } catch (e) {
+      console.log(e.message);
+      return null;
+    }
+  }
+
+// GET FILE OBJECT HELPER FUNCTION
+  const getFileObject = (fileObject, condition) => {
+    try {
+      return fileObject?.filter(file => {return file?.fileID === condition}).pop();
+    } catch (e) {
+      console.log(e.message);
+      return null
+    }
+  }
+
+  const renderPortraitString = () => {
+    let tempFiles = {}
+    pushObject(tempFiles, "Portrait File", getFileObject(user?.file, teamMember?.photoPortrait));
+
+    return Object.entries(tempFiles).map((file, index) => {
+      return (
+        <span className="input-text" key={index}>
+          Your file: <a href={file[1]?.filename} target="_blank" rel="noopener noreferrer">{file[0]}</a>
+        </span>
+      )
+    });
+  }
+
+  const renderIDCardString = () => {
+    let tempFiles = {}
+    pushObject(tempFiles, "Student ID Card File", getFileObject(user?.file, teamMember?.studentIDFile));
+
+    return Object.entries(tempFiles).map((file, index) => {
+      return (
+        <span className="input-text" key={index}>
+          Your file: <a href={file[1]?.filename} target="_blank" rel="noopener noreferrer">{file[0]}</a>
+        </span>
+      )
+    });
+  }
+
+  const renderEnrollmentString = () => {
+    let tempFiles = {}
+    pushObject(tempFiles, "Proof of Enrollment File", getFileObject(user?.file, teamMember?.proofOfEnrollment));
+
+    return Object.entries(tempFiles).map((file, index) => {
+      return (
+        <span className="input-text" key={index}>
+          Your file: <a href={file[1]?.filename} target="_blank" rel="noopener noreferrer">{file[0]}</a>
+        </span>
+      )
+    });
+  }
+
+// FIRST NAME STRING
   let name = teamMember?.teamMemberName || "";
   let firstName = name.split(" ")[0].toString();
 
+// ON SUBMIT DELETE MEMBER
   const submitDeleteMember = (e) => {
     e.preventDefault();
-    setDeleteVerdict({message: "Please wait.", status: "info"});
+    setVerdict({message: "Please wait.", status: "info"});
+    setFlashMessageTime(2000);
 
     if (requestRunning) {
       return;
@@ -58,23 +120,29 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
     )
     .then (
       (res) => {
-        setDeleteVerdict({message: res.data.message, status: res.data.success ? "success" : "error"});
+        setVerdict({message: res.data.message, status: res.data.success ? "success" : "error"});
+        setFlashMessageTime(2000);
         refresh();
         setRequestRunning(false);
+        return <NavLink to={FrontendRoutes.dashRoutes.memberManagement}/>
       }
     )
     .catch(
       (e) => {
+        setVerdict({message: e.response.data.message, status: "error"});
+        setFlashMessageTime(2000);
+        refresh();
         setRequestRunning(false);
-        setDeleteVerdict({message: e.response.data.message, status: "error"})
       }
     )
   }
 
+// ON SUBMIT CHANGE MEMBER
   const submitMemberChange = (e) => {
     e.preventDefault();
 
-    setChangeVerdict({message: "Please wait.", status: "info"});
+    setVerdict({message: "Please wait.", status: "info"});
+    setFlashMessageTime(2000);
 
     if (requestRunning) {
       return;
@@ -115,18 +183,23 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
     )
     .then (
       (res) => {
-        setChangeVerdict({message: res.data.message, status: res.data.success ? "success" : "error"});
+        setVerdict({message: res.data.message, status: res.data.success ? "success" : "error"});
+        setFlashMessageTime(2000);
         refresh();
         setRequestRunning(false);
       }
     )
     .catch(
       (e) => {
-        setChangeVerdict({message: e.response.data.message, status: "error"})
+        setVerdict({message: e.response.data.message, status: "error"});
+        setFlashMessageTime(2000);
+        refresh();
+        setRequestRunning(false);
       }
     )
   }
 
+// RENDER DELETE MEMBER
   const renderDeleteMember = () => {
     if (team?.leaderID !== teamMember?.teamMemberID) {
       return (
@@ -161,9 +234,6 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                   disabled={requestRunning}
                 />
               </div>
-              <div className="flash-message" status={deleteVerdict.status}>
-                {deleteVerdict.message}
-              </div>
             </form>
           </div>
           <div className="card medium-only boxsizing-default"/>
@@ -174,9 +244,9 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
     return null;
   } 
 
+// RENDER COMPONENT
   return (
     <div className="card-container">
-
       <div className="card-row">
         <div className="card">
           <form className="form" onSubmit={submitMemberChange}> 
@@ -331,10 +401,6 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                   disabled={requestRunning}
                 />
             </div>
-
-            <div className="flash-message" status={changeVerdict.status}>
-              {changeVerdict.message}
-            </div>
           </form>
         </div>
         
@@ -351,6 +417,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                   <span className="input-text">
                     Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
                   </span>
+                  {renderEnrollmentString()}
                   <Component.DropZone 
                     validTypes={["image/jpeg", "image/png"]}
                     buttonText="UPLOAD PROOF OF ENROLLMENT"
@@ -374,6 +441,7 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
                   <span className="input-heading boxsizing-default">
                     Student ID Card
                   </span>
+                  {renderIDCardString()}
                 </div>
                 <div className="input-group">
                   <span className="input-text">
@@ -400,8 +468,9 @@ const MemberConfig = ({user, team, teamMember, refresh}) => {
               <div className="input-body">
                 <div className="input-group">
                   <span className="input-heading boxsizing-default">
-                    Member 3x4 Portrait Photo
+                    Member 4x3 Portrait Photo
                   </span>
+                  {renderPortraitString()}
                 </div>
                 <div className="input-group">
                   <span className="input-text">

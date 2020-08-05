@@ -3,16 +3,54 @@ import DashboardComponent from './components/components-common';
 import Component from '../../components-common';
 import BackendRoutes from '../../../routes/backendRoutes';
 import axios from 'axios';
+import FlashMessageFixed from './components/flash-message-fixed';
 
 const TeamManagementContent = ({user, refresh}) => {
   const [teamName, setTeamName] = useState(user?.account?.username);
   const [institution, setInstitution] = useState(user?.teamAccount?.institutionName);
   const [verdict, setVerdict] = useState({status: "", message: ""});
+  const [flashMessageTime, setFlashMessageTime] = useState(0);
   const [requestRunning, setRequestRunning] = useState(false);
+
+  const renderFileString = () => {
+    let tempFiles = {}
+
+    // PUSH OBJECT HELPER FUNCTION 
+    const pushObject = (object, name, value) => {
+      try {
+        return value ? object[name] = value : null;
+      } catch (e) {
+        console.log(e.message);
+        return null;
+      }
+    }
+
+    // GET FILE OBJECT HELPER FUNCTION
+    const getFileObject = (fileObject, condition) => {
+      try {
+        return fileObject?.filter(file => {return file?.fileID === condition}).pop();
+      } catch (e) {
+        console.log(e.message);
+        return null
+      }
+    }
+
+    pushObject(tempFiles, "Payment File", getFileObject(user?.file, user?.teamAccount?.proofOfPayment));
+    console.log(tempFiles)
+
+    return Object.entries(tempFiles).map((file, index) => {
+      return (
+        <span className="input-text" key={index}>
+          Your file: <a href={file[1]?.filename} target="_blank" rel="noopener noreferrer">{file[0]}</a>
+        </span>
+      )
+    });
+  }
 
   const submitTeamChange = (e) => {
     e.preventDefault();
     setVerdict({message: "Please wait..", status: "info"});
+    setFlashMessageTime(2000);
     
     if (requestRunning) {
       return;
@@ -48,12 +86,14 @@ const TeamManagementContent = ({user, refresh}) => {
         refresh();
         setRequestRunning(false);
         setVerdict({message: res.data.message, status: res.data.success ? "success" : "error"})
+        setFlashMessageTime(2000);
       }
     )
     .catch(
       (e) => {
         setRequestRunning(false);
         setVerdict({message: e.response.data.message, status: "error"})
+        setFlashMessageTime(2000);
       }
     )
   }
@@ -108,10 +148,6 @@ const TeamManagementContent = ({user, refresh}) => {
                     disabled={requestRunning}
                   />
                 </div>
-
-                <div className="flash-message" status={verdict.status}>
-                  {verdict.message}
-                </div>
               </form>
             </div>
 
@@ -124,6 +160,7 @@ const TeamManagementContent = ({user, refresh}) => {
                     </span>
                   </div>
                   <div className="input-group">
+                    {renderFileString()}
                     <span className="input-text">
                       Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
                     </span>
@@ -145,6 +182,12 @@ const TeamManagementContent = ({user, refresh}) => {
           </div>
         </div>
       </div>
+      <FlashMessageFixed
+        flashMessageTime={flashMessageTime}
+        setFlashMessageTime={setFlashMessageTime}
+        verdict={verdict}
+        setVerdict={setVerdict}
+      />
     </div>
   )
 }

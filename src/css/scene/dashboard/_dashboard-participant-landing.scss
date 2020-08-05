@@ -1,0 +1,98 @@
+.db-participant-landing-wrapper {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+
+  .db-text-map-title {
+    @include typography("h2");
+    @include fluid("margin-bottom", 1.2rem);
+  }
+
+  .db-text-map-card {
+    @include boxsizing-x("component");
+    @include boxsizing-y("component");
+    @include fluid("border-radius", .5rem);
+  }
+
+  .db-text-map-card, .db-text-map {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width: #{remToPx($bp-medium)}) {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+
+    .text-key { 
+      @include typography("sm");
+      width: 100%;
+      text-transform: uppercase;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .text-value { 
+      @include typography("h3");
+      text-align: right;
+      width: 100%;
+      
+      @media screen and (max-width: #{remToPx($bp-medium)}) {
+        text-align: left;        
+      }
+
+      a {
+        color: $color-primary-1;
+        text-decoration: underline !important;
+      }
+    }
+
+    &:not(:last-child) {
+      @include fluid("margin-bottom", 1.2rem);
+    }
+  }
+
+  .db-participant-landing-card {
+    display: flex;
+    flex-direction: column;
+
+    h1, h2, h3 {
+      font-weight: normal;
+    }
+
+    &:not(:last-child) {
+      @include fluid("margin-bottom", 1.6rem, 2rem);
+    }
+
+    .card-header, .card-body:not(.row), .card-column {
+      @include boxsizing-x("component");
+      @include boxsizing-y("component");
+    }
+
+    .card-header {
+      background-color: $color-primary-1;
+      color: $color-white;
+      @include typography("h2");
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+
+      &.row {
+        @media screen and (min-width: #{remToPx($bp-medium)}) {
+          flex-direction: row;
+        }
+      }
+
+      .card-column {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+  }
+}

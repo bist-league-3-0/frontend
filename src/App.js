@@ -36,14 +36,14 @@ const App = () => {
       }
     })
     .catch (e => {
-      console.log("Cannot reach backend server...")
+      console.log("Cannot reach backend server...");
     })
   }, []);
 
   return (
     <div>
       <Router>
-        <Component.Navigation width={width} user={user}/>
+        <Component.Navigation width={width} height={height} user={user}/>
         <Switch>
           {/* General Routes */}
           <Route exact path={FrontendRoutes.home}>

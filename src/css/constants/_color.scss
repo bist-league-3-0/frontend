@@ -51,6 +51,60 @@ $color-primary-washed: lighten($color-primary-1, 68%);
   }
 
   .bg-color-#{$key} {
-    color: $value !important;
+    background-color: $value !important;
   }
 }
+
+@mixin colorError($border-option: "border") {
+  color: $color-error;
+  background-color: $color-error-bg;
+  
+  @if $border-option == "border" {
+    @include fluid("border-width", .1rem);
+    border: solid;
+    border-color: $color-error;
+  }
+}
+
+@mixin colorSuccess($border-option: "border") {
+  color: $color-success;
+  background-color: $color-success-bg;
+  
+  @if $border-option == "border" {
+    @include fluid("border-width", .1rem);
+    border: solid;
+    border-color: $color-success;
+  }
+}
+
+@mixin colorInfo($border-option: "border") {
+  color: $color-info;
+  background-color: $color-info-bg;
+  
+  @if $border-option == "border" {
+    @include fluid("border-width", .1rem);
+    border: solid;
+    border-color: $color-info;
+  }
+}
+
+@mixin colorWarning($border-option: "border") {
+  color: $color-warning;
+  background-color: $color-warning-bg;
+  
+  @if $border-option == "border" {
+    @include fluid("border-width", .1rem);
+    border: solid;
+    border-color: $color-warning;
+  }
+}
+
+.status-style-error {@include colorError("")}
+.status-style-info {@include colorInfo("")}
+.status-style-warning {@include colorWarning("")}
+.status-style-success {@include colorSuccess("")}
+
+.status-style-error-bordered {@include colorError()}
+.status-style-info-bordered {@include colorInfo()}
+.status-style-warning-bordered {@include colorWarning()}
+.status-style-success-bordered {@include colorSuccess()}
