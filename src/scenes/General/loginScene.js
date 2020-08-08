@@ -27,6 +27,10 @@ const LoginScene = (props) => {
     }
 
     setRequestRunning(true);
+    setVerdict({
+      status: "info",
+      message: "Please Wait..",
+    });
 
     await axios
       .post(endpoint, { email, password }, { withCredentials: true })
@@ -42,7 +46,7 @@ const LoginScene = (props) => {
       .catch((err) => {
         setVerdict({
           status: "error",
-          message: err.response.data.message,
+          message: "Something went wrong, Message: " + err.response.data.message,
         });
         setRequestRunning(false);
         return;

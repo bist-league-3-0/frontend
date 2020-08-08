@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import DashboardComponent from './components/components-common';
 import AuthGroups from '../../../scenes/authGroup';
+import { NavLink } from 'react-router-dom';
+import FrontendRoutes from '../../../routes/frontendRoutes';
 
 const DashboardContent = ({user}) => {
   const [teamInfo, setTeamInfo] = useState({});
@@ -208,7 +210,7 @@ const DashboardContent = ({user}) => {
         <div className="db-text-map" key={index}>
           <span className="text-key">{file[0]}</span>
           <span className="text-value">
-            <a href={file[1].filename} target="_blank" rel="noopener noreferrer">Link</a>
+            <a href={`${file[1]?.filename}?ignoreCache=1`} target="_blank" rel="noopener noreferrer">Link</a>
           </span>
         </div>
       )
@@ -240,6 +242,7 @@ const DashboardContent = ({user}) => {
                   Team Information
                 </span>
                 {renderTeamInfo}
+                <NavLink to={FrontendRoutes.dashRoutes.teamManagementEditable} className="button-primary-filled color-white">CHANGE TEAM INFO</NavLink>
               </div>
             </div>
           </div>

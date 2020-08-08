@@ -10,12 +10,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import BackendRoutes from '../routes/backendRoutes';
 
-const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, refresh, context, memberID}) => {
+const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, refresh, context, memberID, setVerdict, setFlashMessageTime, setHideDropzone}) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [validFiles, setValidFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [unsupportedFiles, setUnsupportedFiles] = useState([]);
-  const [verdict, setVerdict] = useState({message: "", status:""});
   const [requestRunning, setRequestRunning] = useState(false);
 
   const fileSize = (size) => {
@@ -55,10 +54,12 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
           setUnsupportedFiles(prevArray => [...prevArray, file]);
         }
       }
-      setVerdict({message:"", status:""})
+      setVerdict({message:"", status:""});
+      setFlashMessageTime(2000);
     }
     else {
-      setVerdict({message: `Sorry, the files limit is ${filesLimit || 1} file(s)`, status:"error"})
+      setVerdict({message: `Sorry, the files limit is ${filesLimit || 1} file(s)`, status:"error"});
+      setFlashMessageTime(2000);
     }
 
   }
@@ -103,6 +104,7 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
     // update unsupportedFiles array
     setUnsupportedFiles([...unsupportedFiles]);
     }
+    document.getElementById(`${idName}`).reset();
   }
 
   const fileInputRef = useRef();
@@ -133,6 +135,7 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
       formData.append('context', context);
       formData.append('memberID', memberID);
       setVerdict({status: "info", message: "Please wait, we are uploading your file"});
+      setFlashMessageTime(2000);
 
       axios.post(
         BackendRoutes.auth,
@@ -153,10 +156,12 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
       .then(
         (res) => {
           setVerdict({status: "success", message: res.data.message});
+          setFlashMessageTime(2000);
           setErrorMessage("");
           setSelectedFiles([])
           setValidFiles([]);
           setUnsupportedFiles([]);
+          setHideDropzone(true);
 
           document.getElementById(`${idName}`).reset();
           refresh();
@@ -166,7 +171,8 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
       )
       .catch(
         (e) => {
-          setVerdict({status:"error", message: e.response.data.message})
+          setVerdict({status:"error", message: e.response.data.message});
+          setFlashMessageTime(2000);
           document.getElementById(`${idName}`).reset();
           setRequestRunning(false);
         }
@@ -220,19 +226,12 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
                 <span className="file-size">{fileSize(data.size)}</span>
                 {data.invalid && <span className="file-error-message">{errorMessage}</span>}
               </div>
-              <div 
-                className="file-remove"
-                onClick={() => removeFile(data.name)}
-              >
+              <button className="file-remove" onClick={(e) => {e.preventDefault(); removeFile(data.name)}} disabled={requestRunning}>
                 <FontAwesomeIcon icon={['fas', 'times-circle']} size="lg"/>
-              </div>
+              </button>
             </div>
           ) 
         }
-
-        <div className="flash-message" status={verdict.status}>
-          {verdict.message}
-        </div>
 
         {
           unsupportedFiles.length === 0 && validFiles.length 

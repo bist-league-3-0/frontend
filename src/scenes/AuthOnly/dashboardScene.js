@@ -94,6 +94,14 @@ const Dashboard = (props) => {
               }
               {
                 AuthGroups.participantGroup.includes(props?.user?.role)
+                ? <Route path={dashRoutes.teamManagementEditable}>
+                    <Component.BISTHelmet title="Team Management"/>
+                    <Component.Dashboard.TeamManagement user={userObject} refresh={refreshUserUpdate} teamEditable={true}/>
+                  </Route>
+                : null
+              }
+              {
+                AuthGroups.participantGroup.includes(props?.user?.role)
                 ? <Route path={dashRoutes.memberManagement}>
                     <Component.BISTHelmet title="Member Management"/>
                     <Component.Dashboard.MemberManagement user={userObject} refresh={refreshUserUpdate}/>

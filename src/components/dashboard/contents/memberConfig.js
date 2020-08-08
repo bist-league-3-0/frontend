@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Component from '../../components-common';
 import BackendRoutes from '../../../routes/backendRoutes';
@@ -18,6 +18,12 @@ const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMess
   const [linkedin, setLinkedin] = useState(teamMember?.linkedin);
   const [password, setPassword] = useState("");
   const [requestRunning, setRequestRunning] = useState(false);
+  const [studentIDFile, setStudentIDFile] = useState({});
+  const [hideStudentIDFileDropzone, setHideStudentIDFileDropzone] = useState(false);
+  const [enrollmentFile, setEnrollmentFile] = useState({});
+  const [hideEnrollmentFileDropzone, setHideEnrollmentFileDropzone] = useState(false);
+  const [portraitFile, setPortraitFile] = useState({});
+  const [hidePortraitFileDropzone, setHidePortraitFileDropzone] = useState(false);
 
 // PUSH OBJECT HELPER FUNCTION
   const pushObject = (object, name, value) => {
@@ -39,40 +45,55 @@ const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMess
     }
   }
 
-  const renderPortraitString = () => {
-    let tempFiles = {}
-    pushObject(tempFiles, "Portrait File", getFileObject(user?.file, teamMember?.photoPortrait));
+// USE EFFECT FOR SET FILE AS A STATE (EXPERIMENTAL)
+  useEffect(() => {
+    let tempPortraitFiles = {}
+    pushObject(tempPortraitFiles, "Portrait File", getFileObject(user?.file, teamMember?.photoPortrait));
+    setPortraitFile(tempPortraitFiles);
+    if (Object.entries(tempPortraitFiles).length !== 0) {
+      setHidePortraitFileDropzone(true);
+    }
 
-    return Object.entries(tempFiles).map((file, index) => {
+    let tempStudentIDFiles = {};
+    pushObject(tempStudentIDFiles, "Student ID Card File", getFileObject(user?.file, teamMember?.studentIDFile));
+    setStudentIDFile(tempStudentIDFiles);
+    if (Object.entries(tempStudentIDFiles).length !== 0) {
+      setHideStudentIDFileDropzone(true);
+    }
+
+    let tempEnrollmentFiles = {};
+    pushObject(tempEnrollmentFiles, "Proof of Enrollment File", getFileObject(user?.file, teamMember?.proofOfEnrollment));
+    setEnrollmentFile(tempEnrollmentFiles);
+    if (Object.entries(tempEnrollmentFiles).length !== 0) {
+      setHideEnrollmentFileDropzone(true);
+    }
+  }, [user]);
+
+  const renderPortraitString = () => {
+    return Object.entries(portraitFile).map((file, index) => {
       return (
         <span className="input-text" key={index}>
-          Your file: <a href={file[1]?.filename} target="_blank" rel="noopener noreferrer">{file[0]}</a>
+          Your file: <a href={`${file[1]?.filename}?ignoreCache=1`} target="_blank" rel="noopener noreferrer">{file[0]}</a>
         </span>
       )
     });
   }
 
   const renderIDCardString = () => {
-    let tempFiles = {}
-    pushObject(tempFiles, "Student ID Card File", getFileObject(user?.file, teamMember?.studentIDFile));
-
-    return Object.entries(tempFiles).map((file, index) => {
+    return Object.entries(studentIDFile).map((file, index) => {
       return (
         <span className="input-text" key={index}>
-          Your file: <a href={file[1]?.filename} target="_blank" rel="noopener noreferrer">{file[0]}</a>
+          Your file: <a href={`${file[1]?.filename}?ignoreCache=1`} target="_blank" rel="noopener noreferrer">{file[0]}</a>
         </span>
       )
     });
   }
 
   const renderEnrollmentString = () => {
-    let tempFiles = {}
-    pushObject(tempFiles, "Proof of Enrollment File", getFileObject(user?.file, teamMember?.proofOfEnrollment));
-
-    return Object.entries(tempFiles).map((file, index) => {
+    return Object.entries(enrollmentFile).map((file, index) => {
       return (
         <span className="input-text" key={index}>
-          Your file: <a href={file[1]?.filename} target="_blank" rel="noopener noreferrer">{file[0]}</a>
+          Your file: <a href={`${file[1]?.filename}?ignoreCache=1`} target="_blank" rel="noopener noreferrer">{file[0]}</a>
         </span>
       )
     });
@@ -412,24 +433,35 @@ const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMess
                   <span className="input-heading boxsizing-default">
                     Proof of Enrollment
                   </span>
-                </div>
-                <div className="input-group">
-                  <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
-                  </span>
                   {renderEnrollmentString()}
-                  <Component.DropZone 
-                    validTypes={["image/jpeg", "image/png"]}
-                    buttonText="UPLOAD PROOF OF ENROLLMENT"
-                    postURL={BackendRoutes.bistAccount.uploadEnrollment}
-                    idName="component-upload-enrollment"
-                    user={user}
-                    refresh={refresh}
-                    context="ENROLLMENT"
-                    filesLimit="1"
-                    memberID={teamMember?.teamMemberID}
-                  />
                 </div>
+                {
+                  hideEnrollmentFileDropzone
+                  ? <div className="input-group">
+                      <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideEnrollmentFileDropzone(false)}}>
+                        REPLACE PROOF OF ENROLLMENT FILE
+                      </button>
+                    </div>
+                  : <div className="input-group">
+                      <span className="input-text">
+                        Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
+                      </span>
+                      <Component.DropZone 
+                        validTypes={["image/jpeg", "image/png"]}
+                        buttonText="UPLOAD PROOF OF ENROLLMENT"
+                        postURL={BackendRoutes.bistAccount.uploadEnrollment}
+                        idName="component-upload-enrollment"
+                        user={user}
+                        refresh={refresh}
+                        context="ENROLLMENT"
+                        filesLimit="1"
+                        memberID={teamMember?.teamMemberID}
+                        setVerdict={setVerdict}
+                        setFlashMessageTime={setFlashMessageTime}
+                        setHideDropzone={setHideEnrollmentFileDropzone}
+                      />
+                    </div>
+                }
               </div>
             </form>
           </div>
@@ -443,22 +475,33 @@ const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMess
                   </span>
                   {renderIDCardString()}
                 </div>
-                <div className="input-group">
-                  <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
-                  </span>
-                  <Component.DropZone 
-                    validTypes={["image/jpeg", "image/png"]}
-                    buttonText="UPLOAD STUDENT ID CARD"
-                    postURL={BackendRoutes.bistAccount.uploadIDCard}
-                    idName="component-upload-studentid"
-                    user={user}
-                    refresh={refresh}
-                    context="ID_CARD"
-                    filesLimit="1"
-                    memberID={teamMember?.teamMemberID}
-                  />
-                </div>
+                {
+                  hideStudentIDFileDropzone
+                  ? <div className="input-group">
+                      <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideStudentIDFileDropzone(false)}}>
+                        REPLACE STUDENT ID CARD FILE
+                      </button>
+                    </div>
+                  : <div className="input-group">
+                      <span className="input-text">
+                        Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
+                      </span>
+                      <Component.DropZone 
+                        validTypes={["image/jpeg", "image/png"]}
+                        buttonText="UPLOAD STUDENT ID CARD"
+                        postURL={BackendRoutes.bistAccount.uploadIDCard}
+                        idName="component-upload-studentid"
+                        user={user}
+                        refresh={refresh}
+                        context="ID_CARD"
+                        filesLimit="1"
+                        memberID={teamMember?.teamMemberID}
+                        setVerdict={setVerdict}
+                        setFlashMessageTime={setFlashMessageTime}
+                        setHideDropzone={setHideStudentIDFileDropzone}
+                      />
+                    </div>
+                }
               </div>
             </form>
           </div>
@@ -472,22 +515,34 @@ const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMess
                   </span>
                   {renderPortraitString()}
                 </div>
-                <div className="input-group">
-                  <span className="input-text">
-                    Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
-                  </span>
-                  <Component.DropZone 
-                    validTypes={["image/jpeg", "image/png"]}
-                    buttonText="UPLOAD PORTRAIT PHOTO"
-                    postURL={BackendRoutes.bistAccount.uploadPortrait}
-                    idName="component-upload-portrait"
-                    user={user}
-                    refresh={refresh}
-                    context="PORTRAIT_PHOTO"
-                    filesLimit="1"
-                    memberID={teamMember?.teamMemberID}
-                  />
-                </div>
+                {
+                  hidePortraitFileDropzone
+                  ? <div className="input-group">
+                      <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHidePortraitFileDropzone(false)}}>
+                        REPLACE STUDENT ID CARD FILE
+                      </button>
+                    </div>
+                  : <div className="input-group">
+                      <span className="input-text">
+                        Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
+                      </span>
+                      <Component.DropZone 
+                        validTypes={["image/jpeg", "image/png"]}
+                        buttonText="UPLOAD PORTRAIT PHOTO"
+                        postURL={BackendRoutes.bistAccount.uploadPortrait}
+                        idName="component-upload-portrait"
+                        user={user}
+                        refresh={refresh}
+                        context="PORTRAIT_PHOTO"
+                        filesLimit="1"
+                        memberID={teamMember?.teamMemberID}
+                        setVerdict={setVerdict}
+                        setFlashMessageTime={setFlashMessageTime}
+                        setHideDropzone={setHidePortraitFileDropzone}
+                      />
+                    </div>
+                }
+                
               </div>
             </form>
           </div>

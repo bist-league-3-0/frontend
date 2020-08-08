@@ -217,6 +217,11 @@ const Navigation = (props) => {
           link: FrontendRoutes.dashboard,
           text: "dashboard"
         },
+        competition: {
+          state: "idle",
+          link: FrontendRoutes.competition,
+          text: "competition"
+        },
         logout: {
           state: "idle",
           link: FrontendRoutes.logout,
@@ -230,6 +235,11 @@ const Navigation = (props) => {
           link: FrontendRoutes.home,
           text: "home"
         },
+        competition: {
+          state: "idle",
+          link: FrontendRoutes.competition,
+          text: "competition"
+        },
         login: {
           state: "idle",
           link: FrontendRoutes.login,
@@ -239,11 +249,6 @@ const Navigation = (props) => {
           state: "idle",
           link: FrontendRoutes.register,
           text: "register"
-        },
-        competition: {
-          state: "idle",
-          link: FrontendRoutes.competition,
-          text: "competition"
         }
       });
     }
@@ -295,7 +300,9 @@ const Navigation = (props) => {
             <p>{state === "active" ? "Back" : "Menu"}</p>
           </div>
         </div>
-        <img src={Asset.LogoBist} alt="BistLogo"/>
+        <NavLink to={FrontendRoutes.home}>
+          <img src={Asset.LogoBist} alt="BistLogo"/>
+        </NavLink>
       </nav>
       <aside className="navigation-aside">
         <div className="aside-body">

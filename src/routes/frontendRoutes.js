@@ -16,6 +16,7 @@ FrontendRoutes.forbidden = FrontendRoutes.home + "forbidden/";
 // Dashboard Routes
 FrontendRoutes.dashRoutes = {
   teamManagement: FrontendRoutes.dashboard + "team-management/",
+  teamManagementEditable: FrontendRoutes.dashboard + "team-management-editable/",
   memberManagement: FrontendRoutes.dashboard + "member-management/",
   prelimFileSubmission: FrontendRoutes.dashboard + "preliminary-submission/",
   finalFileSubmission: FrontendRoutes.dashboard + "final-submission/",

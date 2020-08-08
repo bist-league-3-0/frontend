@@ -209,7 +209,7 @@ const fetchData = () => {
             Object.values(teamFiles).length > 0
             ? Object.entries(teamFiles).map((teamFile, key) => {
                 return (
-                  <a key={key} href={teamFile[1].filename} target="_blank" rel="noopener noreferrer" >
+                  <a key={key} href={`${teamFile[1]?.filename}?ignoreCache=1`} target="_blank" rel="noopener noreferrer" >
                     {teamFile[0]}
                   </a>
                 )
