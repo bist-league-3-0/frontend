@@ -85,6 +85,7 @@ const SettingContent = ({user, refresh}) => {
                     <label htmlFor="password" className="input-label">Change Password</label>
                     <input type="password" name="password" id="password" required
                       onChange={e => setPassword(e.target.value)}
+                      placeholder="Enter New Password"
                     />
                   </div>
                 </div>
