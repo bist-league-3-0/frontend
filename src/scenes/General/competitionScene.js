@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import FrontendRoutes from '../../routes/frontendRoutes';
 
 const CompetitionScene = () => {
   const [prize, setPrize] = useState(0);
@@ -40,9 +42,9 @@ const CompetitionScene = () => {
         <span className="competition-title">
           Competition
         </span>
-        <a href="https://forms.gle/nMQw2R9RcD9J2NcD9" className="button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
-          Early Registration
-        </a>
+        <NavLink to={FrontendRoutes.register} className="title-link button-primary-filled color-white">
+          Registration
+        </NavLink>
       </section>
 
       <section className="competition-prize">

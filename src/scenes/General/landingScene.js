@@ -3,6 +3,8 @@ import Component from '../../components/components-common';
 import Asset from '../../assets/assets-common';
 import SocialRoutes from '../../routes/socialRoutes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink } from 'react-router-dom';
+import FrontendRoutes from '../../routes/frontendRoutes';
 
 const LandingScene = ({width, height}) => {
   return(
@@ -17,9 +19,9 @@ const LandingScene = ({width, height}) => {
             <a href="https://bit.ly/CompetitionGuidebook" className="title-link button-primary-washed-filled" target="_blank" rel="noopener noreferrer">
               Guidebook
             </a>
-            <a href="https://forms.gle/nMQw2R9RcD9J2NcD9" className="title-link button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
-              Early Registration
-            </a>
+            <NavLink to={FrontendRoutes.register} className="title-link button-primary-filled color-white">
+              Registration
+            </NavLink>
           </div>
         </div>
         <div className="hero-links">
