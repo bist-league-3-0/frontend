@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Axios from 'axios';
 import BackendRoutes from '../../../../routes/backendRoutes';
 import FlashMessageFixed from '../components/flash-message-fixed';
+import { NavLink } from 'react-router-dom';
+import FrontendRoutes from '../../../../routes/frontendRoutes';
 // import { NavLink } from 'react-router-dom';
 // import FrontendRoutes from '../../../../routes/frontendRoutes';
 
@@ -17,7 +19,7 @@ const AdminTeamsContent = ({user, propsTeamnameFilter, propsPaymentFilter, props
   const [roleFilter, setRoleFilter] = useState(propsRoleFilter || []);
 
 // FETCH DATA FUNCTION
-const fetchData = () => {
+const fetchData = async () => {
   return Axios.post(
     BackendRoutes.auth,
     {email: user?.account?.email},
@@ -185,8 +187,8 @@ const fetchData = () => {
     let teamFiles = {};
     pushObject(teamFiles, "Payment File", getFileObject(team?.account?.files, team?.proofOfPayment));
     pushObject(teamFiles, "Preliminary File", getFileObject(team?.account?.files, team?.preliminarySubmission));
-    pushObject(teamFiles, "Final File 1", getFileObject(team?.account?.files, team?.final1Submission));
-    pushObject(teamFiles, "Final File 2", getFileObject(team?.account?.files, team?.final2Submission));
+    pushObject(teamFiles, "Final File 1", getFileObject(team?.account?.files, team?.finalSubmission1));
+    pushObject(teamFiles, "Final File 2", getFileObject(team?.account?.files, team?.finalSubmission2));
 
     return (
       <tr key={key}>
@@ -200,6 +202,11 @@ const fetchData = () => {
           </span>
           <span className="team-institution">
             {team?.institutionName}
+          </span>
+          <span className="team-info">
+            <NavLink to={FrontendRoutes.adminRoutes.teams + team?.teamID + "/"}>
+              Team Details
+            </NavLink>
           </span>
         </td>
         {identifyTeamStatus(team?.account?.roleID, team?.accountID)}

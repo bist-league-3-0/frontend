@@ -54,7 +54,7 @@ const TogglePaymentButton = ({user, paymentStatus, teamID, setVerdict, setFlashM
   }
   
   return (
-    <a onClick={sendData} disabled={requestRunning}>
+    <a onClick={sendData} disabled={requestRunning} className="clickable">
       {buttonString()}
     </a>
   )

@@ -191,11 +191,18 @@ const TeamManagementContent = ({user, refresh, teamEditable}) => {
                   </div>
                   {
                     hideDropzone
-                    ? <div className="input-group">
-                        <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideDropzone(false)}}>
-                          REPLACE PROOF OF PAYMENT FILE
-                        </button>
-                      </div>
+                    ? user?.teamStatus?.paymentStatus === 2
+                      ? <div className="input-group">
+                          <span className="input-text">
+                            Your payment file has been verified.
+                          </span>
+                        </div>
+                      : <div className="input-group">
+                          <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideDropzone(false)}}>
+                            REPLACE PROOF OF PAYMENT FILE
+                          </button>
+                        </div>
+                      
                     : <div className="input-group">
                         <span className="input-text">
                           Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)

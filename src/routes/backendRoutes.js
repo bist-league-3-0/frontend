@@ -35,13 +35,15 @@ BackendRoutes.bistAccount = {
   addMember: BistAccount + "member-management/add-member/",
   uploadPreliminary: BistAccount + "submission/upload-preliminary/",
   uploadFinal: BistAccount + "submission/upload-final/",
+  uploadFinal2: BistAccount + "submission/upload-final-2/"
 };
 
 const AdminAccount = BackendRoutes.auth + "admin/";
 
 BackendRoutes.adminAccount = {
-  getDashboardData: AdminAccount + "get-dashboard-data",
+  getDashboardData: AdminAccount + "get-dashboard-data/",
   getTeamsData: AdminAccount + "get-teams/",
+  getTeamData: AdminAccount + "get-teams/by-team-id/",
   toggleTeamRole: AdminAccount + "toggle-team-role/",
   togglePaymentStatus: AdminAccount + "toggle-payment-status/"
 }

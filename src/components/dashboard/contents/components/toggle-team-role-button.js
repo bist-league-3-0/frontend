@@ -52,7 +52,7 @@ const ToggleTeamRoleButton = ({user, role, accountID, setVerdict, setFlashMessag
   }
 
   return (
-    <a onClick={sendData} disabled={requestRunning}>
+    <a onClick={sendData} disabled={requestRunning} className="clickable">
       {buttonString()}
     </a>
   )

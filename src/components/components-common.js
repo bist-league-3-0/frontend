@@ -17,6 +17,7 @@ import BISTFooter from "./bist-footer";
 import AdminSidebar from './dashboard/adminSidebar';
 import AdminDashboardLanding from './dashboard/contents/admin/landing';
 import AdminTeamsContent from './dashboard/contents/admin/teams';
+import AdminTeamInfo from './dashboard/contents/admin/teamInfo';
 
 const Dashboard = {
   Header: DashboardHeader, 
@@ -34,7 +35,8 @@ const Dashboard = {
 const AdminDashboard = {
   Sidebar: AdminSidebar,
   Landing: AdminDashboardLanding,
-  Teams: AdminTeamsContent
+  Teams: AdminTeamsContent,
+  TeamInfo: AdminTeamInfo
 }
 
 const Component = {

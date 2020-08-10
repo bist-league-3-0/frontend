@@ -6,7 +6,9 @@ import FlashMessageFixed from './components/flash-message-fixed';
 
 const FinalFileSubmission = ({user, refresh}) => {
   const [final1File, setFinal1File] = useState({});
+  const [final2File, setFinal2File] = useState({});
   const [hideFinal1Dropzone, setHideFinal1Dropzone] = useState(false);
+  const [hideFinal2Dropzone, setHideFinal2Dropzone] = useState(false);
   const [verdict, setVerdict] = useState({status: "", message: ""});
   const [flashMessageTime, setFlashMessageTime] = useState(0);
 
@@ -32,17 +34,36 @@ const FinalFileSubmission = ({user, refresh}) => {
 
 // USE EFFECT FOR SET FILE AS A STATE (EXPERIMENTAL)
   useEffect(() => {
-    let tempFiles = {};
-    pushObject(tempFiles, "Final File", getFileObject(user?.file, user?.teamAccount?.finalSubmission1));
-    setFinal1File(tempFiles);
-    if (Object.entries(tempFiles).length !== 0) {
+    let tempFinal1File = {};
+    pushObject(tempFinal1File, "1st Final File", getFileObject(user?.file, user?.teamAccount?.finalSubmission1));
+    setFinal1File(tempFinal1File);
+    if (Object.entries(tempFinal1File).length !== 0) {
       setHideFinal1Dropzone(true);
+    }
+
+    let tempFinal2File = {};
+    pushObject(tempFinal2File, "2nd Final File", getFileObject(user?.file, user?.teamAccount?.finalSubmission2));
+    setFinal2File(tempFinal2File);
+    if (Object.entries(tempFinal2File).length !== 0) {
+      setHideFinal2Dropzone(true);
     }
   }, [user]);
 
 // RENDER PAYMENT FILE STRING
   const renderFileString = () => {
     return Object.entries(final1File).map((file, index) => {
+      return (
+        <span className="input-text" key={index}>
+          Your file: <a href={`${file[1]?.filename}?ignoreCache=1`} target="_blank" rel="noopener noreferrer">{file[0]}</a>
+          <br/>
+
+        </span>
+      )
+    });
+  }
+
+  const renderFile2String = () => {
+    return Object.entries(final2File).map((file, index) => {
       return (
         <span className="input-text" key={index}>
           Your file: <a href={`${file[1]?.filename}?ignoreCache=1`} target="_blank" rel="noopener noreferrer">{file[0]}</a>
@@ -70,7 +91,7 @@ const FinalFileSubmission = ({user, refresh}) => {
                 <div className="input-body">
                   <div className="input-group">
                     <span className="input-heading boxsizing-default">
-                      Final File Submission
+                      1st Final File Submission
                     </span>
                     {renderFileString()}
                   </div>
@@ -78,7 +99,7 @@ const FinalFileSubmission = ({user, refresh}) => {
                     hideFinal1Dropzone
                     ? <div className="input-group">
                         <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideFinal1Dropzone(false)}}>
-                          REPLACE FINAL CASE FILE
+                          REPLACE 1st FINAL CASE FILE
                         </button>
                       </div>
                     : <div className="input-group">
@@ -92,7 +113,7 @@ const FinalFileSubmission = ({user, refresh}) => {
                           idName="component-upload-finalfile"
                           user={user}
                           refresh={refresh}
-                          context="FINAL"
+                          context="FINAL_1"
                           filesLimit="1"
                           setVerdict={setVerdict}
                           setFlashMessageTime={setFlashMessageTime}
@@ -104,7 +125,44 @@ const FinalFileSubmission = ({user, refresh}) => {
               </form>
             </div>
 
-            <div className="card medium-only"/>
+            <div className="card">
+              <form className="form" id="component-upload-finalfile-2">
+                <div className="input-body">
+                  <div className="input-group">
+                    <span className="input-heading boxsizing-default">
+                      2nd Final File Submission
+                    </span>
+                    {renderFile2String()}
+                  </div>
+                  {
+                    hideFinal2Dropzone
+                    ? <div className="input-group">
+                        <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideFinal2Dropzone(false)}}>
+                          REPLACE 2nd FINAL CASE FILE
+                        </button>
+                      </div>
+                    : <div className="input-group">
+                        <span className="input-text">
+                          Please drop your file(s) below (Supported Files: .pdf, max: 8MB)
+                        </span>
+                        <Component.DropZone 
+                          validTypes={["application/pdf"]}
+                          buttonText="UPLOAD FILE"
+                          postURL={BackendRoutes.bistAccount.uploadFinal2}
+                          idName="component-upload-finalfile-2"
+                          user={user}
+                          refresh={refresh}
+                          context="FINAL_2"
+                          filesLimit="1"
+                          setVerdict={setVerdict}
+                          setFlashMessageTime={setFlashMessageTime}
+                          setHideDropzone={setHideFinal2Dropzone}
+                        />
+                      </div>
+                  }
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

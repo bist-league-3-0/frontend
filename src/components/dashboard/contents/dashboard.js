@@ -196,8 +196,8 @@ const DashboardContent = ({user}) => {
 
     pushObject(tempFiles, "Payment File", getFileObject(user?.file, user?.teamAccount?.proofOfPayment));
     pushObject(tempFiles, "Preliminary File", getFileObject(user?.file, user?.teamAccount?.preliminarySubmission));
-    pushObject(tempFiles, "Final File 1", getFileObject(user?.file, user?.teamAccount?.final1Submission));
-    pushObject(tempFiles, "Final File 2", getFileObject(user?.file, user?.teamAccount?.final2Submission));
+    pushObject(tempFiles, "Final File 1", getFileObject(user?.file, user?.teamAccount?.finalSubmission1));
+    pushObject(tempFiles, "Final File 2", getFileObject(user?.file, user?.teamAccount?.finalSubmission2));  
     
     let x = user?.teamMember?.map((teamMember) => {
       pushObject(tempFiles, teamMember?.teamMemberName.split(" ")[0].toString() + "'s Portrait Photo", getFileObject(user?.file, teamMember?.photoPortrait));

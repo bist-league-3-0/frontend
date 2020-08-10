@@ -149,6 +149,9 @@ const Dashboard = (props) => {
                       <Route path={FrontendRoutes.adminRoutes.paymentVerified}>
                         <Component.AdminDashboard.Teams user={userObject} propsPaymentFilter={["2"]}/>
                       </Route>
+                      <Route path={FrontendRoutes.adminRoutes.teamInfo}>
+                        <Component.AdminDashboard.TeamInfo user={userObject}/>
+                      </Route>
                     </Switch>
                   </Route>
                 : null

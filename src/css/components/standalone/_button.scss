@@ -98,3 +98,7 @@
 .button-primary-washed-filled {
   @include button("primary-washed-filled");
 }
+
+.clickable {
+  cursor: pointer;
+}
