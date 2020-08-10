@@ -14,7 +14,7 @@ const RegisterScene = (props) => {
   const [gender, setGender] = useState("Male");
   const [major, setMajor] = useState();
   const [interest, setInterest] = useState();
-  const [enrollmentyear, setEnrollmentyear] = useState(2020);
+  const [enrollmentyear, setEnrollmentyear] = useState(new Date(2020, 1, 1).getFullYear().toString());
   const [age, setAge] = useState(18);
   const [phone, setPhone] = useState();
   const [line, setLine] = useState();
