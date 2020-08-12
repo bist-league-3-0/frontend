@@ -51,7 +51,7 @@ const MemberManagementContent = ({user, refresh}) => {
 
 // RENDER ADD MEMBER CARD
   const renderAddMember = () => {
-    if (user?.teamAccount?.teamCount < 3 && user?.teamStatus?.paymentStatus !== 2) {
+    if (user?.teamAccount?.teamCount < 3) {
       return (
         <NavLink to={FrontendRoutes.dashRoutes.addMember} className="card button-primary">
           <FontAwesomeIcon icon={['fas', 'plus-circle']} size="3x"/>
