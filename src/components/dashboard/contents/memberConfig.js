@@ -437,17 +437,11 @@ const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMess
                 </div>
                 {
                   hideEnrollmentFileDropzone
-                  ? user?.teamStatus?.paymentStatus === 2
-                    ? <div className="input-group">
-                        <span className="input-text">
-                          Your proof of enrollment file been verified.
-                        </span>
-                      </div>
-                    : <div className="input-group">
-                        <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideEnrollmentFileDropzone(false)}}>
-                          REPLACE PROOF OF ENROLLMENT FILE
-                        </button>
-                      </div>
+                  ? <div className="input-group">
+                      <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideEnrollmentFileDropzone(false)}}>
+                        REPLACE PROOF OF ENROLLMENT FILE
+                      </button>
+                    </div>
                   : <div className="input-group">
                       <span className="input-text">
                         Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
@@ -483,17 +477,11 @@ const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMess
                 </div>
                 {
                   hideStudentIDFileDropzone
-                  ? user?.teamStatus?.paymentStatus === 2
-                    ? <div className="input-group">
-                        <span className="input-text">
-                          Your student id card file been verified.
-                        </span>
-                      </div>
-                    : <div className="input-group">
-                        <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideStudentIDFileDropzone(false)}}>
-                          REPLACE STUDENT ID CARD FILE
-                        </button>
-                      </div>
+                  ? <div className="input-group">
+                      <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideStudentIDFileDropzone(false)}}>
+                        REPLACE STUDENT ID CARD FILE
+                      </button>
+                    </div>
                   : <div className="input-group">
                       <span className="input-text">
                         Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
@@ -529,17 +517,11 @@ const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMess
                 </div>
                 {
                   hidePortraitFileDropzone
-                  ? user?.teamStatus?.paymentStatus === 2
-                    ? <div className="input-group">
-                        <span className="input-text">
-                          Your portrait photo file been verified.
-                        </span>
-                      </div>
-                    : <div className="input-group">
-                        <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHidePortraitFileDropzone(false)}}>
-                          REPLACE STUDENT ID CARD FILE
-                        </button>
-                      </div>
+                  ? <div className="input-group">
+                      <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHidePortraitFileDropzone(false)}}>
+                        REPLACE STUDENT ID CARD FILE
+                      </button>
+                    </div>
                   : <div className="input-group">
                       <span className="input-text">
                         Please drop your file(s) below (Supported Files: .png, .jpg, and .jpeg; max: 8MB)
