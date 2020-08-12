@@ -44,6 +44,15 @@
     .hero-title-subtext {
       @include typography("h3");
       color: $color-gray-2;
+
+      // .subtext-tag {
+      //   @include fluid("padding", .5rem);
+      //   @include fluid("margin-right", .5rem);
+      //   @include fluid("border-radius", .5rem);
+      //   font-weight: 700;
+      //   color: $color-white;
+      //   background-color: $color-primary-1;
+      // }
     }
 
     .hero-title-links {

@@ -14,7 +14,10 @@ const LandingScene = ({width, height}) => {
         <div className="hero-title">
           <img className="hero-asset" src={Asset.LandingHeroAsset} alt=""/>
           <span className="hero-title-text">BIST League 3.0</span>
-          <span className="hero-title-subtext">Business-IT Case Competition</span>
+          <span className="hero-title-subtext">
+            {/* <span className="subtext-tag">ONLINE</span> */}
+            Business-IT Case Competition
+          </span>
           <div className="hero-title-links">
             <a href="https://bit.ly/CompetitionGuidebook" className="title-link button-primary-washed-filled" target="_blank" rel="noopener noreferrer">
               Guidebook
