@@ -56,7 +56,7 @@ const fetchData = async () => {
       setFlashMessageTime(2000);
     })
     .catch(e => {
-      setVerdict({status:"error", message: `Error: ${e.response.data.message}`});
+      setVerdict({status:"error", message: `There was an error while fetching data..`});
       setFlashMessageTime(2000);
     })
   }, []);
@@ -119,7 +119,7 @@ const fetchData = async () => {
   }
 
 // IDENTIFY PAYMENT STATUS
-  const identifyPaymentStatus = (paymentStatus, teamID) => {
+  const identifyPaymentStatus = (paymentStatus, teamID, sendDate) => {
     if (paymentStatus === 0) return (
       <td className="color-error table-cell-big">
         <FontAwesomeIcon icon={["fas", "exclamation-circle"]}/>
@@ -130,6 +130,10 @@ const fetchData = async () => {
       <td className="color-warning table-cell-big">
         <FontAwesomeIcon icon={["fas", "exclamation-circle"]}/>
         &ensp;Paid, Not Verified<br/>
+        <span className="color-gray-1">
+          Proof of Payment Sent Date: <br/>
+          <small className="color-gray-2">{sendDate}</small><br/><br/>
+        </span>
         <DashboardComponent.TogglePaymentButton
           user={user}
           setFlashMessageTime={setFlashMessageTime}
@@ -144,6 +148,10 @@ const fetchData = async () => {
       <td className="color-success table-cell-big">
         <FontAwesomeIcon icon={["fas", "check-circle"]}/>
         &ensp;Paid and Verified<br/>
+        <span className="color-gray-1">
+          Proof of Payment Sent Date: <br/>
+          <small className="color-gray-2">{sendDate}</small><br/><br/>
+        </span>
         <DashboardComponent.TogglePaymentButton
           user={user}
           setFlashMessageTime={setFlashMessageTime}
@@ -210,7 +218,7 @@ const fetchData = async () => {
           </span>
         </td>
         {identifyTeamStatus(team?.account?.roleID, team?.accountID)}
-        {identifyPaymentStatus(team?.teamStatus?.paymentStatus, team?.teamID)}
+        {identifyPaymentStatus(team?.teamStatus?.paymentStatus, team?.teamID, new Date(teamFiles["Payment File"]?.updatedAt?.toString()).toString())}
         <td className="table-cell-big cell-files-data">
           {
             Object.values(teamFiles).length > 0
