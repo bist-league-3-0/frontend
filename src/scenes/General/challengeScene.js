@@ -1,12 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const challengeScene = ({width, height}) => {
+const ChallengeScene = ({width, height}) => {
+  const [prize, setPrize] = useState(0);
+
+  const formatMoney = (amount, decimalCount = 2, decimal = ",", thousands = ".") => {
+    try {
+      decimalCount = Math.abs(decimalCount);
+      decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+  
+      const negativeSign = amount < 0 ? "-" : "";
+  
+      let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+      let j = (i.length > 3) ? i.length % 3 : 0;
+  
+      return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands);
+    } catch (e) {
+      console.log(e)
+    }
+  };
+
+  useEffect(() => {
+    let timer = setTimeout(
+      () => {
+        if (prize < 750000) {
+          setPrize(prize + 10000);
+        }
+
+        if (prize >= 750000) {
+          clearInterval(timer)
+          clearTimeout(timer)
+        }        
+      }, 10
+    )
+  }, [prize]);
+
   return (
     <section className="challenge-scene">
       <section className="challenge-hero">
         <span className="challenge-title">
           Hear Us Out Challenge
+        </span>
+      </section>
+
+      <section className="challenge-prize">
+        <span className="prize-title">
+          Total Prize
+        </span>
+        <span className="prize-amount">
+          IDR {formatMoney(prize)},-
         </span>
       </section>
 
@@ -103,4 +145,4 @@ const challengeScene = ({width, height}) => {
   );
 }
 
-export default challengeScene;
+export default ChallengeScene;
