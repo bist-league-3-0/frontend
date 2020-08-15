@@ -85,12 +85,14 @@ const LandingScene = ({width, height}) => {
           <Component.EventsCard
             bg_key="BISTalks"
             title="BISTalks"
-            subtitle="Meet the professionals"
+            subtitle="Learn Business Case tricks live on instagram"
+            link={FrontendRoutes.BISTalks}
           />
           <Component.EventsCard
             bg_key="Challenges"
-            title="Challenges"
-            subtitle="Watch out for prizes"
+            title="Hear Us Out Challenge"
+            subtitle="Create an infographic, win prizes!"
+            link={FrontendRoutes.challenges}
           />
         </div>
       </section>

@@ -12,6 +12,7 @@ import CompetitionHeroBg from "./competition/competition-hero-bg.png";
 import ScrollerArrow from "./ScrollDown.svg";
 import STEI_LOGO from "./STEI_LOGO.png";
 import STI_LOGO from "./STI_Logo.png";
+import BISTalksSpeaker1 from "./BISTalks/BISTalks1-speaker.png";
 
 const Asset = {
   LogoBist,
@@ -27,7 +28,8 @@ const Asset = {
   CompetitionHeroBg,
   ScrollerArrow,
   STEI_LOGO,
-  STI_LOGO
+  STI_LOGO,
+  BISTalksSpeaker1
 };
 
 export default Asset;

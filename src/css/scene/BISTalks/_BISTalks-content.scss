@@ -1,4 +1,89 @@
-.BISTalks-scene {
+.BISTalks-content {
+  @include boxsizing-x("scene");
+  @include boxsizing-y("");
   display: flex;
   flex-direction: column;
+
+  .BISTalks-info {
+    display: flex;
+    flex-direction: column;
+
+    .info-header{
+      @include fluid("margin-bottom", 2rem);
+
+      .info-title{
+        @include typography("h1");
+        color: $color-black;
+      }
+  
+      .info-subtitle{
+        @include typography("sm");
+        color: $color-gray-2;
+      }
+    }
+
+    .info-body {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .info-card {
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+
+    @media screen and (max-width:#{remToPx($bp-medium)}) {
+      flex-direction: column-reverse;
+    }
+
+    .card-image-container {
+      @include boxsizing-x("component");
+      @include boxsizing-y("component");
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      @media screen and (max-width:#{remToPx($bp-medium)}) {
+        justify-content: center;
+      }
+
+      .card-image{
+        @include fluid("height", 16rem, 28rem);
+      }
+    }
+
+    .card-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .card-text {
+        @include fluid("margin-bottom", 2rem);
+
+        ol {
+          @include fluid("padding-left", 2rem);
+        }
+
+        .text-title {
+          @include typography("h2");
+          @include fluid("margin-bottom", .5rem);
+          color: $color-black;
+        }
+
+        .text-subtitle {
+          @include typography("h3");
+          @include fluid("margin-bottom", .5rem);
+          color: $color-black;
+        }
+  
+        .text-subtext {
+          @include typography("sm");
+          color: $color-gray-2;
+        }
+      }
+    }
+  }
 }

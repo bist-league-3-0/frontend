@@ -1,7 +1,9 @@
 .BISTalks-scene {
+  @include typography("p");
   display: flex;
   flex-direction: column;
 
   @import "./BISTalks/BISTalks-hero";
   @import "./BISTalks/BISTalks-content";
+
 }

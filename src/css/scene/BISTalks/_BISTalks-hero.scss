@@ -25,7 +25,22 @@
 
   .BISTalks-title {
     @include typography("hero-title");
-    @include fluid("margin-bottom", 1.2rem, 2rem);
-    color: $color-gray-1
+    @include fluid("margin-bottom", 1.2rem);
+    color: $color-gray-1;
+  }
+
+  .BISTalks-subtitle {
+    @include typography("p");
+    color: $color-gray-2;
+
+    a {
+      color: $color-primary-1;
+      text-decoration: underline !important;
+      transition: $defaultTransition;
+
+      &:hover{ 
+        color: $color-primary-2;
+      }
+    }
   }
 }

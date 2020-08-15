@@ -1,0 +1,31 @@
+.challenge-hero {
+  @include boxsizing-x("scene");
+  @include boxsizing-y("scene");
+  min-height: 50vh;
+  background:
+    linear-gradient(120deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0) 70%, #FFFFFF 100%),
+    url("../../../assets/challenge/challenge-hero.png")
+    no-repeat 55% 10%;
+  
+  @media screen and (max-width: #{remToPx($bp-medium)}) {
+    background:
+      linear-gradient(210deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.5) 70%, #FFFFFF 100%),
+      url("../../../assets/challenge/challenge-hero.png")
+      no-repeat 80% 10%;
+  }
+
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  .challenge-title {
+    @include typography("hero-title");
+    @include fluid("margin-bottom", 1.2rem, 2rem);
+    color: $color-gray-1
+  }
+}

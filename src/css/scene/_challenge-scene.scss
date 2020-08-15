@@ -1,0 +1,7 @@
+.challenge-scene {
+  display: flex;
+  flex-direction: column;
+
+  @import "./challenge/challenge-hero";
+  @import "./challenge/challenge-content";
+}

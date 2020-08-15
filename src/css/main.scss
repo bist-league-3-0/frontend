@@ -29,9 +29,11 @@
 @import "./components/standalone/table";
 @import "./components/standalone/flex-grid-system";
 @import "./components/standalone/timeline";
+@import "./components/standalone/selectors";
 
 // Scene Specific Modules
 @import "./scene/BISTalks-scene";
+@import "./scene/challenge-scene";
 @import "./scene/landing-scene";
 @import "./scene/competition-scene";
 @import "./scene/login-scene";

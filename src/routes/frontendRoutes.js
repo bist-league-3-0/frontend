@@ -46,7 +46,9 @@ FrontendRoutes.showNav = [
   FrontendRoutes.register,
   FrontendRoutes.forgotPassword,
   FrontendRoutes.forgotPasswordValidate,
-  FrontendRoutes.competition
+  FrontendRoutes.competition,
+  FrontendRoutes.BISTalks,
+  FrontendRoutes.challenges
 ]
 
 module.exports = FrontendRoutes;

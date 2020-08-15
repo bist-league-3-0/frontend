@@ -1,4 +1,4 @@
-.competition-body {
+.challenge-content {
   @include boxsizing-x("scene");
   @include boxsizing-y("");
   display: flex;
@@ -34,31 +34,48 @@
     }
   }
 
-  ul {
+  ul, ol {
     @include fluid("padding-left", 2rem, 2rem);
     @include fluid("margin-bottom", 1.2rem, 2rem);
   }
+
+  a:not(.button-primary-filled) {
+    color: $color-primary-1;
+    text-decoration: underline !important;
+    transition: $defaultTransition;
+
+    &:hover{ 
+      color: $color-primary-2;
+    }
+  }
 }
 
-.competition-description {
+.challenge-description {
   display: flex;
   flex-direction: row;
 }
 
-.competition-fee {
+.challenge-fee {
   @include fluid("margin-bottom", 4rem, 5rem);
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.competition-requirement {
+.challenge-info {
+  @include fluid("margin-bottom", 4rem, 5rem);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.competition-registration-fee {
+.challenge-requirement {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.challenge-registration-fee {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

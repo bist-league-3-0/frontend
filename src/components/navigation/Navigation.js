@@ -222,6 +222,16 @@ const Navigation = (props) => {
           link: FrontendRoutes.competition,
           text: "competition"
         },
+        BISTalks: {
+          state: "idle",
+          link: FrontendRoutes.BISTalks,
+          text: "BISTalks"
+        },
+        "Hear Us Out Challenge": {
+          state: "idle",
+          link: FrontendRoutes.challenges,
+          text: "Hear Us Out Challenge"
+        },
         logout: {
           state: "idle",
           link: FrontendRoutes.logout,
@@ -239,6 +249,16 @@ const Navigation = (props) => {
           state: "idle",
           link: FrontendRoutes.competition,
           text: "competition"
+        },
+        BISTalks: {
+          state: "idle",
+          link: FrontendRoutes.BISTalks,
+          text: "BISTalks"
+        },
+        "Hear Us Out Challenge": {
+          state: "idle",
+          link: FrontendRoutes.challenges,
+          text: "Hear Us Out Challenge"
         },
         login: {
           state: "idle",

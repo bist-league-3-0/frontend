@@ -1,0 +1,37 @@
+.selector-group {
+  @include fluid("padding", .5rem);
+  @include fluid("border-width", .2rem);
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  border-bottom: solid;
+  border-color: $color-primary-1;
+
+  & > *:not(:first-child) {
+    @include fluid("margin-left", 1rem);
+  }
+
+  &:not(:last-child){
+    @include fluid("margin-bottom", 2rem);
+  }
+
+  .selector-pill {
+    @include boxsizing-x("component");
+    @include boxsizing-y("component");
+    @include fluid("border-radius", 1rem);
+    transition: $defaultTransition;
+    color: $color-primary-1;
+    text-decoration: underline !important;
+    cursor: pointer;
+
+    &[isActive=false]:hover {
+      background-color: $color-primary-washed;
+    }
+    
+    &[isActive=true] {
+      background-color: $color-primary-1;
+      color: $color-white;
+      text-decoration: none !important;
+    }
+  }
+}

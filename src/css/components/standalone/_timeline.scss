@@ -16,6 +16,7 @@
 
     .content-title {
       @include typography("h3");
+      text-align: center;
       color: $color-primary-1;
     }
 

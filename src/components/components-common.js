@@ -14,6 +14,8 @@ import DropZone from './dropzone';
 import BISTHelmet from "./bist-helmet";
 import BISTFooter from "./bist-footer";
 import EventsCard from "./landing/events-card";
+import BISTalks1Component from "./BISTalks/bistalks1";
+import BISTalks2Component from "./BISTalks/bistalks2";
 
 import AdminSidebar from './dashboard/adminSidebar';
 import AdminDashboardLanding from './dashboard/contents/admin/landing';
@@ -48,7 +50,9 @@ const Component = {
   DropZone,
   BISTHelmet,
   BISTFooter,
-  EventsCard
+  EventsCard,
+  BISTalks1Component,
+  BISTalks2Component
 }
 
 export default Component;

@@ -61,9 +61,11 @@ const App = () => {
           </Route>
           <Route path={FrontendRoutes.BISTalks}>
             <Scene.BISTalksScene width={width} height={height}/>
+            <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.challenges}>
             <Scene.ChallengeScene width={width} height={height}/>
+            <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.register}>
             <Scene.RegisterScene />

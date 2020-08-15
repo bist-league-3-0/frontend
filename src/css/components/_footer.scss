@@ -53,6 +53,16 @@
         @include fluid("margin-top", 3rem, 3rem);
         text-align: left;
       }
+
+      .contact-list-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+
+        & > *:not(:last-child) {
+          @include fluid("margin-right", 2rem, 4rem);
+        }
+      }
   
       .contact-list {
         @include fluid("margin-bottom", 1.2rem, 2rem);
@@ -70,10 +80,14 @@
           .contact-wrapper-element:not(:first-child) {
             @include fluid("margin-top", .2rem, .4rem)
           }
+
+          .contact-name {
+            font-weight: bold;
+          }
         }
   
         .contact-title {
-          @include typography("h3");
+          @include typography("h2");
           color: $color-gray-1;
         }
   
