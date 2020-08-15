@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import FrontendRoutes from '../../routes/frontendRoutes';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const challengeScene = ({width, height}) => {

@@ -15,6 +15,7 @@ import "./css/main.scss";
 import * as Scene from "./scenes/scene-common";
 import Component from './components/components-common';
 import AuthGroups from "./scenes/authGroup";
+import ScrollToTop from "./components/scroll-to-top";
 // End of Common Files
 
 // App Class Declaration
@@ -43,6 +44,7 @@ const App = () => {
   return (
     <div>
       <Router>
+        <ScrollToTop/>
         <Component.Navigation width={width} height={height} user={user}/>
         <Switch>
           {/* General Routes */}
@@ -60,10 +62,12 @@ const App = () => {
             <Scene.LoginScene user={user}/>
           </Route>
           <Route path={FrontendRoutes.BISTalks}>
+            <Component.BISTHelmet title="BISTalks"/>
             <Scene.BISTalksScene width={width} height={height}/>
             <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.challenges}>
+            <Component.BISTHelmet title="Hear Us Out"/>
             <Scene.ChallengeScene width={width} height={height}/>
             <Component.BISTFooter width={width} height={height}/>
           </Route>

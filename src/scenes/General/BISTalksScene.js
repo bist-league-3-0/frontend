@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import FrontendRoutes from '../../routes/frontendRoutes';
 import Component from '../../components/components-common';
 import SocialRoutes from '../../routes/socialRoutes';
 

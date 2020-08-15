@@ -21,6 +21,7 @@ import AdminSidebar from './dashboard/adminSidebar';
 import AdminDashboardLanding from './dashboard/contents/admin/landing';
 import AdminTeamsContent from './dashboard/contents/admin/teams';
 import AdminTeamInfo from './dashboard/contents/admin/teamInfo';
+import ScrollToTop from './scroll-to-top';
 
 const Dashboard = {
   Header: DashboardHeader, 
@@ -52,7 +53,8 @@ const Component = {
   BISTFooter,
   EventsCard,
   BISTalks1Component,
-  BISTalks2Component
+  BISTalks2Component,
+  ScrollToTop
 }
 
 export default Component;
