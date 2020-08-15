@@ -8,7 +8,9 @@ FrontendRoutes.register = FrontendRoutes.home + "register/";
 FrontendRoutes.forgotPassword = FrontendRoutes.home + "forgot-password/";
 FrontendRoutes.forgotPasswordValidate = FrontendRoutes.home + "forgot-password/validate";
 FrontendRoutes.dashboard = FrontendRoutes.home + "dashboard/";
-FrontendRoutes.competition = FrontendRoutes.home + "competition/"
+FrontendRoutes.competition = FrontendRoutes.home + "competition/";
+FrontendRoutes.BISTalks = FrontendRoutes.home + "BISTalks/";
+FrontendRoutes.challenges = FrontendRoutes.home + "challenges/";
 
 // Error Routes
 FrontendRoutes.forbidden = FrontendRoutes.home + "forbidden/";

@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import FrontendRoutes from '../../routes/frontendRoutes';
 
 const LandingScene = ({width, height}) => {
+  
   return(
     <section className="landing-scene">
       <section className="landing-hero">
@@ -65,6 +66,32 @@ const LandingScene = ({width, height}) => {
         </div>
         <div className="theme-image-wrapper">
           <img className="theme-image" src={Asset.LandingThemeAsset} alt=""/>
+        </div>
+      </section>
+
+      <section className="landing-events">
+        <div className="events-title">
+          Our Events
+        </div>
+        <div className="events-card-container">
+          <Component.EventsCard
+            bg_key="Competition"
+            title="Competition"
+            subtitle="Online Business-IT Case"
+            link={FrontendRoutes.competition}
+          />
+        </div>
+        <div className="events-card-container">
+          <Component.EventsCard
+            bg_key="BISTalks"
+            title="BISTalks"
+            subtitle="Meet the professionals"
+          />
+          <Component.EventsCard
+            bg_key="Challenges"
+            title="Challenges"
+            subtitle="Watch out for prizes"
+          />
         </div>
       </section>
     </section>

@@ -13,6 +13,7 @@ import SettingContent from "./dashboard/contents/setting";
 import DropZone from './dropzone';
 import BISTHelmet from "./bist-helmet";
 import BISTFooter from "./bist-footer";
+import EventsCard from "./landing/events-card";
 
 import AdminSidebar from './dashboard/adminSidebar';
 import AdminDashboardLanding from './dashboard/contents/admin/landing';
@@ -46,7 +47,8 @@ const Component = {
   Hamburger,
   DropZone,
   BISTHelmet,
-  BISTFooter
+  BISTFooter,
+  EventsCard
 }
 
 export default Component;

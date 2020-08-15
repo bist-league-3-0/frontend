@@ -4,6 +4,8 @@ import RegisterScene from './General/registerScene';
 import ForgotPasswordScene from "./General/forgotPasswordScene";
 import ForgotPasswordValidateScene from "./General/forgotPasswordValidateScene";
 import CompetitionScene from "./General/competitionScene";
+import BISTalksScene from "./General/BISTalksScene";
+import ChallengeScene from "./General/challengeScene";
 
 // Errors
 import ErrorScene from "./Error/errorScene";
@@ -14,6 +16,8 @@ import Dashboard from './AuthOnly/dashboardScene';
 export {
   LandingScene,
   CompetitionScene,
+  BISTalksScene,
+  ChallengeScene,
   LoginScene,
   RegisterScene,
   Dashboard,

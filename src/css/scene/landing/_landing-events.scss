@@ -1,0 +1,110 @@
+.landing-events {
+  @include boxsizing-x("scene");
+  @include boxsizing-y("");
+  @include typography("p");
+  min-height: 90vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: #{remToPx($bp-medium)}){
+    @include fluidpaddingx(0rem, 0rem);
+  }
+
+  a {
+    color: $color-primary-1;
+    text-decoration: underline !important;
+    transition: $defaultTransition;
+    cursor: pointer;
+    
+    &:hover {
+      color: $color-primary-2;
+    }
+  }
+
+  .events-title {
+    @include typography("h1");
+    @include fluid("margin-bottom", 2rem);
+
+    @media screen and (max-width: #{remToPx($bp-medium)}){
+      @include boxsizing-x("scene");
+    }
+  }
+
+  .events-card-container {
+    width: 100%;
+    @include fluid("min-height", 20rem, 30rem);
+
+    display: flex;
+    flex-direction: row;
+
+    @media screen and (max-width: #{remToPx($bp-medium)}){
+      flex-direction: column;
+    }
+  }
+
+  .events-card {
+    @include boxsizing-x("component");
+    @include boxsizing-y("component");
+    width: inherit;
+    min-height: inherit;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    @media screen and (max-width: #{remToPx($bp-medium)}){
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: stretch;
+      @include boxsizing-x("scene");
+    }
+
+    @media screen and (min-width: #{remToPx($bp-medium)}){
+      @include fluidmargin(2rem, 2rem);
+    }
+
+    .card-text {
+      display: flex;
+      flex-direction: column;
+
+      .card-title {
+        @include typography("h2");
+      }
+
+      .card-subtitle {
+        @include typography("p");
+        color: $color-gray-2;
+      }
+    }
+
+    &#BISTalks{
+      background:
+        linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%),
+        url("../../../assets/landing/landing-events-BISTalks.png")
+        no-repeat 50% 10%;
+      
+      background-size: cover;
+    }
+    
+    &#Challenges{
+      background:
+        linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%),
+        url("../../../assets/landing/landing-events-challenges.png")
+        no-repeat center;
+      
+      background-size: cover;
+    }
+
+    &#Competition{
+      background:
+        linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%),
+        url("../../../assets/landing/landing-events-competition.png")
+        no-repeat center;
+      
+      background-size: cover;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.BISTalks-scene {
+  display: flex;
+  flex-direction: column;
+
+  @import "./BISTalks/BISTalks-hero";
+  @import "./BISTalks/BISTalks-content";
+}

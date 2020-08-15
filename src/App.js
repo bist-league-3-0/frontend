@@ -48,16 +48,22 @@ const App = () => {
           {/* General Routes */}
           <Route exact path={FrontendRoutes.home}>
             <Component.BISTHelmet title="Landing"/>
-            <Scene.LandingScene height={height}/>
+            <Scene.LandingScene width={width} height={height}/>
             <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.competition}>
             <Component.BISTHelmet title="Competition"/>
-            <Scene.CompetitionScene/>
+            <Scene.CompetitionScene width={width} height={height}/>
             <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.login}>
             <Scene.LoginScene user={user}/>
+          </Route>
+          <Route path={FrontendRoutes.BISTalks}>
+            <Scene.BISTalksScene width={width} height={height}/>
+          </Route>
+          <Route path={FrontendRoutes.challenges}>
+            <Scene.ChallengeScene width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.register}>
             <Scene.RegisterScene />
@@ -72,7 +78,7 @@ const App = () => {
           {/* Auth Routes */}
           <Route path={FrontendRoutes.dashboard}>
             {AuthGroups.authGroup.includes(user?.role)
-              ? <Scene.Dashboard user={user} width={width}/> 
+              ? <Scene.Dashboard user={user} width={width} height={height}/> 
               : <Redirect to={FrontendRoutes.login}/>
             }
           </Route> 

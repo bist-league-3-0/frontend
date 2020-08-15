@@ -12,6 +12,7 @@
 
   @media screen and (max-width: #{remToPx($bp-medium)}) {
     flex-direction: column-reverse;
+    min-height: 0;
   }
 
   .theme-text {
@@ -22,6 +23,7 @@
     .text-title {
       @include typography("h1");
       @include fluid("margin-bottom", 2rem);
+      color: $color-black;
     }
 
     .text-subtitle {

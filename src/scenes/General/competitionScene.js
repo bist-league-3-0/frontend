@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import FrontendRoutes from '../../routes/frontendRoutes';
 
-const CompetitionScene = () => {
+const CompetitionScene = ({width, height}) => {
   const [prize, setPrize] = useState(0);
 
   const formatMoney = (amount, decimalCount = 2, decimal = ",", thousands = ".") => {
@@ -53,7 +53,7 @@ const CompetitionScene = () => {
         </span>
         <span className="prize-amount">
           {/* Rp20.000.000,- */}
-          Rp{formatMoney(prize)},-
+          IDR {formatMoney(prize)},-
         </span>
       </section>
 
@@ -68,14 +68,14 @@ const CompetitionScene = () => {
                   <span className="registration-title">Early Bird</span>
                   <span className="registration-date">July 27 &ndash; August 10, 2020</span>
                 </div>
-                <span className="registration-fee">Rp250.000,-</span>
+                <span className="registration-fee">IDR 250.000,-</span>
               </div>
               <div className="competition-registration-fee">
                 <div className="registration-description">
                   <span className="registration-title">Normal</span>
                   <span className="registration-date">August 11 &ndash; September 22, 2020</span>
                 </div>
-                <span className="registration-fee">Rp300.000,-</span>
+                <span className="registration-fee">IDR 300.000,-</span>
               </div>
             </div>
 
@@ -108,7 +108,7 @@ const CompetitionScene = () => {
               <div className="timeline-separator"/>
               <div className="timeline-content">
                 <span className="content-title">
-                  September 23 &mdash; October 9, 2020
+                  September 26 &mdash; October 13, 2020
                 </span>
                 <span className="content-date">
                   Preliminary Round
@@ -117,7 +117,7 @@ const CompetitionScene = () => {
               <div className="timeline-separator"/>
               <div className="timeline-content">
                 <span className="content-title">
-                  October 21, 2020
+                  November 2, 2020
                 </span>
                 <span className="content-date">
                   Finalist Announcement
@@ -126,7 +126,7 @@ const CompetitionScene = () => {
               <div className="timeline-separator"/>
               <div className="timeline-content">
                 <span className="content-title">
-                  October 30 &mdash; November 1, 2020
+                  November 13 &mdash; November 15, 2020
                 </span>
                 <span className="content-date">
                   Main Event and Final Round (Online)

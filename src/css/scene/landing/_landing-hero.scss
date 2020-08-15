@@ -39,6 +39,7 @@
 
     .hero-title-text {
       @include typography("hero-title");
+      color: $color-black;
     }
 
     .hero-title-subtext {
