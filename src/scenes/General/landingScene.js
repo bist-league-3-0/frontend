@@ -80,12 +80,6 @@ const LandingScene = ({width, height}) => {
             subtitle="The Business IT Case Competition will all be held online and consist of the registration phase, preliminary rounds, and final rounds."
             link={FrontendRoutes.competition}
           />
-          {/* <Component.EventsCard
-            bg_key="Webinar"
-            title="Webinar"
-            subtitle="The BIST League 3.0 webinars are seminars that will be held online and consist of two sessions and several speakers."
-            link={FrontendRoutes.webinar}
-          /> */}
         </div>
         <div className="events-card-container">
           <Component.EventsCard
