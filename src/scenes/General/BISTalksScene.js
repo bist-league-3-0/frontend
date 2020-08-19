@@ -2,8 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Component from '../../components/components-common';
 import SocialRoutes from '../../routes/socialRoutes';
 
-const BISTalksScene = ({width, height}) => {
+const BISTalksScene = ({width, height, version}) => {
   const [active, setActive] = useState(1);
+
+  useEffect(() => {
+    if (version) {
+      setActive(version);
+    }
+    
+  }, [version])
 
   return (
     <section className="BISTalks-scene">

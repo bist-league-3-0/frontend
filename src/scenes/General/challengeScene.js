@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SocialRoutes from '../../routes/socialRoutes';
 
 const ChallengeScene = ({width, height}) => {
   const [prize, setPrize] = useState(0);
@@ -82,9 +83,14 @@ const ChallengeScene = ({width, height}) => {
               <p>
                 This event is free. You can submit your infographic from August 13th, 2020 until September 12th 2020.
               </p>
-              <a href="http://bit.ly/HearUsOutChallenge" className="button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={['fab', 'google-drive']}/>&ensp;More Details
-              </a>
+              <div className="button-group">
+                <a href={SocialRoutes.challengePosterInfo} className="button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon={['fab', 'google-drive']}/>&ensp;More Details
+                </a>
+                <a href={SocialRoutes.challengePosterSubmission} className="button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon={['fas', 'file-upload']}/>&ensp;Submission
+                </a>
+              </div>
             </div>
 
             <div className="challenge-requirement">
@@ -99,7 +105,7 @@ const ChallengeScene = ({width, height}) => {
                 <li>Participants must post the inforgaphic on Instagram</li>
                 <li>The caption of the post must include the title and a description of the infographic, and the following hashtags: #BISTLeague3 #InformationSecurity #HearUsOutChallenge</li>
                 <li>Participants must follow and tag the BIST League 3.0 official Instagram account (@bistleague). Participants must also tag 4 friends on the post.</li>
-                <li>Participants must submit the infographic via this <a href="https://bit.ly/BL2020PosterChallenge" target="_blank" rel="noreferrer noopener">link</a>.</li>
+                <li>Participants must submit the infographic via this <a href={SocialRoutes.challengePosterSubmission} target="_blank" rel="noreferrer noopener">link</a>.</li>
                 <li>The results are assessed by the committee's evaluation and the number of likes on the relevant Instagram post.</li>
                 <li>This challenge is <b class="color-primary-1">FREE OF CHARGE.</b></li>
                 <li>The submitted infographics may be used for purposes related to BIST League in the future, with credit given to the creator(s)</li>
@@ -139,6 +145,7 @@ const ChallengeScene = ({width, height}) => {
               </div>
             </div>
           </div>
+          
         </div>
       </section>
     </section>

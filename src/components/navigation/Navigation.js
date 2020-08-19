@@ -232,6 +232,11 @@ const Navigation = (props) => {
           link: FrontendRoutes.challenges,
           text: "Hear Us Out Challenge"
         },
+        "Webinar": {
+          state: "idle",
+          link: FrontendRoutes.webinar,
+          text: "Webinar"
+        },
         logout: {
           state: "idle",
           link: FrontendRoutes.logout,
@@ -260,6 +265,11 @@ const Navigation = (props) => {
           link: FrontendRoutes.challenges,
           text: "Hear Us Out Challenge"
         },
+        "Webinar": {
+          state: "idle",
+          link: FrontendRoutes.webinar,
+          text: "Webinar"
+        },
         login: {
           state: "idle",
           link: FrontendRoutes.login,
@@ -274,29 +284,6 @@ const Navigation = (props) => {
     }
   }, [props])
 // END OF SET ROLE STATE
-
-// SCROLLING EFFECT (Unused, many oppose this idea...)
-  // const navbarRef = useRef(null);
-  // if (FrontendRoutes.showNav.indexOf(useLocation().pathname) < 0) {
-  //   return null
-  // } else {
-  //   var prevScrollpos = window.pageYOffset;
-  //   window.onscroll = () => {
-  //     try {
-  //       var currentScrollPos = window.pageYOffset;
-  //       if (state === "inactive") {
-  //         if (prevScrollpos > currentScrollPos) {
-  //           navbarRef.current.style.top = "0";
-  //         } else {
-  //           navbarRef.current.style.top = "-15rem";
-  //         }
-  //         prevScrollpos = currentScrollPos;
-  //       } else {
-  //         window.scrollTo(0, prevScrollpos);
-  //       }
-  //     } catch {}
-  //   }
-  // }
 
 // Set State of Y Offset
   useEffect(() => {

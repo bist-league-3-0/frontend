@@ -34,7 +34,7 @@
 
   .events-card-container {
     width: 100%;
-    @include fluid("min-height", 20rem, 30rem);
+    @include fluid("min-height", 24rem, 30rem);
 
     display: flex;
     flex-direction: row;
@@ -51,9 +51,9 @@
     min-height: inherit;
 
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
 
     @media screen and (max-width: #{remToPx($bp-medium)}){
       flex-direction: column;
@@ -78,11 +78,15 @@
         @include typography("p");
         color: $color-gray-2;
       }
+      
+      .card-link {
+        @include fluid("margin-top", 0.8rem, 1.2rem);
+      }
     }
 
     &#BISTalks{
       background:
-        linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%),
+        linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%),
         url("../../../assets/landing/landing-events-BISTalks.png")
         no-repeat 50% 10%;
       
@@ -100,8 +104,17 @@
 
     &#Competition{
       background:
-        linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%),
+        linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%),
         url("../../../assets/landing/landing-events-competition.png")
+        no-repeat center;
+      
+      background-size: cover;
+    }
+
+    &#Webinar{
+      background:
+        linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%),
+        url("../../../assets/landing/landing-events-webinar.png")
         no-repeat center;
       
       background-size: cover;

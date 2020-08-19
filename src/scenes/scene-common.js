@@ -6,6 +6,7 @@ import ForgotPasswordValidateScene from "./General/forgotPasswordValidateScene";
 import CompetitionScene from "./General/competitionScene";
 import BISTalksScene from "./General/BISTalksScene";
 import ChallengeScene from "./General/challengeScene";
+import WebinarScene from "./General/webinarScene";
 
 // Errors
 import ErrorScene from "./Error/errorScene";
@@ -23,5 +24,6 @@ export {
   Dashboard,
   ForgotPasswordScene,
   ForgotPasswordValidateScene,
-  ErrorScene
+  ErrorScene,
+  WebinarScene
 };

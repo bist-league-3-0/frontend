@@ -63,12 +63,37 @@ const App = () => {
           </Route>
           <Route path={FrontendRoutes.BISTalks}>
             <Component.BISTHelmet title="BISTalks"/>
-            <Scene.BISTalksScene width={width} height={height}/>
+            <Switch>
+              <Route exact path={FrontendRoutes.BISTalks1}>
+                <Scene.BISTalksScene width={width} height={height} version={1}/>
+              </Route>
+              <Route path={FrontendRoutes.BISTalks2}>
+                <Scene.BISTalksScene width={width} height={height} version={2}/>
+              </Route>
+              <Route>
+                <Scene.BISTalksScene width={width} height={height}/>
+              </Route>
+            </Switch>
             <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.challenges}>
             <Component.BISTHelmet title="Hear Us Out"/>
             <Scene.ChallengeScene width={width} height={height}/>
+            <Component.BISTFooter width={width} height={height}/>
+          </Route>
+          <Route path={FrontendRoutes.webinar}>
+            <Component.BISTHelmet title="Webinar"/>
+            <Switch>
+              <Route exact path={FrontendRoutes.webinar1}>
+                <Scene.WebinarScene width={width} height={height} version={1}/>
+              </Route>
+              <Route path={FrontendRoutes.webinar2}>
+                <Scene.WebinarScene width={width} height={height} version={2}/>
+              </Route>
+              <Route>
+                <Scene.WebinarScene width={width} height={height}/>
+              </Route>
+            </Switch>
             <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.register}>

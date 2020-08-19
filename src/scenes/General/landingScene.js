@@ -20,7 +20,7 @@ const LandingScene = ({width, height}) => {
             Business-IT Case Competition
           </span>
           <div className="hero-title-links">
-            <a href="https://bit.ly/CompetitionGuidebook" className="title-link button-primary-washed-filled" target="_blank" rel="noopener noreferrer">
+            <a href={SocialRoutes.businessCaseGuidebook} className="title-link button-primary-washed-filled" target="_blank" rel="noopener noreferrer">
               Guidebook
             </a>
             <NavLink to={FrontendRoutes.register} className="title-link button-primary-filled color-white">
@@ -77,21 +77,27 @@ const LandingScene = ({width, height}) => {
           <Component.EventsCard
             bg_key="Competition"
             title="Competition"
-            subtitle="Online Business-IT Case"
+            subtitle="The Business IT Case Competition will all be held online and consist of the registration phase, preliminary rounds, and final rounds."
             link={FrontendRoutes.competition}
+          />
+          <Component.EventsCard
+            bg_key="Webinar"
+            title="Webinar"
+            subtitle="The BIST League 3.0 webinars are seminars that will be held online and consist of two sessions and several speakers."
+            link={FrontendRoutes.webinar}
           />
         </div>
         <div className="events-card-container">
           <Component.EventsCard
             bg_key="BISTalks"
             title="BISTalks"
-            subtitle="Learn Business Case tricks live on instagram"
+            subtitle="BISTalk will invite experts to explain materials prepared to participant with guided questions from the moderator via Instagram Live"
             link={FrontendRoutes.BISTalks}
           />
           <Component.EventsCard
             bg_key="Challenges"
             title="Hear Us Out Challenge"
-            subtitle="Create an infographic, win prizes!"
+            subtitle="An infographic competition for high school and university students based on the video meeting content posted on the BIST League 3.0 Instagram"
             link={FrontendRoutes.challenges}
           />
         </div>

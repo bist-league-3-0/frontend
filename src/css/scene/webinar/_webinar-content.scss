@@ -1,10 +1,55 @@
-.BISTalks-content {
+.webinar-content {
   @include boxsizing-x("scene");
   @include boxsizing-y("");
   display: flex;
   flex-direction: column;
 
-  .BISTalks-info {
+  h1 {
+    @include typography("h1");
+    @include fluid("margin-bottom", 1.2rem, 2rem);
+    font-weight: normal;
+    color: $color-gray-1;
+  }
+
+  h2 {
+    @include typography("h2");
+    font-weight: normal;
+    color: $color-gray-1;
+  }
+
+  h3 {
+    @include typography("h3");
+    font-weight: normal;
+    color: $color-gray-2;
+  }
+
+  p, li {
+    @include typography("p");
+    font-weight: normal;
+    color: $color-gray-2;
+    @include fluid("margin-bottom", 0.6rem, 1rem);
+
+    &:not(li) {
+      @include fluid("margin-bottom", 1.2rem, 2rem);
+    }
+  }
+
+  ul, ol {
+    @include fluid("padding-left", 2rem, 2rem);
+    @include fluid("margin-bottom", 1.2rem, 2rem);
+  }
+
+  a:not(.button-primary-filled) {
+    color: $color-primary-1;
+    text-decoration: underline !important;
+    transition: $defaultTransition;
+
+    &:hover{ 
+      color: $color-primary-2;
+    }
+  }
+
+  .webinar-info {
     display: flex;
     flex-direction: column;
 

@@ -102,3 +102,12 @@
 .clickable {
   cursor: pointer;
 }
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+
+  & > *:not(:last-child) {
+    @include fluid("margin-right", 1.2rem, 2rem);
+  }
+}

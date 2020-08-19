@@ -1,0 +1,9 @@
+.webinar-scene {
+  @include typography("p");
+  display: flex;
+  flex-direction: column;
+
+  @import "./webinar/webinar-hero";
+  @import "./webinar/webinar-content";
+
+}

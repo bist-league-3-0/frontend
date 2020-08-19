@@ -10,7 +10,12 @@ FrontendRoutes.forgotPasswordValidate = FrontendRoutes.home + "forgot-password/v
 FrontendRoutes.dashboard = FrontendRoutes.home + "dashboard/";
 FrontendRoutes.competition = FrontendRoutes.home + "competition/";
 FrontendRoutes.BISTalks = FrontendRoutes.home + "BISTalks/";
+FrontendRoutes.BISTalks1 = FrontendRoutes.BISTalks + "t1";
+FrontendRoutes.BISTalks2 = FrontendRoutes.BISTalks + "t2";
 FrontendRoutes.challenges = FrontendRoutes.home + "challenges/";
+FrontendRoutes.webinar = FrontendRoutes.home + "webinar/";
+FrontendRoutes.webinar1 = FrontendRoutes.webinar + "t1";
+FrontendRoutes.webinar2 = FrontendRoutes.webinar + "t2";
 
 // Error Routes
 FrontendRoutes.forbidden = FrontendRoutes.home + "forbidden/";
@@ -48,7 +53,12 @@ FrontendRoutes.showNav = [
   FrontendRoutes.forgotPasswordValidate,
   FrontendRoutes.competition,
   FrontendRoutes.BISTalks,
-  FrontendRoutes.challenges
+  FrontendRoutes.BISTalks1,
+  FrontendRoutes.BISTalks2,
+  FrontendRoutes.webinar,
+  FrontendRoutes.webinar1,
+  FrontendRoutes.webinar2,
+  FrontendRoutes.challenges,
 ]
 
 module.exports = FrontendRoutes;

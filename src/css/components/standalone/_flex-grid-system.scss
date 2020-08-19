@@ -1,16 +1,54 @@
+@mixin createFlexCols($count) {
+  .flex-col-#{$count} {
+    display: flex;
+    flex-direction: column;
+    width: (100 * $count / 12) * 1%;
+    align-items: flex-start;
+
+    @media screen and (max-width: #{remToPx($bp-medium)}) {
+      @include boxsizing-y("component");
+      width: 100%;
+    }
+
+    @media screen and (min-width: #{remToPx($bp-medium)}) {
+      @include boxsizing-x("component");
+    }
+
+    &.stretch {
+      align-items: stretch;
+    }
+
+    &.flex-end {
+      align-items: flex-end;
+    }
+
+    &.center {
+      align-items: center;
+    }
+  }
+}
+
 .flex-grid-row {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
   width: inherit;
+
+  &.jc-space-between {
+    justify-content: space-between;
+  }
+
+  &.ai-flex-start {
+    align-items: flex-start;
+  }
 
   @media screen and (max-width: #{remToPx($bp-medium)}) {
     flex-direction: column;
   }
 
-  @each $name in '1' '2' '3' '4' '5' '6' '7' '8' '9' '10' '11' '12' {
-    .flex-col-#{$name} {
-      flex-grow: #{$name};
-    }
+  @each $name in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 {
+    @include createFlexCols($name);
   }
 
   .flex-col {
@@ -29,6 +67,10 @@
 
     &.stretch {
       align-items: stretch;
+    }
+
+    &.flex-end {
+      align-items: flex-end;
     }
   }
 }

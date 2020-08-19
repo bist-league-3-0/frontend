@@ -16,6 +16,8 @@ import BISTFooter from "./bist-footer";
 import EventsCard from "./landing/events-card";
 import BISTalks1Component from "./BISTalks/bistalks1";
 import BISTalks2Component from "./BISTalks/bistalks2";
+import Webinar1Component from "./webinar/webinar1";
+import Webinar2Component from "./webinar/webinar2";
 
 import AdminSidebar from './dashboard/adminSidebar';
 import AdminDashboardLanding from './dashboard/contents/admin/landing';
@@ -54,6 +56,8 @@ const Component = {
   EventsCard,
   BISTalks1Component,
   BISTalks2Component,
+  Webinar1Component,
+  Webinar2Component,
   ScrollToTop
 }
 

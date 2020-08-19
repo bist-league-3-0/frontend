@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import FrontendRoutes from '../../routes/frontendRoutes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CompetitionScene = ({width, height}) => {
   const [prize, setPrize] = useState(0);
@@ -43,7 +44,7 @@ const CompetitionScene = ({width, height}) => {
           Competition
         </span>
         <NavLink to={FrontendRoutes.register} className="title-link button-primary-filled color-white">
-          Registration
+          <FontAwesomeIcon icon={['fas', 'file-signature']}/>&ensp;Registration
         </NavLink>
       </section>
 
@@ -88,7 +89,7 @@ const CompetitionScene = ({width, height}) => {
                 <li>Participant may only be registered in one team</li>
               </ul>
               <a href="https://bit.ly/CompetitionGuidebook" className="button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
-                Download Guidebook
+                <FontAwesomeIcon icon={['fas', 'file-download']}/>&ensp;Download Guidebook
               </a>
             </div>
 

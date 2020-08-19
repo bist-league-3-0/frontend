@@ -19,14 +19,7 @@
   .footer-body {
     @include boxsizing-y();
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    @media screen and (max-width: #{remToPx($bp-medium)}) {
-      flex-direction: column;   
-      justify-content: flex-start;
-    }
+    flex-direction: column;
 
     .footer-social {
       display: flex;
@@ -48,29 +41,36 @@
       display: flex;
       flex-direction: column;
       text-align: right;
+      align-self: flex-end;
 
       @media screen and (max-width: #{remToPx($bp-medium)}){
         @include fluid("margin-top", 3rem, 3rem);
         text-align: left;
+        align-self: flex-start;
       }
 
       .contact-list-wrapper {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
+        justify-content: flex-end;
 
-        & > *:not(:last-child) {
-          @include fluid("margin-right", 2rem, 4rem);
+        @media screen and (max-width: #{remToPx($bp-medium)}){
+          justify-content: flex-start;
         }
       }
   
       .contact-list {
         @include fluid("margin-bottom", 1.2rem, 2rem);
+        @include fluid("margin-right", 0rem);
+        @include fluid("margin-left", 2rem, 3rem);
         display: flex;
         flex-direction: column;
         align-items: flex-end;
 
         @media screen and (max-width: #{remToPx($bp-medium)}){
+          @include fluid("margin-right", 2rem, 3rem);
+          @include fluid("margin-left", 0rem);
           align-items: flex-start;
         }
 

@@ -1,19 +1,19 @@
-.challenge-hero {
+.webinar-hero {
   @include boxsizing-x("scene");
   @include boxsizing-y("scene");
   min-height: 50vh;
   background:
     linear-gradient(120deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%),
     linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0) 70%, #FFFFFF 100%),
-    url("../../../assets/challenge/challenge-hero.png")
+    url("../../../assets/webinar/Webinar-hero.png")
     no-repeat 55% 10%;
   
   @media screen and (max-width: #{remToPx($bp-medium)}) {
     background:
       linear-gradient(210deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%),
       linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.9) 70%, #FFFFFF 100%),
-      url("../../../assets/challenge/challenge-hero.png")
-      no-repeat 80% 10%;
+      url("../../../assets/webinar/Webinar-hero.png")
+      no-repeat 50% 10%;
   }
 
   background-size: cover;
@@ -23,9 +23,24 @@
   justify-content: flex-end;
   align-items: flex-start;
 
-  .challenge-title {
+  .webinar-title {
     @include typography("hero-title");
-    @include fluid("margin-bottom", 1.2rem, 2rem);
-    color: $color-gray-1
+    @include fluid("margin-bottom", 1.2rem);
+    color: $color-gray-1;
+  }
+
+  .webinar-subtitle {
+    @include typography("p");
+    color: $color-gray-2;
+
+    a {
+      color: $color-primary-1;
+      text-decoration: underline !important;
+      transition: $defaultTransition;
+
+      &:hover{ 
+        color: $color-primary-2;
+      }
+    }
   }
 }
