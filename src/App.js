@@ -81,7 +81,7 @@ const App = () => {
             <Scene.ChallengeScene width={width} height={height}/>
             <Component.BISTFooter width={width} height={height}/>
           </Route>
-          <Route path={FrontendRoutes.webinar}>
+          {/* <Route path={FrontendRoutes.webinar}>
             <Component.BISTHelmet title="Webinar"/>
             <Switch>
               <Route exact path={FrontendRoutes.webinar1}>
@@ -95,7 +95,7 @@ const App = () => {
               </Route>
             </Switch>
             <Component.BISTFooter width={width} height={height}/>
-          </Route>
+          </Route> */}
           <Route path={FrontendRoutes.register}>
             <Scene.RegisterScene />
           </Route>
