@@ -232,11 +232,6 @@ const Navigation = (props) => {
           link: FrontendRoutes.challenges,
           text: "Hear Us Out Challenge"
         },
-        "Webinar": {
-          state: "idle",
-          link: FrontendRoutes.webinar,
-          text: "Webinar"
-        },
         logout: {
           state: "idle",
           link: FrontendRoutes.logout,
@@ -264,11 +259,6 @@ const Navigation = (props) => {
           state: "idle",
           link: FrontendRoutes.challenges,
           text: "Hear Us Out Challenge"
-        },
-        "Webinar": {
-          state: "idle",
-          link: FrontendRoutes.webinar,
-          text: "Webinar"
         },
         login: {
           state: "idle",
