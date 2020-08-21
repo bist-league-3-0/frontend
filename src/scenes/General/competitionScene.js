@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import FrontendRoutes from '../../routes/frontendRoutes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SocialRoutes from '../../routes/socialRoutes';
 
 const CompetitionScene = ({width, height}) => {
   const [prize, setPrize] = useState(0);
@@ -88,7 +89,7 @@ const CompetitionScene = ({width, height}) => {
                 <li>Each participant in a team must be an active full time undergraduate / diploma student from any major</li>
                 <li>Participant may only be registered in one team</li>
               </ul>
-              <a href="https://bit.ly/CompetitionGuidebook" className="button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
+              <a href={SocialRoutes.businessCaseGuidebook} className="button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={['fas', 'file-download']}/>&ensp;Download Guidebook
               </a>
             </div>

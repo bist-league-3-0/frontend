@@ -16,7 +16,6 @@ const LandingScene = ({width, height}) => {
           <img className="hero-asset" src={Asset.LandingHeroAsset} alt=""/>
           <span className="hero-title-text">BIST League 3.0</span>
           <span className="hero-title-subtext">
-            {/* <span className="subtext-tag">ONLINE</span> */}
             Business-IT Case Competition
           </span>
           <div className="hero-title-links">
