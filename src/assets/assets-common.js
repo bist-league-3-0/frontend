@@ -13,6 +13,7 @@ import ScrollerArrow from "./ScrollDown.svg";
 import STEI_LOGO from "./STEI_LOGO.png";
 import STI_LOGO from "./STI_Logo.png";
 import BISTalksSpeaker1 from "./BISTalks/BISTalks1-speaker.png";
+import BISTalksSpeaker2 from "./BISTalks/BISTalks2-speaker.png";
 
 const Asset = {
   LogoBist,
@@ -29,7 +30,8 @@ const Asset = {
   ScrollerArrow,
   STEI_LOGO,
   STI_LOGO,
-  BISTalksSpeaker1
+  BISTalksSpeaker1,
+  BISTalksSpeaker2
 };
 
 export default Asset;

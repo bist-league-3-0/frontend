@@ -3,7 +3,7 @@ import Component from '../../components/components-common';
 import SocialRoutes from '../../routes/socialRoutes';
 
 const BISTalksScene = ({width, height, version}) => {
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(2);
 
   useEffect(() => {
     if (version) {
