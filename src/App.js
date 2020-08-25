@@ -45,27 +45,24 @@ const App = () => {
     <div>
       <Router>
         <ScrollToTop/>
+        <Component.Navigation width={width} height={height} user={user}/>
         <Switch>
           {/* General Routes */}
           <Route exact path={FrontendRoutes.home}>
             <Component.BISTHelmet title="Landing"/>
-            <Component.Navigation width={width} height={height} user={user}/>
             <Scene.LandingScene width={width} height={height}/>
             <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.competition}>
             <Component.BISTHelmet title="Competition"/>
-            <Component.Navigation width={width} height={height} user={user}/>
             <Scene.CompetitionScene width={width} height={height}/>
             <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.login}>
-            <Component.Navigation width={width} height={height} user={user}/>
             <Scene.LoginScene user={user}/>
           </Route>
           <Route path={FrontendRoutes.BISTalks}>
             <Component.BISTHelmet title="BISTalks"/>
-            <Component.Navigation width={width} height={height} user={user}/>
             <Switch>
               <Route exact path={FrontendRoutes.BISTalks1}>
                 <Scene.BISTalksScene width={width} height={height} version={1}/>
@@ -81,13 +78,11 @@ const App = () => {
           </Route>
           <Route path={FrontendRoutes.challenges}>
             <Component.BISTHelmet title="Hear Us Out"/>
-            <Component.Navigation width={width} height={height} user={user}/>
             <Scene.ChallengeScene width={width} height={height}/>
             <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.webinar}>
             <Component.BISTHelmet title="Webinar"/>
-            <Component.Navigation width={width} height={height} user={user}/>
             <Switch>
               <Route exact path={FrontendRoutes.webinar1}>
                 <Scene.WebinarScene width={width} height={height} version={1}/>
@@ -103,15 +98,12 @@ const App = () => {
           </Route>
           <Route path={FrontendRoutes.register}>
             <Scene.RegisterScene />
-            <Component.Navigation width={width} height={height} user={user}/>
           </Route>
           <Route path={FrontendRoutes.forgotPasswordValidate}>
             <Scene.ForgotPasswordValidateScene />
-            <Component.Navigation width={width} height={height} user={user}/>
           </Route>
           <Route path={FrontendRoutes.forgotPassword}>
             <Scene.ForgotPasswordScene />
-            <Component.Navigation width={width} height={height} user={user}/>
           </Route>
 
           {/* Auth Routes */}
@@ -125,12 +117,10 @@ const App = () => {
           {/* Error routes */}
           <Route path={FrontendRoutes.forbidden}>
             <Component.BISTHelmet title="403 Forbidden"/>
-            <Component.Navigation width={width} height={height} user={user}/>
             <Scene.ErrorScene code="403"/>
           </Route>
           <Route>
-            <Component.BISTHelmet title="404 Not Found"/>
-            <Component.Navigation width={width} height={height} user={user}/>
+          <Component.BISTHelmet title="404 Not Found"/>
             <Scene.ErrorScene code="404"/>
           </Route>
         </Switch>
