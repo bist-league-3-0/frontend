@@ -1,5 +1,8 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import Component from '../../components/components-common';
+import FrontendRoutes from '../../routes/frontendRoutes';
 import SocialRoutes from '../../routes/socialRoutes';
 
 const WebinarScene = ({width, height, version}) => {
@@ -21,6 +24,10 @@ const WebinarScene = ({width, height, version}) => {
         <span className="webinar-subtitle">
           The online seminar consists of two sessions with several speakers
         </span>
+        <br/>
+        <NavLink to={FrontendRoutes.webinarRegistration} className="title-link button-primary-filled color-white">
+          <FontAwesomeIcon icon={['fas', 'file-signature']}/>&ensp;Webinar Registration
+        </NavLink>
       </section>
       <section className="webinar-content">
         <div className="flex-grid-row">
