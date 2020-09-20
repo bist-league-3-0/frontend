@@ -16,6 +16,7 @@ const AddTeamMember = ({user, refresh, setVerdict, setFlashMessageTime}) => {
   const [line, setLine] = useState("");
   const [linkedin, setLinkedin] = useState("http://linkedin.com/in/");
   const [requestRunning, setRequestRunning] = useState(false);
+  
 
   let history = useHistory();
 

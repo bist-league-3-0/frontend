@@ -16,6 +16,7 @@ BackendRoutes.check = BackendRoutes.login + "check/";
 BackendRoutes.checkAuth = BackendRoutes.login + "check-authentication/";
 BackendRoutes.getUser = BackendRoutes.auth + "users/";
 BackendRoutes.forgotPassword = BackendRoutes.auth + "forgot-password/";
+BackendRoutes.webinarRegistration = BackendURL + "webinar";
 BackendRoutes.forgotPasswordValidate =
   BackendRoutes.forgotPassword + "forgot-validate/";
 

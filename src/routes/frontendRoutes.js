@@ -16,6 +16,7 @@ FrontendRoutes.challenges = FrontendRoutes.home + "challenges/";
 FrontendRoutes.webinar = FrontendRoutes.home + "webinar/";
 FrontendRoutes.webinar1 = FrontendRoutes.webinar + "t1/";
 FrontendRoutes.webinar2 = FrontendRoutes.webinar + "t2/";
+FrontendRoutes.webinarRegistration = FrontendRoutes.webinar + "registration/";
 
 // Error Routes
 FrontendRoutes.forbidden = FrontendRoutes.home + "forbidden/";
@@ -58,6 +59,7 @@ let showNav = [
   FrontendRoutes.webinar,
   FrontendRoutes.webinar1,
   FrontendRoutes.webinar2,
+  FrontendRoutes.webinarRegistration,
   FrontendRoutes.challenges
 ];
 

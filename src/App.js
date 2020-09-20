@@ -82,19 +82,27 @@ const App = () => {
             <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.webinar}>
-            <Component.BISTHelmet title="Webinar"/>
             <Switch>
               <Route exact path={FrontendRoutes.webinar1}>
+                <Component.BISTHelmet title="Webinar"/>
                 <Scene.WebinarScene width={width} height={height} version={1}/>
+                <Component.BISTFooter width={width} height={height}/>
               </Route>
               <Route path={FrontendRoutes.webinar2}>
+                <Component.BISTHelmet title="Webinar"/>
                 <Scene.WebinarScene width={width} height={height} version={2}/>
+                <Component.BISTFooter width={width} height={height}/>
+              </Route>
+              <Route path={FrontendRoutes.webinarRegistration}>
+                <Component.BISTHelmet title="Webinar Registration"/>
+                <Scene.WebinarRegistrationScene />
               </Route>
               <Route>
+                <Component.BISTHelmet title="Webinar"/>
                 <Scene.WebinarScene width={width} height={height}/>
+                <Component.BISTFooter width={width} height={height}/>
               </Route>
             </Switch>
-            <Component.BISTFooter width={width} height={height}/>
           </Route>
           <Route path={FrontendRoutes.register}>
             <Scene.RegisterScene />

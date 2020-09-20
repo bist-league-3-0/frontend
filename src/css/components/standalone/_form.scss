@@ -119,6 +119,11 @@
           @include typography("sm");
         }
       }
+
+      .radio-others {
+        @include fluid("margin-top", .5rem, 1rem);
+        @include fluid("min-width", 24rem, 36rem);
+      }
     }
   }
 

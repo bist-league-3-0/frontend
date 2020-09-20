@@ -7,6 +7,7 @@ import CompetitionScene from "./General/competitionScene";
 import BISTalksScene from "./General/BISTalksScene";
 import ChallengeScene from "./General/challengeScene";
 import WebinarScene from "./General/webinarScene";
+import WebinarRegistrationScene from "./General/webinarRegistrationScene";
 
 // Errors
 import ErrorScene from "./Error/errorScene";
@@ -25,5 +26,6 @@ export {
   ForgotPasswordScene,
   ForgotPasswordValidateScene,
   ErrorScene,
-  WebinarScene
+  WebinarScene,
+  WebinarRegistrationScene
 };
