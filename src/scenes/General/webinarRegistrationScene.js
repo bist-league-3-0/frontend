@@ -49,7 +49,7 @@ const RegisterScene = (props) => {
       .then((res) => {
         setVerdict({
           status: "success",
-          message: res.data
+          message: "Your Registration Request has been successfully recorded! The registration confirmation will be sent to your email in less than 24 hours"
         });
         setFlashMessageTime(2000);
         setRequestRunning(false);
@@ -223,7 +223,7 @@ const RegisterScene = (props) => {
             </div>
 
             <div className="input-group">
-              <label className="input-label">How were you informed about this webinar?</label>
+              <label className="input-label">How were you first informed about this webinar?</label>
               <span className="input-text">
                 (Required)
               </span>
@@ -330,6 +330,9 @@ const RegisterScene = (props) => {
             </div> */}
           </div>
           <div className="input-footer">
+            <div className="input-group">
+              <div className="input-text color-black">By submitting this form, you are <b className="color-primary-1">consenting</b> that the information will be under possession of BIST League 3.0’s committee</div>
+            </div>
             <input type="submit" value={submitTextRef} className="button-primary-filled" disabled={requestRunning}/>
           </div>
         </form>
