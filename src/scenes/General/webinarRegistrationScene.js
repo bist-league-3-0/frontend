@@ -141,13 +141,6 @@ const RegisterScene = (props) => {
     )
   }
 
-  useEffect(
-    () => {
-      axios.get(BackendRoutes.checkAuth, {withCredentials: true})
-        .then((res) => {if (res.data) {window.location.replace("/")}});
-    }, []
-  )
-
   return (
     <div className="register-scene">
       <div className="register-form-container">
