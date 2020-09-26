@@ -2,13 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BackendRoutes from "../../routes/backendRoutes";
 import FlashMessageFixed from "../../components/dashboard/contents/components/flash-message-fixed";
+import { NavLink } from "react-router-dom";
+import FrontendRoutes from "../../routes/frontendRoutes";
 
 const RegisterScene = (props) => {
   const [fullname, setFullname] = useState();
   const [email, setEmail] = useState();
-  const [linkedin, setLinkedin] = useState("http://linkedin.com/in/");
-  const [question, setQuestion] = useState("Instagram");
+  const [linkedin, setLinkedin] = useState("");
+
+  const [question, setQuestion] = useState([]);
   const [questionIsEtc, setQuestionIsEtc] = useState(false);
+  const [etcAnswer, setEtcAnswer] = useState("");
+
+  const [webinarSession, setWebinarSession] = useState([]);
+
   const [status, setStatus] = useState(null);
   const [university, setUniversity] = useState(null);
   const [institution, setInstitution] = useState(null);
@@ -31,6 +38,26 @@ const RegisterScene = (props) => {
       return;
     }
 
+    if (webinarSession.length < 1) {
+      setFlashMessageTime(2000);
+      setVerdict({
+        status: "error",
+        message: "Sorry, please choose which seminar session do you want to join first."
+      });
+      setRequestRunning(false);
+      return;
+    }
+
+    if (status === null) {
+      setFlashMessageTime(2000);
+      setVerdict({
+        status: "error",
+        message: "Sorry, we should first determine whether you're a undergraduate student or not."
+      });
+      setRequestRunning(false);
+      return;
+    }
+
     if (status === null) {
       setFlashMessageTime(2000);
       setVerdict({
@@ -45,7 +72,20 @@ const RegisterScene = (props) => {
     setSubmitTextRef("PLEASE WAIT...");
 
     await axios
-      .post(endpoint, {fullname, email, linkedin, question, status: status ? "Undergraduate Student" : "Non-Undergraduate Student", university, institution, major, enrollmentYear, age, interest}, {withCredentials: true})
+      .post(endpoint, {
+        fullname, 
+        email, 
+        linkedin, 
+        question: [question.join(" "), questionIsEtc ? etcAnswer : null].join(" "), 
+        status: status ? "Undergraduate Student" : "Non-Undergraduate Student", 
+        webinar: webinarSession.join(" "),
+        university, 
+        institution, 
+        major, 
+        enrollmentYear, 
+        age, 
+        interest,
+      }, {withCredentials: true})
       .then((res) => {
         setVerdict({
           status: "success",
@@ -141,6 +181,28 @@ const RegisterScene = (props) => {
     )
   }
 
+  const handleQuestionState = (e) => {
+    let index = question.indexOf(e.target.value);
+    if (index > -1) {
+      setQuestion(question.filter(item => item !== e.target.value));
+    } else {
+      setQuestion(question.concat([e.target.value]));
+    }
+  }
+
+  const handleWebinarSessionState = (e) => {
+    let index = webinarSession.indexOf(e.target.value);
+    if (index > -1) {
+      setWebinarSession(webinarSession.filter(item => item !== e.target.value));
+    } else {
+      setWebinarSession(webinarSession.concat([e.target.value]));
+    }
+  }
+
+  const handleEtcState = (e) => {
+    setQuestionIsEtc(!questionIsEtc);
+  }
+
   return (
     <div className="register-scene">
       <div className="register-form-container">
@@ -194,9 +256,9 @@ const RegisterScene = (props) => {
             <div className="input-group">
               <label htmlFor="linkedin" className="input-label">LinkedIn</label>
               <span className="input-text">
-                (Required) Please enter a link to your LinkedIn profile, example: http://linkedin.com/in/linkedinyourname
+                (Optional) Please enter a link to your LinkedIn profile, example: http://linkedin.com/in/linkedinyourname
               </span>
-              <input type="text" name="linkedin" id="linkedin" required defaultValue="http://linkedin.com/in/"
+              <input type="text" name="linkedin" id="linkedin"
                 onChange={(event) => {
                   setLinkedin(event.target.value);
                 }}
@@ -218,41 +280,26 @@ const RegisterScene = (props) => {
             <div className="input-group">
               <label className="input-label">How were you first informed about this webinar?</label>
               <span className="input-text">
-                (Required)
+                (Optional, Checkbox)
               </span>
               <div className="input-radio-wrapper">
                 <div className="input-radio">
-                  <input type="radio" name="question" id="Instagram" value="Instagram" defaultChecked/>
-                  <label htmlFor="Instagram" 
-                    onClick={() => {
-                      setQuestion("Instagram");
-                      setQuestionIsEtc(false);
-                    }}
-                    >
+                  <input type="checkbox" name="question" id="Instagram" value="Instagram" onChange={handleQuestionState}/>
+                  <label htmlFor="Instagram">
                     <span className="radio-button"></span>
                     <span className="radio-description">Instagram</span>
                   </label>
                 </div>
                 <div className="input-radio">
-                  <input type="radio" name="question" id="LINE" value="LINE"/>
-                  <label htmlFor="LINE"
-                    onClick={() => {
-                      setQuestion("LINE");
-                      setQuestionIsEtc(false);
-                    }}
-                  >
+                  <input type="checkbox" name="question" id="LINE" value="LINE" onChange={handleQuestionState}/>
+                  <label htmlFor="LINE">
                     <span className="radio-button"></span>
                     <span className="radio-description">LINE</span>
                   </label>
                 </div>
                 <div className="input-radio">
-                  <input type="radio" name="question" id="Friend" value="Friend"/>
-                  <label htmlFor="Friend"
-                    onClick={() => {
-                      setQuestion("Friend");
-                      setQuestionIsEtc(false);
-                    }}
-                  >
+                  <input type="checkbox" name="question" id="Friend" value="Friend" onChange={handleQuestionState}/>
+                  <label htmlFor="Friend">
                     <span className="radio-button"></span>
                     <span className="radio-description">Friend</span>
                   </label>
@@ -260,13 +307,8 @@ const RegisterScene = (props) => {
               </div>
               <div className="input-radio-wrapper">
                 <div className="input-radio others">
-                  <input type="radio" name="question" id="Etc"/>
-                  <label htmlFor="Etc"
-                    onClick={() => {
-                      setQuestion("Etc");
-                      setQuestionIsEtc(true);
-                    }}
-                    >
+                  <input type="checkbox" name="question" id="Etc" onChange={handleEtcState}/>
+                  <label htmlFor="Etc">
                     <span className="radio-button"></span>
                     <span className="radio-description">Etc.</span>
                   </label>
@@ -275,7 +317,7 @@ const RegisterScene = (props) => {
                     disabled={!questionIsEtc} 
                     style={{"display" : `${otherStyle(!questionIsEtc)}`}}
                     onChange={(event) => {
-                      setQuestion(event.target.value);
+                      setEtcAnswer(event.target.value);
                     }}
                   />
                 </div>
@@ -283,9 +325,32 @@ const RegisterScene = (props) => {
             </div>
 
             <div className="input-group">
+              <label className="input-label">Which Seminar Session do you want to join?</label>
+              <span className="input-text">
+                (Required, Checkbox) More info at <a href={FrontendRoutes.webinar} rel="noreferrer noopener" target="_blank">Webinar Page</a>.
+              </span>
+              <div className="input-radio-wrapper">
+                <div className="input-radio">
+                  <input type="checkbox" name="session" id="1stSession" value="1st Session" onChange={handleWebinarSessionState}/>
+                  <label htmlFor="1stSession">
+                    <span className="radio-button"></span>
+                    <span className="radio-description">1st Session</span>
+                  </label>
+                </div>
+                <div className="input-radio">
+                  <input type="checkbox" name="session" id="2ndSession" value="2nd Session" onChange={handleWebinarSessionState}/>
+                  <label htmlFor="2ndSession">
+                    <span className="radio-button"></span>
+                    <span className="radio-description">2nd Session</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div className="input-group">
               <label className="input-label">Are you an undergraduate student?</label>
               <span className="input-text">
-                (Required) 
+                (Required, Pick One) 
               </span>
               <div className="input-radio-wrapper">
                 <div className="input-radio">

@@ -39,6 +39,24 @@ const WebinarScene = ({width, height, version}) => {
             <p>
               The first seminar's topic is "Post-Pandemic Enterprise Infromation Security" while the second  seminar's topic is "Ethics in Big Data Using Customers' Data".
             </p>
+
+            <h1>Webinar Info</h1>
+            <h3 className="color-primary-1">
+              <b>Free Entrance!</b>
+            </h3>
+
+            <p>
+              <b>Date:</b> Thursday &mdash; November 15, 2020<br/>
+              <b>Time:</b> 08.30 &ndash; 11.40 WIB (UTC + 7)<br/>
+              <b>Platform:</b> Zoom and YouTube Livestream<br/>
+            </p>
+
+            <h1>Facilities</h1>
+            <p>
+              <b>E-certificate</b> for all participants<br/>
+              <b>Digital</b> Seminar Kit<br/>
+            </p>
+            
           </div>
 
           <div className="flex-col stretch">
@@ -67,7 +85,6 @@ const WebinarScene = ({width, height, version}) => {
 
         <div className="flex-grid-row">
           <div className="flex-col stretch">
-            <h1>Webinar Topics</h1>
             <div className="selector-group">
               <div className="selector-pill" isActive={(active === 1).toString()} onClick={e => setActive(1)}>1st Session</div>
               <div className="selector-pill" isActive={(active === 2).toString()} onClick={e => setActive(2)}>2nd Session</div>

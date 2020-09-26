@@ -11,12 +11,18 @@ const Webinar1Component = ({width, height}) => {
           <div className="card-content">
             <div className="card-text">
               <div className="info-header">
-                <h2>
-                  Post-Pandemic Enterprise Information Security
-                </h2>
-                <div className="info-subtitle">
-                  Webinar time, speaker, and registration link is yet to be determined.
+                <div className="info-title">
+                  States of Art: <br/>
+                  AI Technlogy in Cyber Security
                 </div>
+              </div>
+            </div>
+            <div className="card-text">
+              <div className="text-title">
+                John Choi
+              </div>
+              <div className="text-subtext">
+                CEO of MarkAny
               </div>
             </div>
           </div>
