@@ -11,4 +11,6 @@ SocialRoutes.businessCaseGuidebook = "https://rebrand.ly/BISTGuideBook";
 SocialRoutes.challengePosterSubmission = "https://bit.ly/BL2020PosterChallenge";
 SocialRoutes.challengePosterInfo = "https://bit.ly/HearUsOutChallenge";
 
+SocialRoutes.preliminaryCase = "https://rebrand.ly/PrelimCaseBISTLeague"; 
+
 module.exports = SocialRoutes

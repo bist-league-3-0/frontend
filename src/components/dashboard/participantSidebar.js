@@ -2,6 +2,8 @@ import React from 'react';
 import SidebarPill from "./sidebarPill";
 import FrontendRoutes from "../../routes/frontendRoutes";
 import AuthGroups from '../../scenes/authGroup';
+import SocialRoutes from '../../routes/socialRoutes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ParticipantSidebar = ({state, handleClick, role}) => {
   let { dashRoutes } = FrontendRoutes;
@@ -42,6 +44,17 @@ const ParticipantSidebar = ({state, handleClick, role}) => {
       </div>
 
       <div className="sidebar-pill-group">
+        <a className="sidebar-pill" onClick={handleClick} href={SocialRoutes.preliminaryCase} style={{"display": "block"}} target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={['fas', 'file-download']} size="lg"/>
+          &emsp; Preliminary Case
+        </a>
+      </div>
+
+      <div className="sidebar-component">
+        <hr/>
+      </div>
+
+      <div className="sidebar-pill-group">
         <SidebarPill 
           to={dashRoutes.prelimFileSubmission} 
           text="Preliminary File Submission" 
@@ -59,6 +72,7 @@ const ParticipantSidebar = ({state, handleClick, role}) => {
           : null
         }
       </div>
+
     </div>
   )
 }

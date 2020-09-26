@@ -3,6 +3,7 @@ import DashboardComponent from './components/components-common';
 import AuthGroups from '../../../scenes/authGroup';
 import { NavLink } from 'react-router-dom';
 import FrontendRoutes from '../../../routes/frontendRoutes';
+import SocialRoutes from '../../../routes/socialRoutes';
 
 const DashboardContent = ({user}) => {
   const [teamInfo, setTeamInfo] = useState({});
@@ -243,6 +244,14 @@ const DashboardContent = ({user}) => {
                 </span>
                 {renderTeamInfo}
                 <NavLink to={FrontendRoutes.dashRoutes.teamManagementEditable} className="button-primary-filled color-white">CHANGE TEAM INFO</NavLink>
+
+                <br/><br/>
+                <span className="db-text-map-title">
+                  Preliminary Case Has Been Revealed!
+                </span>
+                <a href={SocialRoutes.preliminaryCase} className="button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
+                  VIEW PRELIMINARY CASE
+                </a>
               </div>
             </div>
           </div>
