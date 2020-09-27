@@ -27,7 +27,7 @@ const Webinar1Component = ({width, height}) => {
             </div>
           </div>
           <div className="card-image-container">
-            <img src={Asset.NavAsset} alt="" className="card-image"/>
+            <img src={Asset.WebinarSpeaker1} alt="" className="card-image"/>
           </div>
         </div>
       </div>

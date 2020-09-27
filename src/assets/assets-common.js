@@ -14,6 +14,8 @@ import STEI_LOGO from "./STEI_LOGO.png";
 import STI_LOGO from "./STI_Logo.png";
 import BISTalksSpeaker1 from "./BISTalks/BISTalks1-speaker.png";
 import BISTalksSpeaker2 from "./BISTalks/BISTalks2-speaker.png";
+import WebinarSpeaker1 from "./webinar/webinar-01.png";
+import WebinarSpeaker2 from "./webinar/webinar-02.png";
 
 const Asset = {
   LogoBist,
@@ -31,7 +33,9 @@ const Asset = {
   STEI_LOGO,
   STI_LOGO,
   BISTalksSpeaker1,
-  BISTalksSpeaker2
+  BISTalksSpeaker2,
+  WebinarSpeaker1,
+  WebinarSpeaker2
 };
 
 export default Asset;

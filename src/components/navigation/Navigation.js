@@ -235,7 +235,7 @@ const Navigation = (props) => {
         webinar: {
           state: "idle",
           link: FrontendRoutes.webinar,
-          text: "Webinar"
+          text: "webinar"
         },
         logout: {
           state: "idle",
@@ -268,7 +268,7 @@ const Navigation = (props) => {
         webinar: {
           state: "idle",
           link: FrontendRoutes.webinar,
-          text: "Webinar"
+          text: "webinar"
         },
         login: {
           state: "idle",
