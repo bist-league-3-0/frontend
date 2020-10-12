@@ -57,7 +57,7 @@ const ParticipantSidebar = ({state, handleClick, role}) => {
       <div className="sidebar-pill-group">
         <SidebarPill 
           to={dashRoutes.prelimFileSubmission} 
-          text="Preliminary File Submission" 
+          text="Preliminary Solution Submission" 
           icon={['fas', 'file-upload']}
           handleClick={handleClick}
         />

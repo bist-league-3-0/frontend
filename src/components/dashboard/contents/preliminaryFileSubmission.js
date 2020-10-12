@@ -33,7 +33,7 @@ const PreliminaryFileSubmission = ({user, refresh}) => {
 // USE EFFECT FOR SET FILE AS A STATE (EXPERIMENTAL)
   useEffect(() => {
     let tempFiles = {};
-    pushObject(tempFiles, "Preliminary File", getFileObject(user?.file, user?.teamAccount?.preliminarySubmission));
+    pushObject(tempFiles, "Your Preliminary Solution File", getFileObject(user?.file, user?.teamAccount?.preliminarySubmission));
     setPrelimFile(tempFiles);
     if (Object.entries(tempFiles).length !== 0) {
       setHideDropzone(true);
@@ -56,7 +56,7 @@ const PreliminaryFileSubmission = ({user, refresh}) => {
   return (
     <div className="content-wrapper">
       <DashboardComponent.ContentHeader 
-        title="Preliminary Submission" 
+        title="Preliminary Solution Submission" 
         description={user?.account?.username} 
       />
       <hr/>
@@ -70,15 +70,16 @@ const PreliminaryFileSubmission = ({user, refresh}) => {
                 <div className="input-body">
                   <div className="input-group">
                     <span className="input-heading boxsizing-default">
-                      Preliminary File Submission
+                      Preliminary Solution Submission
                     </span>
+                    <p>Send your preliminary business case solution here!.</p>
                     {renderFileString()}
                   </div>
                   {
                     hideDropzone
                     ? <div className="input-group">
                         <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideDropzone(false)}}>
-                          REPLACE PRELIMINARY CASE FILE
+                          REPLACE PRELIMINARY SOLUTION FILE
                         </button>
                       </div>
                     : <div className="input-group">
