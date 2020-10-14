@@ -72,7 +72,10 @@ const PreliminaryFileSubmission = ({user, refresh}) => {
                     <span className="input-heading boxsizing-default">
                       Preliminary Solution Submission
                     </span>
-                    <p>Send your preliminary business case solution here!.</p>
+                    <p>
+                      Send your preliminary business case solution here!. 
+                      Submission for the preliminary solution past 23.59 WIB (GMT + 7), October 14th, 2020 will result in point deduction
+                    </p>
                     {renderFileString()}
                   </div>
                   {

@@ -118,7 +118,7 @@ const fetchData = async () => {
     return <td>Team Status Unknown</td>
   }
 
-// IDENTIFY PAYMENT STATUS
+// IDENTIFY PAYMENT STATUSsendDate
   const identifyPaymentStatus = (paymentStatus, teamID, sendDate) => {
     if (paymentStatus === 0) return (
       <td className="color-error table-cell-big">

@@ -119,6 +119,15 @@ const CompetitionScene = ({width, height}) => {
               <div className="timeline-separator"/>
               <div className="timeline-content">
                 <span className="content-title">
+                  October 13 &mdash; October 14, 2020
+                </span>
+                <span className="content-date">
+                  Extended Preliminary Round
+                </span>
+              </div>
+              <div className="timeline-separator"/>
+              <div className="timeline-content">
+                <span className="content-title">
                   November 2, 2020
                 </span>
                 <span className="content-date">
