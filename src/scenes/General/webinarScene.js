@@ -37,7 +37,7 @@ const WebinarScene = ({width, height, version}) => {
               The BIST League 3.0 webinars are seminars that will be held online and consist of two sessions and several speakers.
             </p>
             <p>
-              The first seminar's topic is "Post-Pandemic Enterprise Infromation Security" while the second  seminar's topic is "Ethics in Big Data Using Customers' Data".
+              The first seminar's topic is "States of Art: AI Technlogy in Cyber Security" while the second  seminar's topic is "Ethics in Big Data Using Customers' Data".
             </p>
 
             <h1>Webinar Info</h1>

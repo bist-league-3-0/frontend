@@ -16,14 +16,17 @@ const LandingScene = ({width, height}) => {
           <img className="hero-asset" src={Asset.LandingHeroAsset} alt=""/>
           <span className="hero-title-text">BIST League 3.0</span>
           <span className="hero-title-subtext">
-            Business-IT Case Competition
+            Business-IT Case Competition and Webinar
           </span>
           <div className="hero-title-links">
-            <a href={SocialRoutes.businessCaseGuidebook} className="title-link button-primary-washed-filled" target="_blank" rel="noopener noreferrer">
+            {/* <a href={SocialRoutes.businessCaseGuidebook} className="title-link button-primary-washed-filled" target="_blank" rel="noopener noreferrer">
               Guidebook
-            </a>
-            <NavLink to={FrontendRoutes.register} className="title-link button-primary-filled color-white">
+            </a> */}
+            {/* <NavLink to={FrontendRoutes.register} className="title-link button-primary-filled color-white">
               Registration
+            </NavLink> */}
+            <NavLink to={FrontendRoutes.webinarRegistration} className="title-link button-primary-filled color-white">
+              Webinar Registration
             </NavLink>
           </div>
         </div>
@@ -74,10 +77,10 @@ const LandingScene = ({width, height}) => {
         </div>
         <div className="events-card-container">
           <Component.EventsCard
-            bg_key="Competition"
-            title="Competition"
-            subtitle="The Business IT Case Competition will all be held online and consist of the registration phase, preliminary rounds, and final rounds."
-            link={FrontendRoutes.competition}
+            bg_key="Webinar"
+            title="Webinar"
+            subtitle="Free online webinar that consists of two sessions about AI and Big Data Ethics."
+            link={FrontendRoutes.webinar}
           />
         </div>
         <div className="events-card-container">
@@ -92,6 +95,12 @@ const LandingScene = ({width, height}) => {
             title="Hear Us Out Challenge"
             subtitle="An infographic competition for high school and university students based on the video meeting content posted on the BIST League 3.0 Instagram"
             link={FrontendRoutes.challenges}
+          />
+          <Component.EventsCard
+            bg_key="Competition"
+            title="Competition"
+            subtitle="The Business IT Case Competition will all be held online and consist of the registration phase, preliminary rounds, and final rounds."
+            link={FrontendRoutes.competition}
           />
         </div>
       </section>
