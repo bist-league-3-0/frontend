@@ -459,6 +459,7 @@ const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMess
                         setVerdict={setVerdict}
                         setFlashMessageTime={setFlashMessageTime}
                         setHideDropzone={setHideEnrollmentFileDropzone}
+                        maxFileSize={8 * 1024 * 1024}
                       />
                     </div>
                 }
@@ -499,6 +500,7 @@ const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMess
                         setVerdict={setVerdict}
                         setFlashMessageTime={setFlashMessageTime}
                         setHideDropzone={setHideStudentIDFileDropzone}
+                        maxFileSize={8 * 1024 * 1024}
                       />
                     </div>
                 }
@@ -539,6 +541,7 @@ const MemberConfig = ({user, team, teamMember, refresh, setVerdict, setFlashMess
                         setVerdict={setVerdict}
                         setFlashMessageTime={setFlashMessageTime}
                         setHideDropzone={setHidePortraitFileDropzone}
+                        maxFileSize={8 * 1024 * 1024}
                       />
                     </div>
                 }

@@ -101,6 +101,7 @@ const PreliminaryFileSubmission = ({user, refresh}) => {
                           setVerdict={setVerdict}
                           setFlashMessageTime={setFlashMessageTime}
                           setHideDropzone={setHideDropzone}
+                          maxFileSize={8 * 1024 * 1024}
                         />
                       </div>
                   }

@@ -91,23 +91,31 @@ const FinalFileSubmission = ({user, refresh}) => {
                 <div className="input-body">
                   <div className="input-group">
                     <span className="input-heading boxsizing-default">
-                      1st Final File Submission
+                      Preliminary Presentation Submission
                     </span>
+                    <p>
+                      Send your preliminary business case <b>presentation solution</b> here!.
+                      Last submission: 23.59 WIB (GMT + 7), November 10th, 2020
+                    </p>
                     {renderFileString()}
                   </div>
                   {
                     hideFinal1Dropzone
                     ? <div className="input-group">
                         <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideFinal1Dropzone(false)}}>
-                          REPLACE 1st FINAL CASE FILE
+                          REPLACE PRELIMINARY PRESENTATION FILE
                         </button>
                       </div>
                     : <div className="input-group">
                         <span className="input-text">
-                          Please drop your file(s) below (Supported Files: .pdf, max: 8MB)
+                          Please drop your file(s) below (Supported Files: .pptx, .ppt, .pdf, max: 30MB)
                         </span>
                         <Component.DropZone 
-                          validTypes={["application/pdf"]}
+                          validTypes={[
+                            "application/pdf",
+                            "application/vnd.ms-powerpoint",
+                            "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                          ]}
                           buttonText="UPLOAD FILE"
                           postURL={BackendRoutes.bistAccount.uploadFinal}
                           idName="component-upload-finalfile"
@@ -118,6 +126,7 @@ const FinalFileSubmission = ({user, refresh}) => {
                           setVerdict={setVerdict}
                           setFlashMessageTime={setFlashMessageTime}
                           setHideDropzone={setHideFinal1Dropzone}
+                          maxFileSize={30 * 1024 * 1024}
                         />
                       </div>
                   }
@@ -130,23 +139,31 @@ const FinalFileSubmission = ({user, refresh}) => {
                 <div className="input-body">
                   <div className="input-group">
                     <span className="input-heading boxsizing-default">
-                      2nd Final File Submission
+                      Final Presentation Submission
                     </span>
+                    <p>
+                      Send your final case solution presentation here!.
+                      Last submission is to be determined.
+                    </p>
                     {renderFile2String()}
                   </div>
                   {
                     hideFinal2Dropzone
                     ? <div className="input-group">
                         <button className="button-primary-filled" onClick={e => {e.preventDefault(); setHideFinal2Dropzone(false)}}>
-                          REPLACE 2nd FINAL CASE FILE
+                          REPLACE FINAL PRESENTATION FILE
                         </button>
                       </div>
                     : <div className="input-group">
                         <span className="input-text">
-                          Please drop your file(s) below (Supported Files: .pdf, max: 8MB)
+                          Please drop your file(s) below (Supported Files: .pptx, .ppt, .pdf, max: 30MB)
                         </span>
                         <Component.DropZone 
-                          validTypes={["application/pdf"]}
+                          validTypes={[
+                            "application/pdf",
+                            "application/vnd.ms-powerpoint",
+                            "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                          ]}
                           buttonText="UPLOAD FILE"
                           postURL={BackendRoutes.bistAccount.uploadFinal2}
                           idName="component-upload-finalfile-2"
@@ -157,6 +174,7 @@ const FinalFileSubmission = ({user, refresh}) => {
                           setVerdict={setVerdict}
                           setFlashMessageTime={setFlashMessageTime}
                           setHideDropzone={setHideFinal2Dropzone}
+                          maxFileSize={30 * 1024 * 1024}
                         />
                       </div>
                   }

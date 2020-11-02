@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import BackendRoutes from '../routes/backendRoutes';
 
-const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, refresh, context, memberID, setVerdict, setFlashMessageTime, setHideDropzone}) => {
+const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, refresh, context, memberID, setVerdict, setFlashMessageTime, setHideDropzone, maxFileSize}) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [validFiles, setValidFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
@@ -35,7 +35,7 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
       return false;
     }
 
-    if (file.size >= (8 * 1024 * 1024)) {
+    if (file.size >= maxFileSize) {
       return false;
     }
     
@@ -134,7 +134,7 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
       formData.append('accountID', user?.account?.accountID);
       formData.append('context', context);
       formData.append('memberID', memberID);
-      setVerdict({status: "info", message: "Please wait, we are uploading your file"});
+      setVerdict({status: "info", message: "Please wait, we are uploading your file (it may take a long time for larger files)"});
       setFlashMessageTime(2000);
 
       axios.post(
