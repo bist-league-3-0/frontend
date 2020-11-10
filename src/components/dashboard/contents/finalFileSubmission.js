@@ -108,13 +108,14 @@ const FinalFileSubmission = ({user, refresh}) => {
                       </div>
                     : <div className="input-group">
                         <span className="input-text">
-                          Please drop your file(s) below (Supported Files: .pptx, .ppt, .pdf, max: 30MB)
+                          Please drop your file(s) below (Supported Files: .pptx, .ppt, .pdf, .zip, max: 30MB)
                         </span>
                         <Component.DropZone 
                           validTypes={[
                             "application/pdf",
                             "application/vnd.ms-powerpoint",
-                            "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                            "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                            "application/zip"
                           ]}
                           buttonText="UPLOAD FILE"
                           postURL={BackendRoutes.bistAccount.uploadFinal}
@@ -156,13 +157,14 @@ const FinalFileSubmission = ({user, refresh}) => {
                       </div>
                     : <div className="input-group">
                         <span className="input-text">
-                          Please drop your file(s) below (Supported Files: .pptx, .ppt, .pdf, max: 30MB)
+                          Please drop your file(s) below (Supported Files: .pptx, .ppt, .pdf, .zip, max: 30MB)
                         </span>
                         <Component.DropZone 
                           validTypes={[
                             "application/pdf",
                             "application/vnd.ms-powerpoint",
-                            "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                            "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                            "application/zip"
                           ]}
                           buttonText="UPLOAD FILE"
                           postURL={BackendRoutes.bistAccount.uploadFinal2}
