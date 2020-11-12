@@ -1,7 +1,7 @@
 import LandingScene from './General/landingScene';
 import LoginScene from './General/loginScene';
-// import RegisterScene from './General/registerScene';
-import RegisterScene from './General/registerClosedScene';
+import RegisterScene from './General/registerScene';
+// import RegisterScene from './General/registerClosedScene';
 import ForgotPasswordScene from "./General/forgotPasswordScene";
 import ForgotPasswordValidateScene from "./General/forgotPasswordValidateScene";
 import CompetitionScene from "./General/competitionScene";

@@ -50,7 +50,7 @@ const DropZone = ({validTypes, buttonText, postURL, idName, filesLimit, user, re
         } else {
           file.invalid = true;
           setSelectedFiles(prevArray => [...prevArray, file]);
-          setErrorMessage("Sorry, file type not Permitted or file size is too large (max: 8MB)");
+          setErrorMessage("Sorry, file type not Permitted or file size is too large");
           setUnsupportedFiles(prevArray => [...prevArray, file]);
         }
       }
