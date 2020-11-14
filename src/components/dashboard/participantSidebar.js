@@ -48,6 +48,14 @@ const ParticipantSidebar = ({state, handleClick, role}) => {
           <FontAwesomeIcon icon={['fas', 'file-download']} size="lg"/>
           &emsp; Preliminary Case
         </a>
+        {
+          AuthGroups.finalGroup.includes(role)
+          ? <a className="sidebar-pill" onClick={handleClick} href={SocialRoutes.finalCase} style={{"display": "block"}} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={['fas', 'file-download']} size="lg"/>
+              &emsp; Final Case
+            </a>
+          : null
+        }
       </div>
 
       <div className="sidebar-component">

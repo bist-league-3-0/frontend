@@ -252,6 +252,19 @@ const DashboardContent = ({user}) => {
                 <a href={SocialRoutes.preliminaryCase} className="button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
                   VIEW PRELIMINARY CASE
                 </a>
+
+                { user?.account?.roleID === 3
+                  ? <>
+                    <br/><br/>
+                    <span className="db-text-map-title">
+                      Final Case Has Been Revealed!
+                    </span>
+                    <a href={SocialRoutes.finalCase} className="button-primary-filled color-white" target="_blank" rel="noopener noreferrer">
+                      VIEW FINAL CASE
+                    </a>
+                  </>
+                  : null
+                }
               </div>
             </div>
           </div>

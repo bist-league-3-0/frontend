@@ -12,5 +12,6 @@ SocialRoutes.challengePosterSubmission = "https://bit.ly/BL2020PosterChallenge";
 SocialRoutes.challengePosterInfo = "https://bit.ly/HearUsOutChallenge";
 
 SocialRoutes.preliminaryCase = "https://rebrand.ly/PrelimCaseBISTLeague"; 
+SocialRoutes.finalCase = "https://rebrand.ly/FinalCaseBISTLeague"; 
 
 module.exports = SocialRoutes

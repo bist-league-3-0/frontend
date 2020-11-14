@@ -144,6 +144,8 @@ const FinalFileSubmission = ({user, refresh}) => {
                     </span>
                     <p>
                       Send your final case solution presentation here!.
+                      Submit your final case presentation in .ppt or .pptx format.
+                      If it contains any external file (i.e. custom fonts), please submit it in .zip format
                       Last submission is to be determined.
                     </p>
                     {renderFile2String()}
